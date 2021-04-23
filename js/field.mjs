@@ -1,27 +1,11 @@
-var canvas = document.querySelector('canvas');
+let canvas = document.querySelector('canvas');
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-var c = canvas.getContext('2d');
+let c = canvas.getContext('2d');
 let data = []
-
-var mouse = {
-    x:undefined,
-    y:undefined,
-    listDownX:undefined,
-    lastDownY:undefined,
-    clicked:false
-}
-var wheel = {
-    x:Math.floor(innerWidth/2),
-    y:Math.floor(innerHeight/2)
-}
-var click = {
-    x:0,
-    y:0
-}
-var colorArray = [
+let colorArray = [
     '#15C2A6',
     '#353535',
     '#FEC828',
@@ -29,72 +13,11 @@ var colorArray = [
     '#CB2624'
 ]
 
-window.addEventListener('mousemove', function(event){
-    mouse.x = event.x;
-    mouse.y = event.y;
-    // console.log(`x : ${mouse.x}, Y : ${mouse.y}`)
-})
-window.addEventListener("mousedown",e=>{
-    mouse.clicked = true;
-    mouse.lastDownX = e.x;
-    mouse.lastDownY = e.y;
-    // console.log(`x : ${e.x}, Y : ${e.y}`)
-})
-window.addEventListener("mouseup",e => {
-    mouse.clicked = false;
-})
-window.addEventListener('resize', function(){
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    // init()
-})
-window.addEventListener('wheel',function(event){
-    wheel.x = event.x;
-    wheel.y = event.y;
-
-})
-window.addEventListener('click',function(event){
-    click.x = event.x;
-    click.y = event.y;
-    // console.log(`x : ${click.x}, Y : ${click.y}`)
-})
-
-function Circle(x, y, dx, dy, radius) {
-
-    this.x = x;
-    this.y = y;
-    this.dx = dx;
-    this.dy = dy;
-    this.radius = radius;
-    this.minRadius = radius;
-    // this.color = colorArray[Math.floor(Math.random() * colorArray.length)];
-    this.color = 'black'
-
-
-    this.draw = function() {
-
-        c.beginPath();
-        c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-        c.strokeStyle = 'blue'
-        c.fillStyle = this.color;
-        c.stroke();
-        c.fill();
-
-        // console.log(`x : ${this.x}, Y : ${this.y}`)
-
-    }
-    this.update = function(){
-        this.draw();
-    }
-    
-}
-
 // ===============================================
 // field
 // ===============================================
 
-var field = {
+let field = {
     x:0,
     y:0,
 
@@ -108,15 +31,10 @@ var field = {
         console.log(`x : ${this.x}, Y : ${this.y}`)
 
         c.translate(x, y)
-        drawGrid(100);
-
-        var zero = new Circle(0, 0, 10, 10, 10);
-        c.fillText('( x:0 , y:0 )', 15 , -10)
-        zero.draw();
-
-        for(let i = 0 ; i < data.length ; i++){
-            data[i].draw()
-        }
+        this.drawGrid(100);
+        
+        //reinit
+        data.forEach(e => e.update());
     },
     updateAsView : function(x,y){
 
@@ -127,97 +45,191 @@ var field = {
         this.y = y;
 
         c.translate(x, y)
-        
-        // console.log(`x : ${this.x}, Y : ${this.y}`)
+        this.drawGrid(100);
 
-        drawGrid(100);
+        ///reinit
+        data.forEach(e => e.update());
+    },
+    drawGrid: (gap)=>{
 
-        var zero = new Circle(0, 0, 10, 10, 10);
-        c.fillText('( x:0 , y:0 )', 15 , -10)
-        zero.draw();
 
-        for(let i = 0 ; i < data.length ; i++){
-            data[i].draw()
+        let w = innerWidth-field.x;
+        let h = innerHeight-field.y;
+    
+        c.beginPath();
+    
+    
+        // +x
+        for(let x = 0 ; x < w; x = x+gap ){
+    
+            c.moveTo(x,-field.y);
+            c.lineTo(x,h);
+    
         }
+        //-x
+        for(let x = 0 ; x >= -field.x; x = x-gap ){
+    
+            c.moveTo(x,-field.y);
+            c.lineTo(x,h);
+    
+        }
+        //+y
+        for(let y = 0 ; y < h ; y = y+gap){
+    
+            c.moveTo(-field.x, y);
+            c.lineTo(w, y);
+    
+        }
+        //-y
+        for(let y = 0 ; y >= -field.y ; y = y-gap){
+    
+            c.moveTo(-field.x, y);
+            c.lineTo(w, y);
+    
+        }
+        
+        c.strokeStyle = 'black'
+        c.stroke();
+        c.closePath();
+    
     }
 
 }
-// 0を中心としていてそこからwidthとheightを指定してる方右側は切れてしまうのは当たり前。
-// 
-function drawGrid(gap){
 
 
-    let w = innerWidth-field.x;
-    let h = innerHeight-field.y;
+// user Interface status
 
-    c.beginPath();
-
-
-    // +x
-    for(let x = 0 ; x < w; x = x+gap ){
-
-        c.moveTo(x,-field.y);
-        c.lineTo(x,h);
-
-    }
-    //-x
-    for(let x = 0 ; x >= -field.x; x = x-gap ){
-
-        c.moveTo(x,-field.y);
-        c.lineTo(x,h);
-
-    }
-    //+y
-    for(let y = 0 ; y < h ; y = y+gap){
-
-        c.moveTo(-field.x, y);
-        c.lineTo(w, y);
-
-    }
-    //-y
-    for(let y = 0 ; y >= -field.y ; y = y-gap){
-
-        c.moveTo(-field.x, y);
-        c.lineTo(w, y);
-
-    }
-    c.strokeStyle = 'black'
-    c.stroke();
-    c.closePath();
-
+let mouse = {
+    x:undefined,
+    y:undefined,
+    lastDown:{
+        x:undefined,
+        y:undefined,
+        // Is it really suit to here, inside of mouse? yes or no, and why?
+        diffFromField:{
+            x: undefined,
+            y: undefined
+        }
+    },
+    // is this really need ? but I thought lastDown and click is different. click is propablly same as mouseup, or little bit different
+    click:{
+        x:undefined,
+        y:undefined,
+    },
+    isClicked:false
 }
 
+// feature implemention of scroll and move field
+// let wheel = {
+//     x:Math.floor(innerWidth/2),
+//     y:Math.floor(innerHeight/2)
+// }
 
+window.addEventListener('resize', ()=>{
 
-data.push(new Circle(100, 100, 10, 10, 10));
-data.push(new Circle(-100, -100, 10, 10, 10));
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    // init()
 
-field.updateAsView(500, 500)
-let diffX = 0;
-let diffY = 0;
-window.addEventListener('mousedown',(e)=>
-    {
-        diffX = e.x-field.x;
-        diffY = e.y-field.y;
-    }
-)
+})
+window.addEventListener('mousemove', e => {
 
-window.addEventListener('keydown',(e)=>{
-    if(e.key == ' ' && mouse.clicked){
-        console.log(`x : ${diffX}, y : ${diffY}`)
-        field.updateAsView(mouse.x - diffX, mouse.y - diffY);
-    }
+    mouse.x = e.x;
+    mouse.y = e.y;
+    // console.log(`x : ${mouse.x}, Y : ${mouse.y}`)
+
+})
+window.addEventListener("mousedown",e => {
+
+    mouse.isClicked = true;
+    mouse.lastDown.x = e.x;
+    mouse.lastDown.y = e.y;
+    mouse.lastDown.diffFromField.x = e.x-field.x;
+    mouse.lastDown.diffFromField.y = e.y-field.y;
+
+})
+window.addEventListener("mouseup",e => {
+
+    mouse.isClicked = false;
+
+})
+window.addEventListener('wheel',e => {
+
+    wheel.x = e.x;
+    wheel.y = e.y;
+
+})
+window.addEventListener('click',e => {
+
+    mouse.click.x = e.x;
+    mouse.click.y = e.y;
+
 })
 
 
-window.addEventListener('keydown',(e)=>{
+/// grab field event
+
+window.addEventListener('keydown',e => {
+
+    if(e.key == ' ' && mouse.isClicked){
+
+        field.updateAsView(mouse.x - mouse.lastDown.diffFromField.x, mouse.y - mouse.lastDown.diffFromField.y);
+        
+    } 
+
+})
+window.addEventListener('keydown',e => {
+
     if(e.key == ' ')canvas.style.cursor =  "grab"; 
-    if(e.key == ' ' && mouse.clicked) canvas.style.cursor = "grabbing";
-    window.addEventListener('mouseup',(e)=>{
-        canvas.style.cursor = "grab";
-    })
-    window.addEventListener('keyup', ()=>{
-        canvas.style.cursor = 'default'
-    })
+    if(e.key == ' ' && mouse.isClicked) canvas.style.cursor = "grabbing";
+    // ERROR: keydown space and mousedown, then keyup space before mouseup. cursur swaps default to hand.
+    window.addEventListener('mouseup',()=> canvas.style.cursor = "grab")
+    window.addEventListener('keyup' , ()=> canvas.style.cursor = 'default')
+
 })
-console.log(window)
+
+
+
+
+class Circle {
+    constructor(x, y, dx, dy, radius) {
+
+        this.x = x;
+        this.y = y;
+        this.dx = dx;
+        this.dy = dy;
+        this.radius = radius;
+        this.minRadius = radius;
+        // this.color = colorArray[Math.floor(Math.random() * colorArray.length)];
+        this.color = 'black';
+
+    }
+    draw(){
+
+        c.beginPath();
+        c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+        c.strokeStyle = 'blue';
+        c.fillStyle = this.color;
+        c.stroke();
+        c.fill();
+
+    }
+    update(){
+
+        this.draw();
+
+    }
+}
+
+function init(){
+
+    data.push(new Circle(0, 0, 10, 10, 10));
+    data.push(new Circle(100, 100, 10, 10, 10));
+    data.push(new Circle(-100, -100, 10, 10, 10));
+    
+    field.updateAsView(500, 500)
+
+}
+
+init()
+
