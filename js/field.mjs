@@ -1,6 +1,16 @@
+var canvas = document.querySelector('canvas');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+var c = canvas.getContext('2d');
+let data = []
+
 var mouse = {
     x:undefined,
     y:undefined,
+    listDownX:undefined,
+    lastDownY:undefined,
     clicked:false
 }
 var wheel = {
@@ -22,9 +32,13 @@ var colorArray = [
 window.addEventListener('mousemove', function(event){
     mouse.x = event.x;
     mouse.y = event.y;
+    // console.log(`x : ${mouse.x}, Y : ${mouse.y}`)
 })
 window.addEventListener("mousedown",e=>{
     mouse.clicked = true;
+    mouse.lastDownX = e.x;
+    mouse.lastDownY = e.y;
+    // console.log(`x : ${e.x}, Y : ${e.y}`)
 })
 window.addEventListener("mouseup",e => {
     mouse.clicked = false;
@@ -43,7 +57,7 @@ window.addEventListener('wheel',function(event){
 window.addEventListener('click',function(event){
     click.x = event.x;
     click.y = event.y;
-    console.log(`x : ${click.x}, Y : ${click.y}`)
+    // console.log(`x : ${click.x}, Y : ${click.y}`)
 })
 
 function Circle(x, y, dx, dy, radius) {
@@ -97,7 +111,12 @@ var field = {
         drawGrid(100);
 
         var zero = new Circle(0, 0, 10, 10, 10);
+        c.fillText('( x:0 , y:0 )', 15 , -10)
         zero.draw();
+
+        for(let i = 0 ; i < data.length ; i++){
+            data[i].draw()
+        }
     },
     updateAsView : function(x,y){
 
@@ -123,12 +142,13 @@ var field = {
     }
 
 }
-
+// 0を中心としていてそこからwidthとheightを指定してる方右側は切れてしまうのは当たり前。
+// 
 function drawGrid(gap){
 
 
-    let w = innerWidth;
-    let h = innerHeight
+    let w = innerWidth-field.x;
+    let h = innerHeight-field.y;
 
     c.beginPath();
 
@@ -172,9 +192,32 @@ function drawGrid(gap){
 data.push(new Circle(100, 100, 10, 10, 10));
 data.push(new Circle(-100, -100, 10, 10, 10));
 
+field.updateAsView(500, 500)
+let diffX = 0;
+let diffY = 0;
+window.addEventListener('mousedown',(e)=>
+    {
+        diffX = e.x-field.x;
+        diffY = e.y-field.y;
+    }
+)
 
 window.addEventListener('keydown',(e)=>{
     if(e.key == ' ' && mouse.clicked){
-        field.updateAsView(mouse.x, mouse.y);
+        console.log(`x : ${diffX}, y : ${diffY}`)
+        field.updateAsView(mouse.x - diffX, mouse.y - diffY);
     }
 })
+
+
+window.addEventListener('keydown',(e)=>{
+    if(e.key == ' ')canvas.style.cursor =  "grab"; 
+    if(e.key == ' ' && mouse.clicked) canvas.style.cursor = "grabbing";
+    window.addEventListener('mouseup',(e)=>{
+        canvas.style.cursor = "grab";
+    })
+    window.addEventListener('keyup', ()=>{
+        canvas.style.cursor = 'default'
+    })
+})
+console.log(window)
