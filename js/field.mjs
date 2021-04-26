@@ -1,33 +1,18 @@
-let canvas = document.querySelector('canvas');
-let svg = document.querySelector('svg')
-let g = document.querySelector('svg').querySelector('g');
+import {
+    canvas,
+    svg,
+    g,
+    c,
+    UMLClassStrokerColor,
+    lineWidthDafault,
+    colorArray,
+    distance,
+    mouse
+} from "./global.mjs"
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let c = canvas.getContext('2d');
-
-let UMLClassStrokerColor = 'rgb(185, 198, 209)';
-let lineWidthDafault = 1;
-
-let data = []
-
-let colorArray = [
-    '#15C2A6',
-    '#353535',
-    '#FEC828',
-    '#EF4F2D',
-    '#CB2624'
-]
-
-function distance(x1, y1, x2, y2){
-    const xDist = x2 - x1;
-    const yDist = y2 - y1;
-    return Math.sqrt(Math.pow(xDist, 2) + Math.pow(yDist, 2))
-}
-
-
-
+import {
+    Circle
+} from "./object.mjs"
 
 
 // ===============================================
@@ -145,67 +130,6 @@ let field = {
 
 }
 
-class Circle {
-    constructor(x, y, dx, dy, radius) {
-
-        this.x = x;
-        this.y = y;
-        this.dx = dx;
-        this.dy = dy;
-        this.radius = radius;
-        this.minRadius = radius;
-        // this.color = colorArray[Math.floor(Math.random() * colorArray.length)];
-        this.color = 'black';
-
-    }
-    draw(){
-
-        c.beginPath();
-        c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-        c.strokeStyle = 'blue';
-        c.fillStyle = this.color;
-        c.stroke();
-        c.fill();
-
-    }
-    update(){
-
-        this.draw();
-
-    }
-}
-
-
-// ===============================================
-// mouse status
-// ===============================================
-
-let mouse = {
-    x:undefined,
-    y:undefined,
-    
-    lastDown:{
-        x:undefined,
-        y:undefined,
-    },
-    
-    // is this really need ? but I thought lastDown and click is different. click is propablly same as mouseup, or little bit different
-    click:{
-        x:undefined,
-        y:undefined,
-    },
-    isClicked:false,
-
-    field:{
-        x:undefined,
-        y:undefined,
-        lastDown:{
-            x:undefined,
-            y:undefined,
-        },
-    }
-}
-
 // feature implemention of scroll and move field
 // let wheel = {
 //     x:Math.floor(innerWidth/2),
@@ -296,4 +220,9 @@ window.addEventListener('keydown',e => {
 })
 
 
-field.init()
+
+
+
+export{
+    field
+}
