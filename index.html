@@ -1,19 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cancas Resize</title>
-  <style type="text/css">
-    canvas {
-      border: 1px solid black;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancas Resize</title>
+    <style type="text/css">
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
 </head>
+
 <body>
-  <canvas></canvas>
-  <script src="js/main.mjs"></script>
-  <script src="js/field.mjs"></script>
+    <canvas></canvas>
+    <div id="svgDiv" style="top: 0px; user-select: none; width: 100%; cursor: default; position: absolute; height: 100%; left: 0px;">
+        <svg style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;"xmlns="http://www.w3.org/2000/svg">
+            <g class="translate" style="transform: translate(100px, 709px);">
+                <g class="scale" style="transform-origin: 0px 0px; transform: scale(1, 1 );">
+
+                </g>
+            </g>
+        </svg>
+    </div>
+    <script src="js/main.mjs"></script>
+    <script src="js/field.mjs"></script>
 </body>
+
 </html>
