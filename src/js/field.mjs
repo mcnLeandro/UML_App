@@ -73,9 +73,9 @@ let field = {
         
         this.draw()
     },
-    drawGrid: (gap)=>{
+    drawGrid: function(gap){
 
-        // if(gap == 100)return;
+        // if(canvas.style.scale < 1)return;
 
         let w = innerWidth-field.x;
         let h = innerHeight-field.y;
@@ -130,11 +130,7 @@ let field = {
 
 }
 
-// feature implemention of scroll and move field
-// let wheel = {
-//     x:Math.floor(innerWidth/2),
-//     y:Math.floor(innerHeight/2)
-// }
+
 
 window.addEventListener('resize', ()=>{
 
@@ -166,12 +162,6 @@ window.addEventListener("mouseup",e => {
     mouse.isClicked = false;
 
 })
-// window.addEventListener('wheel',e => {
-
-//     wheel.x = e.x;
-//     wheel.y = e.y;
-
-// })
 window.addEventListener('click',e => {
 
     mouse.click.x = e.x;
@@ -179,6 +169,7 @@ window.addEventListener('click',e => {
     console.log(`x: ${e.x},y: ${e.y}`)
 
 })
+
 
 
 // ===============================================
@@ -218,9 +209,43 @@ window.addEventListener('keydown',e => {
     })
 
 })
+// ===============================================
+//  scale
+// ===============================================
+// feature implemention of scroll and move field
+let wheel = {
+    x:Math.floor(innerWidth/2),
+    y:Math.floor(innerHeight/2)
+}
 
 
+let scale = 1;
+function zoom(event) {
+    event.preventDefault();
+  
+    scale += event.deltaY * -0.01;
+  
+    // Restrict scale
+    scale = Math.min(Math.max(.125, scale), 4);
+  
+    // Apply scale transform
+    canvas.style.transform = `scale(${scale})`;
+    g.style.transform = `scale(${scale})`;
+    // canvas.width = innerWidth * (1+scale);
+    // canvas.height = innerHeight * (1+scale);
+    // g.width = innerWidth * (1+scale);
+    // g.height = innerHeight * (1+scale);
+    // field.updateAsCanvas(0,0)
+}
+window.addEventListener('wheel',e => {
 
+    wheel.x = e.x;
+    wheel.y = e.y;
+    console.log(`x: ${e.x},y: ${e.y}`)
+
+})
+
+window.addEventListener('wheel',zoom)
 
 
 export{
