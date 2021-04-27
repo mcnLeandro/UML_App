@@ -11,7 +11,8 @@ import {
 } from "./global.mjs"
 
 import {
-    Circle
+    Circle,
+    UMLClass
 } from "./object.mjs"
 
 
@@ -123,6 +124,12 @@ let field = {
         this.objects.push(new Circle(0, 0, 10, 10, 10));
         this.objects.push(new Circle(100, 100, 10, 10, 10));
         this.objects.push(new Circle(-100, -100, 10, 10, 10));
+
+        this.objects.push(new UMLClass(100,100,100,100,'white'))
+        this.objects.push(new UMLClass(400,300,100,100,'white'))
+
+        
+        this.objects.forEach(e=>e.draggable())
         
         field.updateAsView(500, 500)
     
