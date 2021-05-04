@@ -231,11 +231,6 @@ function zoom(event) {
     // Apply scale transform
     canvas.style.transform = `scale(${scale})`;
     g.style.transform = `scale(${scale})`;
-    // canvas.width = innerWidth * (1+scale);
-    // canvas.height = innerHeight * (1+scale);
-    // g.width = innerWidth * (1+scale);
-    // g.height = innerHeight * (1+scale);
-    // field.updateAsCanvas(0,0)
 }
 window.addEventListener('wheel',e => {
 
