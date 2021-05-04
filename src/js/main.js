@@ -1,17 +1,69 @@
 import './../css/style.css'
 
+// ===============================================
+// global
+// ===============================================
 
-// import {field} from "./modules/field.js"
+
+let global = {
+    canvas : document.querySelector('#field'),
+    // c : global.canvas.getContext('2d'),
+}
 
 
-// field.init()
+global.canvas.width = window.innerWidth;
+global.canvas.height = window.innerHeight;
+
+
+// ===============================================
+//  paper setup
+// ===============================================
 
 paper.install(window);
 paper.setup(document.getElementById('field'));
 let mouse = new Tool()
 
+
+
+
+// ===============================================
+// style
+// ===============================================
+
+let color = {
+    field : '#eef2f6',
+    classStroke : '#b9c6d1',
+    gridStroke : '#c1cdd9'
+}
+let strokeWidth = {
+    class : 1,
+
+}
+
+// ===============================================
+// layers
+// ===============================================
+
+let bgRect = new Path.Rectangle([view.bounds.x, view.bounds.y],[innerWidth,innerHeight])
+bgRect.name = "bgRect";
+
+//adding name to default layer
+project.activeLayer.name = "default";
+// adding bg layer
+project.insertLayer(0,
+    new Layer({
+        children: [bgRect,drawGrid(100)],
+        name:"bg",
+        fillColor : color.field
+    })
+)
+
+
+// ===============================================
+// field
+// ===============================================
 function drawGrid(gap){
-    const gridGroup = new Group()
+    
 
     const verticalLineGroup = new Group()
     const horizontalLineGroup = new Group()
@@ -32,9 +84,7 @@ function drawGrid(gap){
             [x, maxY]
         )
         
-        line.strokeColor = 'red'
         verticalLineGroup.addChild(line)
-        // gridGroup.addChild(line)
     }
     for (let y = minY - remainderY; y < maxY; y+=gap) {
 
@@ -42,31 +92,23 @@ function drawGrid(gap){
             [minX, y],
             [maxX, y]
         )
-        
-        line.strokeColor = 'red'
+    
         horizontalLineGroup.addChild(line)
-        // gridGroup.addChild(line)
     }
-    gridGroup.addChild(horizontalLineGroup)
-    gridGroup.addChild(verticalLineGroup)
-    return gridGroup
+
+    const grids = new Group({
+        children : [
+            horizontalLineGroup,
+            verticalLineGroup
+        ],
+        name:"grids",
+        strokeColor :color.gridStroke
+    })
+    
+    
+    return grids
 }
- 
 
-
-
-let bgLayer = new Layer();
-bgLayer.name = "bgLayer"
-let gridGroup = drawGrid(100)
-
-
-bgLayer.addChild(gridGroup)
-
-project.insertLayer(bgLayer)
-let cir2 = new Path.Circle([0, 0],10)
-cir2.fillColor = 'blue'
-
-console.log(project.layers.bgLayer)
 
 view.onMouseDrag = function(e){
     if(Key.isDown('space')){
@@ -76,7 +118,13 @@ view.onMouseDrag = function(e){
 
         view.translate([x , y])
 
-        gridGroup.remove()
-        gridGroup =  drawGrid(100)
+
+        let newGrids = drawGrid(100)
+        let bgChildren = project.layers.bg.children
+
+        bgChildren.grids.replaceWith(newGrids)
+        bgChildren.bgRect.position.x = view.center.x
+        bgChildren.bgRect.position.y = view.center.y
     }
 }
+
