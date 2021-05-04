@@ -8,11 +8,11 @@ import {
     colorArray,
     distance,
     mouse
-} from "./global.mjs"
+} from "./global.js"
 
 import {
     Circle
-} from "./object.mjs"
+} from "./object.js"
 
 
 // ===============================================

@@ -8,7 +8,7 @@ import {
     colorArray,
     distance,
     mouse
-} from "./global.mjs"
+} from "./global.js"
 
 
 class Circle {

@@ -66,6 +66,3 @@ export {
     distance,
     mouse
 };
-
-//module エラーが出る
-//clicker emoiregameを参考にする
