@@ -16,7 +16,7 @@ class Field{
     
 
     static set(){
-this.gap = 100;
+        this.gap = 100;
         this.color = color.field;
         this.gridColor = color.gridStroke;
     }
