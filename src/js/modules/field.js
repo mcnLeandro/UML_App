@@ -1,248 +1,131 @@
-import {
+
+
+import {mouse,
     canvas,
-    svg,
-    g,
-    c,
-    UMLClassStrokerColor,
-    lineWidthDafault,
-    colorArray,
-    distance,
-    mouse
-} from "./global.js"
-
-import {
-    Circle
-} from "./object.js"
+    color,
+    strokeWidth
+} from './../main.js'
 
 
-// ===============================================
-// field
-// ===============================================
 
-let field = {
+class Field{
 
-    objects:[],
-
-    x:0,
-    y:0,
-
-    color:'rgba(238,242,246)',
-
-    draw: function(){
-
-        //reset field setting
-        c.fillStyle = this.color;
-        c.lineWidth = lineWidthDafault;
-
-        //set field style
-        c.fillRect(-field.x, -field.y, innerWidth, innerHeight)
-        this.drawGrid(100);
-
-        // console.log(this.x + " " + field.x)
-        //reinit
-        this.objects.forEach(e => e.update());
-
-    },
-    updateAsCanvas : function(x,y){
-
-        c.clearRect(-this.x,-this.y,innerWidth,innerHeight)
-
-        this.x = this.x + x;
-        this.y = this.y + y;
-
-        // console.log(`x : ${this.x}, Y : ${this.y}`)
-
-        c.translate(x, y)
-        g.style.transform = `translate(${this.x+10}px,${this.y+10}px)`
-        
-        this.draw() 
-       
-    },
-    updateAsView : function(x,y){
-
-        c.clearRect(-this.x, -this.y, innerWidth, innerHeight)
-        c.translate(-this.x, -this.y)
-
-        
-        this.x = x;
-        this.y = y;
-        
-        c.translate(x, y)
-        // g.style.transform = `translate(${x+10}px,${y+10}px)` 
-        g.style.transform = `translate(${x+10}px,${y+10}px)` 
-        
-        this.draw()
-    },
-    drawGrid: function(gap){
-
-        // if(canvas.style.scale < 1)return;
-
-        let w = innerWidth-field.x;
-        let h = innerHeight-field.y;
+    static gap;
+    static color;
+    static gridColor;
     
-        c.beginPath();
-        c.globalAlpha = 0.5
-    
-        // +x
-        for(let x = 0 ; x < w; x = x+gap ){
-    
-            c.moveTo(x,-field.y);
-            c.lineTo(x,h);
-    
-        }
-        //-x
-        for(let x = 0 ; x >= -field.x; x = x-gap ){
-    
-            c.moveTo(x,-field.y);
-            c.lineTo(x,h);
-    
-        }
-        //+y
-        for(let y = 0 ; y < h ; y = y+gap){
-    
-            c.moveTo(-field.x, y);
-            c.lineTo(w, y);
-    
-        }
-        //-y
-        for(let y = 0 ; y >= -field.y ; y = y-gap){
-    
-            c.moveTo(-field.x, y);
-            c.lineTo(w, y);
-    
-        }
-        
-        c.strokeStyle = 'black'
-        c.stroke();
-        c.closePath();
-        c.globalAlpha = 1
-    
-    },
-    init:function(){
 
-        this.objects.push(new Circle(0, 0, 10, 10, 10));
-        this.objects.push(new Circle(100, 100, 10, 10, 10));
-        this.objects.push(new Circle(-100, -100, 10, 10, 10));
-        
-        field.updateAsView(500, 500)
-    
+    static set(){
+this.gap = 100;
+        this.color = color.field;
+        this.gridColor = color.gridStroke;
     }
+    static init(){
 
-}
-
-
-
-window.addEventListener('resize', ()=>{
-
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    // init()
-
-})
-window.addEventListener('mousemove', e => {
-
-    mouse.x = e.x;
-    mouse.y = e.y;
-    mouse.field.x = e.x - field.x;
-    mouse.field.y = e.y - field.y;
-    // console.log(`x : ${mouse.x}, Y : ${mouse.y}`)
-
-})
-window.addEventListener("mousedown",e => {
-
-    mouse.isClicked = true;
-    mouse.lastDown.x = e.x;
-    mouse.lastDown.y = e.y;
-    mouse.field.lastDown.x = e.x-field.x;
-    mouse.field.lastDown.y = e.y-field.y;
-
-})
-window.addEventListener("mouseup",e => {
-
-    mouse.isClicked = false;
-
-})
-window.addEventListener('click',e => {
-
-    mouse.click.x = e.x;
-    mouse.click.y = e.y;
-    console.log(`x: ${e.x},y: ${e.y}`)
-
-})
-
-
-
-// ===============================================
-// grab listenner
-// ===============================================
-
-window.addEventListener('keydown',e => {
-
-    if(e.key == ' ' && mouse.isClicked){
-
-        field.updateAsView(mouse.x - mouse.field.lastDown.x, mouse.y - mouse.field.lastDown.y);
+        let bgRect = new Path.Rectangle([view.bounds.x, view.bounds.y],[innerWidth,innerHeight])
+        bgRect.name = "bgRect";
         
-    } 
+        //adding name to default layer
+        project.activeLayer.name = "default";
+        // adding bg layer
+        project.insertLayer(0,
+            new Layer({
+                children: [bgRect,this.drawGrid()],
+                name:"bg",
+                fillColor : this.color
+            })
+        )
 
-})
-window.addEventListener('keydown',e => {
-
-    if(e.key == ' '){
-        canvas.style.cursor =  "grab";
-        svg.style.cursor =  "grab";
-    } 
-
-    if(e.key == ' ' && mouse.isClicked){
-        canvas.style.cursor = "grabbing";
-        svg.style.cursor = "grabbing";
-    } 
-
-    window.addEventListener('mouseup',()=>{
-        if(mouse.isClicked){
-            canvas.style.cursor = "grab"
-            svg.style.cursor = "grab"
+    }
+    static drawGrid(){
+    
+        const verticalLineGroup = new Group()
+        const horizontalLineGroup = new Group()
+    
+        const remainderX = view.bounds.x%this.gap
+        const remainderY = view.bounds.y%this.gap
+    
+        const minX = view.bounds.x;
+        const minY = view.bounds.y;
+        const maxX = view.bounds.width + minX;
+        const maxY = view.bounds.height + minY;
+    
+    
+        for (let x = minX - remainderX; x < maxX; x+=this.gap) {
+    
+            let line = new Path.Line(
+                [x, minY],
+                [x, maxY]
+            )
+            
+            verticalLineGroup.addChild(line)
         }
-    })
-    window.addEventListener('keyup' , ()=> {
-        canvas.style.cursor = 'default'
-        svg.style.cursor = 'default'
-    })
+        for (let y = minY - remainderY; y < maxY; y+=this.gap) {
+    
+            let line = new Path.Line(
+                [minX, y],
+                [maxX, y]
+            )
+        
+            horizontalLineGroup.addChild(line)
+        }
+    
+        const grids = new Group({
+            children : [
+                horizontalLineGroup,
+                verticalLineGroup
+            ],
+            name:"grids",
+            strokeColor :this.gridColor
+        })
+        
+        
+        return grids
 
-})
-// ===============================================
-//  scale
-// ===============================================
-// feature implemention of scroll and move field
-let wheel = {
-    x:Math.floor(innerWidth/2),
-    y:Math.floor(innerHeight/2)
+    }
+    static updateAsCanvas(x,y){
+
+        view.translate([x , y])
+        
+        let newGrids = this.drawGrid(100)
+        let bgChildren = project.layers.bg.children
+
+        bgChildren.grids.replaceWith(newGrids)
+        bgChildren.bgRect.position.x = view.center.x
+        bgChildren.bgRect.position.y = view.center.y
+
+    }
+    static grabbable(){
+
+        view.onMouseDrag = function(e){
+            if(Key.isDown('space')){
+        
+                let x = e.point.x - mouse._downPoint.x;
+                let y = e.point.y - mouse._downPoint.y;
+        
+                Field.updateAsCanvas(x,y)
+            }
+        }
+        
+        view.onKeyDown = function(){
+            if(Key.isDown('space')){
+                canvas.style.cursor =  "grab";
+            } 
+            if(Key.isDown('space') && mouse.isMouseDown){
+                canvas.style.cursor = 'grabbing'
+            }
+            mouse.onMouseUp = function(){
+                if(Key.isDown('space')){
+                    canvas.style.cursor = 'grab'
+                }
+            }
+            view.onKeyUp = function(){
+                canvas.style.cursor = 'default'
+            }
+        }
+        
+    }
 }
 
 
-let scale = 1;
-function zoom(event) {
-    event.preventDefault();
-  
-    scale += event.deltaY * -0.01;
-  
-    // Restrict scale
-    scale = Math.min(Math.max(.125, scale), 4);
-  
-    // Apply scale transform
-    canvas.style.transform = `scale(${scale})`;
-    g.style.transform = `scale(${scale})`;
-}
-window.addEventListener('wheel',e => {
-
-    wheel.x = e.x;
-    wheel.y = e.y;
-    console.log(`x: ${e.x},y: ${e.y}`)
-
-})
-
-window.addEventListener('wheel',zoom)
-
-
-export{
-    field
-}
+export { Field }
