@@ -16,7 +16,7 @@ class Field{
     
 
     static set(){
-this.gap = 100;
+        this.gap = 100;
         this.color = color.field;
         this.gridColor = color.gridStroke;
     }
@@ -38,7 +38,7 @@ this.gap = 100;
 
     }
     static drawGrid(){
-    
+        //TODO: optimizate using deque
         const verticalLineGroup = new Group()
         const horizontalLineGroup = new Group()
     
@@ -129,3 +129,8 @@ this.gap = 100;
 
 
 export { Field }
+
+// TODO: zoom 
+// TODO: wheel
+// TODO: resize
+// TODO: resize
