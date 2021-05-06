@@ -9,7 +9,7 @@ import './../css/style.css'
 let canvas =  document.querySelector('#field')
 let color = {
     field : '#eef2f6',
-    classStroke : '#b9c6d1',
+    classStroke : '#bbc8d3',
     gridStroke : '#c1cdd9'
 }
 let strokeWidth = {
@@ -62,4 +62,21 @@ import { Field } from './modules/field.js'
 Field.set()
 Field.init();
 Field.grabbable();
+
+// ===============================================
+// Class
+// ===============================================
+
+import { Class } from './modules/class.js'
+
+
+
+let rec = new Class([
+    'hey man',
+    'hello world',
+    'come on man'
+]);
+rec.draggable()
+
+
 
