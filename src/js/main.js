@@ -71,28 +71,12 @@ import { Class } from './modules/class.js'
 
 
 
-let rec = new Class();
+let rec = new Class([
+    'hey man',
+    'hello world',
+    'come on man'
+]);
 rec.draggable()
 
 
-let rect = new Path.Rectangle([100,100],[200,50])
-rect.fillColor = 'white'
-rect.strokeColor = 'b9c6d1'
-
-
-
-let text = new PointText(new Point(150, 130));
-text.fillColor = 'black';
-text.content = 'Hello world';
-
-
-
-let g = new Group({
-    children : [rect,text]
-});
-
-g.onMouseDrag = function(e){
-    this.position.x += e.delta.x;
-    this.position.y += e.delta.y;
-}
 

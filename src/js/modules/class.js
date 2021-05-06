@@ -21,7 +21,7 @@ import {mouse,
 
 class Class {
 
-    constructor(){
+    constructor(texts){
 
         this.TYPE = "Class"
         this.isAbstract = false;
@@ -35,6 +35,14 @@ class Class {
         this.rect.fillColor = this.fillColor;
         this.rect.strokeColor = this.strokeColor;
 
+
+        this.texts = new Group()
+        this.initTexts(texts)
+        this.class = new Group({
+            children:[this.rect, this.texts]
+        })
+        
+
     }
     new(){
 
@@ -45,10 +53,6 @@ class Class {
     edit(){
 
     }
-    moveTo(x,y){
-        this.rect.posision.x = x;
-        this.rect.posision.y = y;
-    }
     update(params){
 
     }
@@ -56,10 +60,42 @@ class Class {
         this.rect.remove()
     }
     draggable(){
-        this.rect.onMouseDrag = function(e){
+        this.class.onMouseDrag = function(e){
             this.position.x += e.delta.x;
             this.position.y += e.delta.y;
         }
+    }
+
+    initTexts(texts){
+
+        for (let i = 0; i < texts.length; i++) {
+
+            const text = texts[i];
+
+            let x = this.rect.position.x;
+
+            let textChildren = this.texts.children
+            let y;
+            if(textChildren.length == 0){
+                y = this.rect.position.y
+            }
+            else{
+                let lastText = textChildren[textChildren.length -1];
+                y = lastText.point.y + lastText.fontSize
+                console.log(lastText)
+            }
+
+            console.log(`x: ${x}, y: ${y}`)
+
+            this.texts.addChild(new PointText({
+                point: [x , y],
+                content: text,
+                fillColor: 'black',
+                fontFamily: 'Times New Roman',
+            }))
+
+        }
+
     }
 
 }
