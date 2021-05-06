@@ -9,7 +9,7 @@ import './../css/style.css'
 let canvas =  document.querySelector('#field')
 let color = {
     field : '#eef2f6',
-    classStroke : '#b9c6d1',
+    classStroke : '#bbc8d3',
     gridStroke : '#c1cdd9'
 }
 let strokeWidth = {
@@ -62,4 +62,37 @@ import { Field } from './modules/field.js'
 Field.set()
 Field.init();
 Field.grabbable();
+
+// ===============================================
+// Class
+// ===============================================
+
+import { Class } from './modules/class.js'
+
+
+
+let rec = new Class();
+rec.draggable()
+
+
+let rect = new Path.Rectangle([100,100],[200,50])
+rect.fillColor = 'white'
+rect.strokeColor = 'b9c6d1'
+
+
+
+let text = new PointText(new Point(150, 130));
+text.fillColor = 'black';
+text.content = 'Hello world';
+
+
+
+let g = new Group({
+    children : [rect,text]
+});
+
+g.onMouseDrag = function(e){
+    this.position.x += e.delta.x;
+    this.position.y += e.delta.y;
+}
 
