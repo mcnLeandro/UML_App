@@ -39,8 +39,6 @@ view.onMouseUp = function(){
 export{
     mouse,
     canvas,
-    color,
-    strokeWidth
 }
 
 // ===============================================
