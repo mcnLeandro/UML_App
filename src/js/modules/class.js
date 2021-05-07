@@ -57,22 +57,17 @@ class Class extends UMLObject{
 
         this.TYPE = "Class"
 
-
         // this.texts = new Group()
         // this.initTexts(texts)
-        this.group.addChild(this.texts);
+        // this.group.addChild(this.texts);
         
 
     }
-    create(){
+    create(){}
+    update(params){}
+    delete(){return super.delete()}
 
-    }
-    update(params){
 
-    }
-    delete(){
-        return super.delete()
-    }
     draggable(){
         super.draggable()
     }

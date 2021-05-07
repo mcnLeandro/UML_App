@@ -5,6 +5,14 @@ import './../css/style.css'
 // global
 // ===============================================
 
+let body = document.querySelector('body');
+let btnHTML = `
+<div style="top: 0px;  cursor: default; position: absolute;  left: 0px;">
+    <button id="btn"> create new Class </button>
+</div>
+`
+body.innerHTML += btnHTML
+
 
 let canvas =  document.querySelector('#field')
 
@@ -61,6 +69,12 @@ import { Class } from './modules/class.js'
 
 
 
-let rec = new Class();
-rec.draggable()
+
+
+let btn = document.getElementById('btn');
+btn.addEventListener('click',function(){
+    let rec = new Class();
+    rec.draggable()
+    
+})
 
