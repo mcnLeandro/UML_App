@@ -7,13 +7,7 @@ import './../css/style.css'
 
 
 let canvas =  document.querySelector('#field')
-let color = {
-    field : '#eef2f6',
-}
-let strokeWidth = {
-    class : 1,
 
-}
 
 canvas.width = innerWidth;
 canvas.height = innerHeight;

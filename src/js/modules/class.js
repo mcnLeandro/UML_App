@@ -1,8 +1,7 @@
 
-import {mouse,
+import {
+    mouse,
     canvas,
-    color,
-    strokeWidth
 } from './../main.js'
 
 // TODO: create Class class

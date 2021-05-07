@@ -1,9 +1,5 @@
-
-
 import {mouse,
     canvas,
-    color,
-    strokeWidth
 } from './../main.js'
 
 
@@ -20,7 +16,7 @@ class Field{
         this.color = style.color;
         this.gridGap = style.gridGap;
         this.gridColor = style.gridStroke;
-        
+
     }
     static init(){
 
