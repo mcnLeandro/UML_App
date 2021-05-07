@@ -9,8 +9,6 @@ import './../css/style.css'
 let canvas =  document.querySelector('#field')
 let color = {
     field : '#eef2f6',
-    classStroke : '#bbc8d3',
-    gridStroke : '#c1cdd9'
 }
 let strokeWidth = {
     class : 1,

@@ -20,9 +20,10 @@ import {mouse,
 // TODO: resize (with svg)
 
 class UMLObject{
-    constructor(paperObj){
+    constructor(paperObj,style){
 
         this.paperObj = paperObj;
+        this.paperObj.style = style;
         this.group = new Group({
             children:[this.paperObj]
         })
@@ -46,20 +47,16 @@ class UMLObject{
 
 class Class extends UMLObject{
 
-    constructor(/* texts */){
+    static defaultStyle = {
+        fillColor: 'white',
+        strokeColor: '#bbc8d3',
+    }
 
-        super(new Path.Rectangle([100,100],[200,50]))
+    constructor(/* texts, */style = Class.defaultStyle){
+
+        super(new Path.Rectangle([100,100],[200,50]), style)
 
         this.TYPE = "Class"
-        this.isAbstract = false;
-        this.isInterface = false;
-        this.isTemplate = false;
-        this.fillColor = 'white';
-        this.strokeColor = color.classStroke;
-
-
-        this.paperObj.fillColor = this.fillColor;
-        this.paperObj.strokeColor = this.strokeColor;
 
 
         // this.texts = new Group()
@@ -80,35 +77,6 @@ class Class extends UMLObject{
     draggable(){
         super.draggable()
     }
-
-    // initTexts(texts){
-
-    //     for (let i = 0; i < texts.length; i++) {
-
-    //         const text = texts[i];
-
-    //         let x = this.paperObj.position.x;
-
-    //         let textChildren = this.texts.children
-    //         let y;
-    //         if(textChildren.length == 0){
-    //             y = this.paperObj.position.y
-    //         }
-    //         else{
-    //             let lastText = textChildren[textChildren.length -1];
-    //             y = lastText.point.y + lastText.fontSize
-    //         }
-
-    //         this.texts.addChild(new PointText({
-    //             point: [x , y],
-    //             content: text,
-    //             fillColor: 'black',
-    //             fontFamily: 'Times New Roman',
-    //         }))
-
-    //     }
-
-    // }
 
 }
 export{
