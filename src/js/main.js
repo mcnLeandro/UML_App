@@ -71,12 +71,6 @@ import { Class } from './modules/class.js'
 
 
 
-let rec = new Class([
-    'hey man',
-    'hello world',
-    'come on man'
-]);
+let rec = new Class();
 rec.draggable()
-
-
 

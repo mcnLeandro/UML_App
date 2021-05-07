@@ -19,84 +19,96 @@ import {mouse,
 // TODO: resize (just a method or something)
 // TODO: resize (with svg)
 
-class Class {
+class UMLObject{
+    constructor(paperObj){
 
-    constructor(texts){
+        this.paperObj = paperObj;
+        this.group = new Group({
+            children:[this.paperObj]
+        })
+
+    }
+
+    create(){}
+    update(){}
+    delete(){
+        return this.group.remove()
+    }
+
+    draggable(){
+        this.group.onMouseDrag = function(e){
+            this.position.x += e.delta.x;
+            this.position.y += e.delta.y;
+        }
+    }
+
+}
+
+class Class extends UMLObject{
+
+    constructor(/* texts */){
+
+        super(new Path.Rectangle([100,100],[200,50]))
 
         this.TYPE = "Class"
         this.isAbstract = false;
         this.isInterface = false;
         this.isTemplate = false;
-        this.fillColor = 'white'
-        this.strokeColor = color.classStroke
+        this.fillColor = 'white';
+        this.strokeColor = color.classStroke;
 
 
-        this.rect = new Path.Rectangle([100,100],[200,50])
-        this.rect.fillColor = this.fillColor;
-        this.rect.strokeColor = this.strokeColor;
+        this.paperObj.fillColor = this.fillColor;
+        this.paperObj.strokeColor = this.strokeColor;
 
 
-        this.texts = new Group()
-        this.initTexts(texts)
-        this.class = new Group({
-            children:[this.rect, this.texts]
-        })
+        // this.texts = new Group()
+        // this.initTexts(texts)
+        this.group.addChild(this.texts);
         
 
     }
-    new(){
-
-    }
     create(){
-
-    }
-    edit(){
 
     }
     update(params){
 
     }
     delete(){
-        this.rect.remove()
+        return super.delete()
     }
     draggable(){
-        this.class.onMouseDrag = function(e){
-            this.position.x += e.delta.x;
-            this.position.y += e.delta.y;
-        }
+        super.draggable()
     }
 
-    initTexts(texts){
+    // initTexts(texts){
 
-        for (let i = 0; i < texts.length; i++) {
+    //     for (let i = 0; i < texts.length; i++) {
 
-            const text = texts[i];
+    //         const text = texts[i];
 
-            let x = this.rect.position.x;
+    //         let x = this.paperObj.position.x;
 
-            let textChildren = this.texts.children
-            let y;
-            if(textChildren.length == 0){
-                y = this.rect.position.y
-            }
-            else{
-                let lastText = textChildren[textChildren.length -1];
-                y = lastText.point.y + lastText.fontSize
-                console.log(lastText)
-            }
+    //         let textChildren = this.texts.children
+    //         let y;
+    //         if(textChildren.length == 0){
+    //             y = this.paperObj.position.y
+    //         }
+    //         else{
+    //             let lastText = textChildren[textChildren.length -1];
+    //             y = lastText.point.y + lastText.fontSize
+    //         }
 
-            console.log(`x: ${x}, y: ${y}`)
+    //         this.texts.addChild(new PointText({
+    //             point: [x , y],
+    //             content: text,
+    //             fillColor: 'black',
+    //             fontFamily: 'Times New Roman',
+    //         }))
 
-            this.texts.addChild(new PointText({
-                point: [x , y],
-                content: text,
-                fillColor: 'black',
-                fontFamily: 'Times New Roman',
-            }))
+    //     }
 
-        }
-
-    }
+    // }
 
 }
 export{
