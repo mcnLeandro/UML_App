@@ -4,7 +4,7 @@ import {
     canvas,
 } from './../main.js'
 
-// TODO: create Class class
+
 // TODO: create Section class ( another branch)
 // TODO: create Column class (another branch)
 
@@ -53,7 +53,7 @@ class Class extends UMLObject{
 
     constructor(/* texts, */style = Class.defaultStyle){
 
-        super(new Path.Rectangle([100,100],[200,50]), style)
+        super(new Path.Rectangle([100,100],[Math.random()*100,Math.random()*100]), style)
 
         this.TYPE = "Class"
 
@@ -70,6 +70,12 @@ class Class extends UMLObject{
 
     draggable(){
         super.draggable()
+    }
+}
+
+class Section{
+    constructor(){
+
     }
 
 }
