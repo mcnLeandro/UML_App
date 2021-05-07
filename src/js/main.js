@@ -7,15 +7,7 @@ import './../css/style.css'
 
 
 let canvas =  document.querySelector('#field')
-let color = {
-    field : '#eef2f6',
-    classStroke : '#b9c6d1',
-    gridStroke : '#c1cdd9'
-}
-let strokeWidth = {
-    class : 1,
 
-}
 
 canvas.width = innerWidth;
 canvas.height = innerHeight;
@@ -47,8 +39,6 @@ view.onMouseUp = function(){
 export{
     mouse,
     canvas,
-    color,
-    strokeWidth
 }
 
 // ===============================================
