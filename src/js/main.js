@@ -10,21 +10,8 @@ body.innerHTML +=  `
 <div style="top: 0px;  cursor: default; position: absolute;  left: 0px;">
     <button id="btn" class='btn btn-primary'> create new Class </button>
 </div>
-
-    <textarea 
-        id='span-tag-input' 
-        style="top: 100px; left: 100px; cursor: default; position: absolute; " 
-        style="outline: none; white-space: pre-wrap; overflow-wrap: break-word; "
-        role="textbox" 
-        contenteditable="true" 
-        autocorrect="off" 
-        spellcheck="false" 
-        aria-multiline="true"
-    >
-
-        editable input
-
-    </textarea>
+<div id="focusDiv">
+</div>
 
 `
 
@@ -149,35 +136,80 @@ btn.addEventListener('click',function(){
 // ]
 
 
-//TODO: when click pointText, input appears to same position of point Text
-//- create function called TextMode()
-//- add click Event in pointText
-//- let appears input(anywhere)
-//- let appears input(on point Text)
-//- if both overlaped , hide poinText while TextMode()
-//TODO: when click another place, input disappears and pointTexxt updated
-//- add click Event to view or something(maybe can use hitpoint so..)
-//- get content of input
-//- let dissapears input
-//- if pointText is hidden, display it.
-//- update the point Text
 
 
 // input(textarea) is HTML side and decleaed in 14 line in this file
-let input = document.getElementById('span-tag-input')
 let pt = new PointText({
-    point: [50, 50],
-    content: input.innerHTML,
+    point: [100, 100],
+    content: "test",
     fillColor: 'black',
     fontFamily: 'Courier New',
     fontWeight: 'bold',
     fontSize: 25,
-    selected: true
+    // selected: true
 })
 
-view.onKeyDown = function(){
-    if(Key.isDown('enter')){
-        pt.content = input.value
-        //then unfocus
+
+function ptTextMode(){
+
+
+    let inputHTML = (left,top, h, w, fontSize, fontFamily)=>{
+        return `
+        <input 
+            id='input' 
+            style="
+                top: ${top}px; 
+                left: ${left}px; 
+                height:${h}px;
+                width:${w}px;
+                font-size:${fontSize}px;
+                font-family:${fontFamily};
+                cursor: default; 
+                position: absolute; 
+                outline: none; 
+                white-space: pre-wrap; 
+                overflow-wrap: break-word; 
+            "
+            role="textbox" 
+            contenteditable="true" 
+            autocorrect="off" 
+            spellcheck="false" 
+            aria-multiline="true"
+        >
+        </input>
+        `
     }
+
+    pt.onClick = function(){
+        
+        let focusDiv = document.getElementById('focusDiv');
+        focusDiv.innerHTML += inputHTML(
+            this.point.x, 
+            this.point.y - this.fontSize, 
+            this.bounds.height,
+            this.bounds.width,
+            this.fontSize,
+            this.fontFamily
+        );
+
+        let input = document.getElementById('input')
+        input.value = this.content
+
+        this.visible = false
+
+        let pt = this;
+        input.addEventListener('keydown',function(e){
+            if(e.key == "Enter"){
+                pt.content = input.value;
+                pt.visible = true;
+                focusDiv.innerHTML = ""
+            }
+        })
+
+
+    }
+
+
 }
+
+ptTextMode();
