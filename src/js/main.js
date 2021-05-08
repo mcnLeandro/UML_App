@@ -78,13 +78,18 @@ import { Class } from './modules/class.js'
 
 
 // console.log(sec1)
-
+// --------------------------------------
+// group
+// --------------------------------------
 let g = new Group()
 g.style = {
     fillColor: '#000',
     strokeColor: '#f0f'
 };
 
+// --------------------------------------
+// addSection code
+// --------------------------------------
 function addSection(){
 
     let l = g.children.length
@@ -112,15 +117,20 @@ g.onMouseDrag = function(e){
 }
 
 
-
+// --------------------------------------
+// random size of rectangle  code (btn)
+// --------------------------------------
 let btn = document.getElementById('btn');
 btn.addEventListener('click',function(){
     let rec = new Class();
     rec.draggable()
-    
 })
 
 
+
+// --------------------------------------
+// thinking about stracture of Class
+// --------------------------------------
 //TODO: to think of stracture of inside of class, have to create column object
 
 // group[
@@ -137,6 +147,9 @@ btn.addEventListener('click',function(){
 
 
 
+// --------------------------------------
+// editable text code
+// --------------------------------------
 
 // input(textarea) is HTML side and decleaed in 14 line in this file
 let pt = new PointText({
@@ -213,3 +226,4 @@ function ptTextMode(){
 }
 
 ptTextMode();
+
