@@ -11,11 +11,20 @@ body.innerHTML +=  `
     <button id="btn" class='btn btn-primary'> create new Class </button>
 </div>
 
-    <div class="e57"style="top: 100px; cursor: default; position: absolute;  left: 100px; " contenteditable="true" autocorrect="off" spellcheck="false" role="textbox" style="outline: none; white-space: pre-wrap; overflow-wrap: break-word; ">
-        <div style="position: relative;">
-                    <span >ghslur</span>
-        </div>
-    </div>
+    <textarea 
+        id='span-tag-input' 
+        style="top: 100px; left: 100px; cursor: default; position: absolute; " 
+        style="outline: none; white-space: pre-wrap; overflow-wrap: break-word; "
+        role="textbox" 
+        contenteditable="true" 
+        autocorrect="off" 
+        spellcheck="false" 
+        aria-multiline="true"
+    >
+
+        editable input
+
+    </textarea>
 
 `
 
@@ -108,7 +117,6 @@ function addSection(){
 
 view.onKeyDown = function(e){
     if(Key.isDown('/')) addSection()
-    console.log(e.key)
 }
 g.onMouseDrag = function(e){
 
@@ -140,11 +148,7 @@ btn.addEventListener('click',function(){
 
 // ]
 
-//TODO: make input that can cgange PointText
-//- get element
-//- make pointText
-//- add keyDown Event to input 
-//- add replace content program in keuDown Event
+
 //TODO: when click pointText, input appears to same position of point Text
 //- create function called TextMode()
 //- add click Event in pointText
@@ -157,3 +161,23 @@ btn.addEventListener('click',function(){
 //- let dissapears input
 //- if pointText is hidden, display it.
 //- update the point Text
+
+
+// input(textarea) is HTML side and decleaed in 14 line in this file
+let input = document.getElementById('span-tag-input')
+let pt = new PointText({
+    point: [50, 50],
+    content: input.innerHTML,
+    fillColor: 'black',
+    fontFamily: 'Courier New',
+    fontWeight: 'bold',
+    fontSize: 25,
+    selected: true
+})
+
+view.onKeyDown = function(){
+    if(Key.isDown('enter')){
+        pt.content = input.value
+        //then unfocus
+    }
+}
