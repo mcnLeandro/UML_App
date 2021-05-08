@@ -6,12 +6,19 @@ import './../css/style.css'
 // ===============================================
 
 let body = document.querySelector('body');
-let btnHTML = `
+body.innerHTML +=  `
 <div style="top: 0px;  cursor: default; position: absolute;  left: 0px;">
     <button id="btn" class='btn btn-primary'> create new Class </button>
 </div>
+
+    <div class="e57"style="top: 100px; cursor: default; position: absolute;  left: 100px; " contenteditable="true" autocorrect="off" spellcheck="false" role="textbox" style="outline: none; white-space: pre-wrap; overflow-wrap: break-word; ">
+        <div style="position: relative;">
+                    <span >ghslur</span>
+        </div>
+    </div>
+
 `
-body.innerHTML += btnHTML
+
 
 
 let canvas =  document.querySelector('#field')
@@ -83,6 +90,8 @@ g.style = {
 };
 
 function addSection(){
+
+    //FIXME:recの左下のポイントを設定できるんじゃない？
     let l = g.children.length
     let lastBounds = l != 0 ? g.children[l -1].bounds : {x:100, y:100, width:200, height:50} ;
     let x = lastBounds.x;
@@ -117,3 +126,35 @@ btn.addEventListener('click',function(){
     
 })
 
+
+//TODO: to think of stracture of inside of class, have to create column object
+
+// group[
+//     paperjsClassObj,
+
+//     section1[
+        
+//     ],
+//     section2[
+
+//     ]
+
+// ]
+
+//TODO: make input that can cgange PointText
+//- get element
+//- make pointText
+//- add keyDown Event to input 
+//- add replace content program in keuDown Event
+//TODO: when click pointText, input appears to same position of point Text
+//- create function called TextMode()
+//- add click Event in pointText
+//- let appears input(anywhere)
+//- let appears input(on point Text)
+//- if both overlaped , hide poinText while TextMode()
+//TODO: when click another place, input disappears and pointTexxt updated
+//- add click Event to view or something(maybe can use hitpoint so..)
+//- get content of input
+//- let dissapears input
+//- if pointText is hidden, display it.
+//- update the point Text
