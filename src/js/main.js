@@ -91,18 +91,17 @@ g.style = {
 
 function addSection(){
 
-    //FIXME:recの左下のポイントを設定できるんじゃない？
     let l = g.children.length
-    let lastBounds = l != 0 ? g.children[l -1].bounds : {x:100, y:100, width:200, height:50} ;
-    let x = lastBounds.x;
-    let y = lastBounds.y + lastBounds.height
+    //segments[0] is point of left bottom of reectangle
+    let x = l != 0 ? g.children[l -1].segments[0].point.x :100;
+    let y = l != 0 ? g.children[l -1].segments[0].point.y :100;
     
     let newSec = new Path.Rectangle([x,y],[200,50])
     newSec.style = {
         fillColor: '#000',
         strokeColor: '#f0f'
     };
-    
+
     g.addChild(newSec);
 
 }
