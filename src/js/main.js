@@ -69,6 +69,9 @@ Field.grabbable();
 // ===============================================
 
 import { Class } from './modules/class.js'
+import { text } from 'body-parser';
+import { pathToFileURL } from 'node:url';
+
 
 
 
@@ -81,12 +84,15 @@ import { Class } from './modules/class.js'
 // --------------------------------------
 // group
 // --------------------------------------
+
+
 let g = new Group()
 g.style = {
     fillColor: '#000',
     strokeColor: '#f0f'
 };
 
+console.log(g.position)
 // --------------------------------------
 // addSection code
 // --------------------------------------
@@ -107,14 +113,14 @@ function addSection(){
 
 }
 
-view.onKeyDown = function(e){
-    if(Key.isDown('/')) addSection()
-}
-g.onMouseDrag = function(e){
+// view.onKeyDown = function(e){
+//     if(Key.isDown('/')) addSection()
+// }
+// g.onMouseDrag = function(e){
 
-    this.position.x += e.delta.x;
-    this.position.y += e.delta.y;
-}
+//     this.position.x += e.delta.x;
+//     this.position.y += e.delta.y;
+// }
 
 
 // --------------------------------------
@@ -128,23 +134,6 @@ btn.addEventListener('click',function(){
 
 
 
-// --------------------------------------
-// thinking about stracture of Class
-// --------------------------------------
-//TODO: to think of stracture of inside of class, have to create column object
-
-// group[
-//     paperjsClassObj,
-
-//     section1[
-        
-//     ],
-//     section2[
-
-//     ]
-
-// ]
-
 
 
 // --------------------------------------
@@ -152,15 +141,15 @@ btn.addEventListener('click',function(){
 // --------------------------------------
 
 // input(textarea) is HTML side and decleaed in 14 line in this file
-let pt = new PointText({
-    point: [100, 100],
-    content: "test",
-    fillColor: 'black',
-    fontFamily: 'Courier New',
-    fontWeight: 'bold',
-    fontSize: 25,
-    // selected: true
-})
+// let pt = new PointText({
+//     point: [100, 100],
+//     content: "test",
+//     fillColor: 'black',
+//     fontFamily: 'Courier New',
+//     fontWeight: 'bold',
+//     fontSize: 25,
+//     // selected: true
+// })
 
 
 function ptTextMode(){
@@ -225,5 +214,65 @@ function ptTextMode(){
 
 }
 
-ptTextMode();
+// ptTextMode();
+
+class Class {
+
+    constructor(){
+
+        this.array = [];
+        //-------------------
+        this.wholeGroup = new Group({name:"wholeGroup"});
+        this.selfGroup = new Group({name:"selfGroup"});
+        this.contentsGroup = new Group({name:"contentsGroup"});
+
+        this.nameText = new PointText({name:"nameText"});
+        this.rect = new Path.Rectangle({name:"rect"});
+
+        //*****************************/
+        //adding child. building structure
+        this.selfGroup.addChild(this.nameText);
+        this.selfGroup.addChild(this.rect);
+        this.wholeGroup.addChild(this.selfGroup);
+        this.wholeGroup.addChild(this.contentsGroup);
+        /******************************/
+    }
+
+}
+class Column {
+
+    constructor(){
+
+        //------------------
+        this.group = new Group();
+
+        this.text  = new PointText();
+        this.btn = new Path.Rectangle(/* [100,100],[100,100] */);
+        this.rect = new Path.Rectangle()
+
+        //*****************************/
+        // adding child. building structure
+        this.group.addchild(this.text);
+        this.group.addchild(this.btn);
+        this.group.addchild(this.rect);
+        //*****************************/
+    }
+
+}
+class Deviver {
+    
+    constructor(){
+
+        //------------------
+        this.group = new Group();
+
+        this.bar = new Path.Rectangle(/* [100,100],[100,100] */);
+
+        //*****************************/
+        // adding child. building structure
+        this.group.addchild(this.bar);
+        //*****************************/
+    }
+    
+}
 
