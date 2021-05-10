@@ -28,8 +28,13 @@ class UMLObject{
 }
 
 
-// TODO: check the group inside of group
-// TODO: add column for test
+// TODO: consider about line 127. the grouping usage is little bit diff in Class...
+// TODO: if just above is done. drag method should added in UMLObject
+// TODO: styling Column a bit{ btn{need text or mark} , text is yet, rect is should delete if don't need }
+// TODO: styling Deviver{create bar with rectangle or Path plobably}
+// TODO: adding default set of Object in Class { default is [Deviver , Column, Deviver] } 
+// TODO: positioning inside of Class { text, Deviver, Column}
+// TODO: reconsider and rewrite todo.
 
 class Class extends UMLObject {
 
@@ -56,8 +61,8 @@ class Class extends UMLObject {
         this.array = [];
 
         //-----------------------------//
-        this.wholeGroup = new Group();
-        this.selfGroup = new Group();
+        this.wholeGroup = new Group();//this should be group
+        this.selfGroup = new Group();// this should be in avobe, so do nothing except considering naming.
         this.contentsGroup = new Group();
 
         this.nameText = new PointText();
