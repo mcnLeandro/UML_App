@@ -1,14 +1,9 @@
-
 import {
     mouse,
     canvas,
 } from './../main.js'
 
 
-// TODO: create Section class ( another branch)
-// TODO: create Column class (another branch)
-
-// TODO: drag
 // TODO: focus (svg should be implemented in another branch)
 
 // TODO: edit menu (svg)
@@ -19,59 +14,155 @@ import {
 // TODO: resize (with svg)
 
 class UMLObject{
-    constructor(paperObj,style){
-
-        this.paperObj = paperObj;
-        this.paperObj.style = style;
-        this.group = new Group({
-            children:[this.paperObj]
-        })
-
-    }
-
-    create(){}
-    update(){}
-    delete(){
-        return this.group.remove()
-    }
-
-    draggable(){
-        this.group.onMouseDrag = function(e){
-            this.position.x += e.delta.x;
-            this.position.y += e.delta.y;
-        }
-    }
-
-}
-
-class Class extends UMLObject{
 
     static defaultStyle = {
+        
         fillColor: 'white',
         strokeColor: '#bbc8d3',
     }
 
-    constructor(/* texts, */style = Class.defaultStyle){
+    setStyle(style){}
+    delete(){}
+    draggable(){}
 
-        super(new Path.Rectangle([view.bounds.x + 100,view.bounds.y + 100],[Math.random()*100,Math.random()*100]), style)
+}
 
-        this.TYPE = "Class"
 
-        // this.texts = new Group()
-        // this.initTexts(texts)
-        // this.group.addChild(this.texts);
+// TODO: check the group inside of group
+// TODO: add column for test
+
+class Class extends UMLObject {
+
+    static defaultStyle = {
         
+        fillColor: 'white',
+        strokeColor: '#bbc8d3',
 
     }
-    create(){}
-    update(params){}
-    delete(){return super.delete()}
+    static defaultTextStyle = {
+        
+        content: "test",
+        fillColor: 'black',
+        fontFamily: 'Courier New',
+        fontWeight: 'bold',
+        fontSize: 25,
 
+    }
+    
+    constructor(){
+
+        super()
+
+        this.array = [];
+
+        //-----------------------------//
+        this.wholeGroup = new Group();
+        this.selfGroup = new Group();
+        this.contentsGroup = new Group();
+
+        this.nameText = new PointText();
+        this.rect = new Path.Rectangle([100,100],[100,100]);
+
+        //******************************//
+        
+        //adding child. building structure
+        this.selfGroup.addChild(this.nameText);
+        this.selfGroup.addChild(this.rect);
+        this.wholeGroup.addChild(this.selfGroup);
+        this.wholeGroup.addChild(this.contentsGroup);
+        //*****************************//
+        // adding style
+        this.nameText.style = Class.defaultTextStyle;
+        this.rect.style = Class.defaultStyle;
+        //*****************************//
+
+    }
+    // 
+    addChild(umlObject){
+        this.array.push(umlObject);
+        this.contentsGroup.addChild(umlObject.group)
+    }
 
     draggable(){
-        super.draggable()
+
+        this.wholeGroup.onMouseDrag = function(e){
+            this.position.x += e.delta.x;
+            this.position.y += e.delta.y;
+            
+        }
+
     }
+
 }
+class Column extends UMLObject {
+
+    static defaultStyle = {
+
+        fillColor: '#000',
+        strokeColor: '#090',
+
+    }
+    static defaultBtnStyle = {
+
+        fillColor: '#333',
+        strokeColor: '#900',
+
+    }
+    static defaultTextStyle = {
+
+        content: "test",
+        fillColor: 'black',
+        fontFamily: 'Courier New',
+        fontWeight: 'bold',
+        fontSize: 25,
+
+    }
+
+    constructor(){
+
+        super();
+
+        //-----------------------------//
+        this.group = new Group();//CONSIDER: should this be in UMLObject?
+
+        this.text  = new PointText();
+        this.btn  = new Path.Rectangle([100,100],[20,50]);
+        this.rect = new Path.Rectangle([120,100],[80,50])
+
+        //*****************************//
+        // adding child. building structure
+        this.group.addChild(this.text);
+        this.group.addChild(this.btn);
+        this.group.addChild(this.rect);
+        //*****************************//
+        // adding style
+        this.text.style = Column.defaultTextStyle;
+        this.btn.style  = Column.defaultBtnStyle;
+        this.rect.style = Column.defaultStyle;
+        //*****************************//
+
+    }
+
+}
+class Deviver extends UMLObject {
+
+    constructor(){
+
+        //------------------
+        this.group = new Group();
+
+        this.bar = new Path.Rectangle(/* [100,100],[100,100] */);
+
+        //*****************************/
+        // adding child. building structure
+        this.group.addchild(this.bar);
+        //*****************************/
+    }
+
+}
+
+
 export{
-    Class
+    Class,
+    Column
 }
