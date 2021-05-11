@@ -93,17 +93,26 @@ class Class extends UMLObject {
 
     }
     addColumn(){
-        
+
         let bounds = this.rect.bounds;
         let x = bounds.x;
         let y = bounds.y;
         let w = bounds.width;
         let h = bounds.height;
-        let col = new Column(x,y,w,h)
-        // col.parent = this;
-        this.contentsArr.push(col);
-        this.contentsGroup.addChild(col.group)
+        let column = new Column(x,y,w,h)
+        this.contentsArr.push(column);
+        this.contentsGroup.addChild(column.group)
 
+    }
+    addDivider(){
+        let bounds = this.rect.bounds;
+        let x = bounds.x;
+        let y = bounds.y;
+        let w = bounds.width;
+        let h = bounds.height;
+        let divider = new Divider(x,y,w,h)
+        this.contentsArr.push(divider);
+        this.contentsGroup.addChild(divider.group)
     }
 
 }
@@ -168,18 +177,32 @@ class Column extends UMLObject {
     }
 
 }
-class Deviver extends UMLObject {
+class Divider extends UMLObject {
 
-    constructor(){
+    constructor(x,y,w,h){
+
+        super()
+        this.parent = null;
 
         //------------------
 
-        this.bar = new Path.Rectangle(/* [100,100],[100,100] */);
-
+        let space = 5;
+        let fontSize = 25
+        
+        this.outerRect = new Path.Rectangle(x,y,w,fontSize+space*2);
+        this.bar = new Path.Line([x,this.outerRect.bounds.center.y],[x+w, this.outerRect.bounds.center.y]);
+        
         //*****************************/
         // adding child. building structure
-        this.group.addchild(this.bar);
+        this.group.addChild(this.outerRect)
+        this.group.addChild(this.bar);
         //*****************************/
+        // styling
+        this.outerRect.strokeColor = '#f0f'
+        this.bar.strokeWidth =5;
+        this.bar.strokeColor = '#bbc8d3'
+        //*****************************/
+
     }
 
 }
@@ -187,5 +210,6 @@ class Deviver extends UMLObject {
 
 export{
     Class,
-    Column
+    Column,
+    Divider
 }

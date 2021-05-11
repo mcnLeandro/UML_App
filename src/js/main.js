@@ -70,7 +70,8 @@ Field.grabbable();
 
 import { 
     Class,
-    Column
+    Column,
+    Divider
 } from './modules/class.js'
 
 
@@ -129,14 +130,13 @@ function addSection(){
 // --------------------------------------
 // random size of rectangle  code (btn)
 // --------------------------------------
+let json;
 let btn = document.getElementById('btn');
 btn.addEventListener('click',function(){
     let rec = new Class();
-    rec.addColumn()
+    rec.addDivider()
     rec.draggable()
-    // rec.draw()
 })
-
 
 
 
