@@ -87,7 +87,9 @@ import {
 // group
 // --------------------------------------
 
-
+view.onClick = function(e){
+    console.log(`x: ${e.point.x}, y: ${e.point.y}`)
+}
 let g = new Group()
 g.style = {
     fillColor: '#000',
@@ -130,8 +132,9 @@ function addSection(){
 let btn = document.getElementById('btn');
 btn.addEventListener('click',function(){
     let rec = new Class();
-    rec.addChild(new Column())
+    rec.addColumn()
     rec.draggable()
+    // rec.draw()
 })
 
 

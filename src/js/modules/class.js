@@ -19,13 +19,16 @@ class UMLObject{
         
         fillColor: 'white',
         strokeColor: '#bbc8d3',
-        
+
     }
 
     constructor(){
         this.group = new Group();
+        // this.group.visible = false;
     }
-
+    // draw(){
+    //     this.group.visible = true;
+    // }
     draggable(){
         this.group.onMouseDrag = function(e){
             this.position.x += e.delta.x;
@@ -38,7 +41,7 @@ class UMLObject{
 
 
 
-// TODO: styling Column a bit{ btn{need text or mark} , text is yet, rect is should delete if don't need }
+
 // TODO: styling Deviver{create bar with rectangle or Path plobably}
 // TODO: adding default set of Object in Class { default is [Deviver , Column, Deviver] } 
 // TODO: positioning inside of Class { text, Deviver, Column}
@@ -74,12 +77,12 @@ class Class extends UMLObject {
         this.contentsGroup = new Group();
 
         this.nameText = new PointText();
-        this.rect = new Path.Rectangle([100,100],[100,100]);
+        this.rect = new Path.Rectangle([100,100],[200,100]);
 
         //******************************//
         //adding child. building structure
-        this.statusGroup.addChild(this.nameText);
         this.statusGroup.addChild(this.rect);
+        this.statusGroup.addChild(this.nameText);
         this.group.addChild(this.statusGroup);
         this.group.addChild(this.contentsGroup);
         //*****************************//
@@ -89,11 +92,17 @@ class Class extends UMLObject {
         //*****************************//
 
     }
-    // 
-    addChild(umlObject){
-
-        this.contentsArr.push(umlObject);
-        this.contentsGroup.addChild(umlObject.group)
+    addColumn(){
+        
+        let bounds = this.rect.bounds;
+        let x = bounds.x;
+        let y = bounds.y;
+        let w = bounds.width;
+        let h = bounds.height;
+        let col = new Column(x,y,w,h)
+        // col.parent = this;
+        this.contentsArr.push(col);
+        this.contentsGroup.addChild(col.group)
 
     }
 
@@ -103,13 +112,13 @@ class Column extends UMLObject {
     static defaultStyle = {
 
         fillColor: '#000',
-        strokeColor: '#090',
+        // strokeColor: '#090',
 
     }
     static defaultBtnStyle = {
 
         fillColor: '#333',
-        strokeColor: '#900',
+        // strokeColor: '#900',
 
     }
     static defaultTextStyle = {
@@ -122,26 +131,38 @@ class Column extends UMLObject {
 
     }
 
-    constructor(){
+    constructor(x,y,w,h){
 
         super();
-
+        this.parent = null
+    
         //-----------------------------//
+        let space = 5;
+        let fontSize = 25 // CONSIDER: this should be from static variable
 
-        this.text  = new PointText();
-        this.btn  = new Path.Rectangle([100,100],[20,50]);
-        this.rect = new Path.Rectangle([120,100],[80,50])
+        this.outerRect = new Shape.Rectangle(x,y,w,fontSize+space*2);
+        this.innerRect = new Shape.Rectangle(x+space, y+space, w-space*2, fontSize);
+        
+        this.btn  = new Shape.Rectangle(x + space, y + space, fontSize, fontSize);
+        this.text  = new PointText(Class.defaultTextStyle);
+        // this.text  = new PointText({})// WHY: this doeasn't work?
 
         //*****************************//
         // adding child. building structure
+        this.group.addChild(this.outerRect);
+        this.group.addChild(this.innerRect)
         this.group.addChild(this.text);
-        this.group.addChild(this.btn);
-        this.group.addChild(this.rect);
+        this.group.addChild(this.btn); 
         //*****************************//
-        // adding style
+        // styling
+        this.outerRect.strokeColor = '#f0f';
+        this.innerRect.strokeColor = '#00f'
+        this.text.fillColor = 'black'
         this.text.style = Column.defaultTextStyle;
-        this.btn.style  = Column.defaultBtnStyle;
-        this.rect.style = Column.defaultStyle;
+        this.text.fitBounds(this.innerRect.bounds)
+        this.btn.strokeColor = '#f55'
+
+        this.btn.radius = 5;
         //*****************************//
 
     }
