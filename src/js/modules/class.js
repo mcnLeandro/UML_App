@@ -21,35 +21,30 @@ class UMLObject{
         strokeColor: '#bbc8d3',
 
     }
-
     constructor(){
+
         this.group = new Group();
-        // this.group.visible = false;
+
     }
-    // draw(){
-    //     this.group.visible = true;
-    // }
     draggable(){
+
         this.group.onMouseDrag = function(e){
             this.position.x += e.delta.x;
             this.position.y += e.delta.y;
             
         }
+
     }
 
 }
 
 
 
-
-// TODO: styling Deviver{create bar with rectangle or Path plobably}
-// TODO: adding default set of Object in Class { default is [Deviver , Column, Deviver] } 
-// TODO: positioning inside of Class { text, Deviver, Column}
 // TODO: reconsider and rewrite todo.
 
 class Class extends UMLObject {
 
-    static defaultStyle = {
+    static defaultRectStyle = {
         
         fillColor: 'white',
         strokeColor: '#bbc8d3',
@@ -57,121 +52,138 @@ class Class extends UMLObject {
     }
     static defaultTextStyle = {
         
-        content: "test",
-        fillColor: 'black',
-        fontFamily: 'Courier New',
+        fillColor:'#25313c',
+        content: 'Class',
+        justification: 'center',
         fontWeight: 'bold',
-        fontSize: 25,
+        fontSize: 15,
 
     }
-    
     constructor(){
 
         super()
-
         this.contentsArr = [];
 
         //-----------------------------//
+        // paper.js
 
         this.statusGroup = new Group();
         this.contentsGroup = new Group();
 
-        this.nameText = new PointText();
-        this.rect = new Path.Rectangle([100,100],[200,100]);
+        this.rect = new Path.Rectangle([100,100],[240,70]);
+        this.nameText = new PointText([this.rect.bounds.center.x, this.rect.bounds.center.y + 10]);
 
+        //*****************************//
+        // styling
+
+        this.rect.set(Class.defaultRectStyle);
+        this.nameText.set(Class.defaultTextStyle);
+        
         //******************************//
         //adding child. building structure
+
         this.statusGroup.addChild(this.rect);
         this.statusGroup.addChild(this.nameText);
         this.group.addChild(this.statusGroup);
         this.group.addChild(this.contentsGroup);
+
         //*****************************//
-        // adding style
-        this.nameText.style = Class.defaultTextStyle;
-        this.rect.style = Class.defaultStyle;
-        //*****************************//
+        // set default contents
+        this.draggable()
+        // this.addDivider()
+        // this.addColumn()
+        // this.addDivider()
 
     }
+
     addColumn(){
 
-        let bounds = this.rect.bounds;
-        let x = bounds.x;
-        let y = bounds.y;
-        let w = bounds.width;
-        let h = bounds.height;
-        let column = new Column(x,y,w,h)
+        let column = new Column(this)
         this.contentsArr.push(column);
         this.contentsGroup.addChild(column.group)
 
     }
     addDivider(){
-        let bounds = this.rect.bounds;
-        let x = bounds.x;
-        let y = bounds.y;
-        let w = bounds.width;
-        let h = bounds.height;
-        let divider = new Divider(x,y,w,h)
+
+        let divider = new Divider(this)
         this.contentsArr.push(divider);
         this.contentsGroup.addChild(divider.group)
+
     }
 
 }
 class Column extends UMLObject {
 
-    static defaultStyle = {
+    static defaultRectStyle = {
 
-        fillColor: '#000',
-        // strokeColor: '#090',
-
-    }
-    static defaultBtnStyle = {
-
-        fillColor: '#333',
-        // strokeColor: '#900',
+        fillColor: 'white',
+        strokeColor: '#bbc8d3',
 
     }
     static defaultTextStyle = {
 
-        content: "test",
-        fillColor: 'black',
-        fontFamily: 'Courier New',
-        fontWeight: 'bold',
-        fontSize: 25,
+        content: "Column",
+        fillColor: '#25313c',
+        // fontFamily: 'Courier New',
+        // fontWeight: 'bold',
+        fontSize: 15,
 
     }
+    static defaultBtnStayle = {
 
-    constructor(x,y,w,h){
+        strokeColor : '#f55',
+        radius : 5,
+
+    }
+    constructor(parent){
 
         super();
-        this.parent = null
-    
-        //-----------------------------//
-        let space = 5;
-        let fontSize = 25 // CONSIDER: this should be from static variable
+        this.parent = parent
+        this.space = 7; // CONSIDER: there's any reason that this isn't immutable
+        this.btnSize = 25;
 
-        this.outerRect = new Shape.Rectangle(x,y,w,fontSize+space*2);
-        this.innerRect = new Shape.Rectangle(x+space, y+space, w-space*2, fontSize);
+        //-----------------------------//
+        // paper.js
+
+        let bounds = this.parent.rect.bounds;
+        let isEmpty = this.parent.contentsGroup.isEmpty()
+        let x = bounds.left;
+        let y = isEmpty ? bounds.bottom : this.parent.group.bounds.bottom;
+        let w = bounds.width;
+        // let h = bounds.height;
+
+        this.outerRect = new Shape.Rectangle([x,y],[w,50]);
+        this.innerRect = new Shape.Rectangle(
+            new Point(this.outerRect.bounds.left  + this.space, this.outerRect.bounds.top + this.space),
+            new Point(this.outerRect.bounds.right - this.space, this.outerRect.bounds.bottom - this.space)
+        );
+
+        this.btn  = new Shape.Rectangle({
+            center :[this.innerRect.bounds.left + this.btnSize/2, this.innerRect.bounds.center.y], 
+            size: [this.btnSize,this.btnSize]
+        });
+        this.text  = new PointText(
+            [this.innerRect.bounds.left + this.btn.bounds.width + this.space, this.innerRect.bounds.center.y + 6 ]
+        );
+
+        //*****************************//
+        // styling
+
+        // this.outerRect.strokeColor = '#f0f';
+        // this.innerRect.strokeColor = '#00f'
         
-        this.btn  = new Shape.Rectangle(x + space, y + space, fontSize, fontSize);
-        this.text  = new PointText(Class.defaultTextStyle);
-        // this.text  = new PointText({})// WHY: this doeasn't work?
+        this.outerRect.set(Column.defaultRectStyle)
+        this.text.set(Column.defaultTextStyle);
+        this.btn.set(Column.defaultBtnStayle)
 
         //*****************************//
         // adding child. building structure
+
         this.group.addChild(this.outerRect);
         this.group.addChild(this.innerRect)
         this.group.addChild(this.text);
         this.group.addChild(this.btn); 
-        //*****************************//
-        // styling
-        this.outerRect.strokeColor = '#f0f';
-        this.innerRect.strokeColor = '#00f'
-        this.text.fillColor = 'black'
-        this.text.style = Column.defaultTextStyle;
-        this.text.fitBounds(this.innerRect.bounds)
-        this.btn.strokeColor = '#f55'
 
-        this.btn.radius = 5;
         //*****************************//
 
     }
@@ -179,28 +191,50 @@ class Column extends UMLObject {
 }
 class Divider extends UMLObject {
 
-    constructor(x,y,w,h){
+    static defaultRectStyle = {
+
+        fillColor: 'white',
+        strokeColor: '#bbc8d3',
+
+    }
+    static defaultBarStyle = {
+
+        strokeWidth : 2,
+        strokeColor : '#bbc8d3',
+
+    }
+    constructor(parent){
 
         super()
-        this.parent = null;
+        this.parent = parent;
 
         //------------------
+        // paper.js
+        let bounds = this.parent.rect.bounds;
+        let isEmpty = this.parent.contentsGroup.isEmpty()
+        let x = bounds.left;
+        let y = isEmpty ? bounds.bottom : this.parent.group.bounds.bottom;
+        let w = bounds.width;
+        // let h = bounds.height;
 
-        let space = 5;
-        let fontSize = 25
+        this.outerRect = new Path.Rectangle([x,y],[w,Divider.defaultBarStyle.strokeWidth]);
+        this.bar = new Path.Line(
+            new Point(this.outerRect.bounds.left , this.outerRect.bounds.center.y),
+            new Point(this.outerRect.bounds.right, this.outerRect.bounds.center.y)
+        );
         
-        this.outerRect = new Path.Rectangle(x,y,w,fontSize+space*2);
-        this.bar = new Path.Line([x,this.outerRect.bounds.center.y],[x+w, this.outerRect.bounds.center.y]);
-        
-        //*****************************/
-        // adding child. building structure
-        this.group.addChild(this.outerRect)
-        this.group.addChild(this.bar);
         //*****************************/
         // styling
-        this.outerRect.strokeColor = '#f0f'
-        this.bar.strokeWidth =5;
-        this.bar.strokeColor = '#bbc8d3'
+
+        this.outerRect.set(Divider.defaultRectStyle)
+        this.bar.set(Divider.defaultBarStyle)
+
+        //*****************************/
+        // adding child. building structure
+
+        this.group.addChild(this.outerRect)
+        this.group.addChild(this.bar);
+
         //*****************************/
 
     }

@@ -77,73 +77,22 @@ import {
 
 
 
-
-
-// let rect = new Path.Rectangle([100,100],[200,50])
-// let sec1 = new Path.Rectangle([rect.bounds.x, rect.bounds.y + rect.bounds.height],[200,50])
-// let sec2 = new Path.Rectangle([sec1.bounds.x, sec1.bounds.y + sec1.bounds.height],[200,50])
-
-
-// console.log(sec1)
 // --------------------------------------
-// group
-// --------------------------------------
-
-
-let g = new Group()
-g.style = {
-
-    fillColor: '#000',
-    strokeColor: '#f0f'
-};
-
-
-// --------------------------------------
-// addSection code
-// --------------------------------------
-function addSection(){
-
-    let l = g.children.length
-    //segments[0] is point of left bottom of reectangle
-    let x = l != 0 ? g.children[l -1].segments[0].point.x :100;
-    let y = l != 0 ? g.children[l -1].segments[0].point.y :100;
-    
-    let newSec = new Path.Rectangle([x,y],[200,50])
-    newSec.style = {
-        fillColor: '#000',
-        strokeColor: '#f0f'
-    };
-
-    g.addChild(newSec);
-
-}
-
-// view.onKeyDown = function(e){
-//     if(Key.isDown('/')) addSection()
-// }
-// g.onMouseDrag = function(e){
-
-//     this.position.x += e.delta.x;
-//     this.position.y += e.delta.y;
-// }
-
-
-// --------------------------------------
-// random size of rectangle  code (btn)
+// btn that create a class
 // --------------------------------------
 
 let btn = document.getElementById('btn');
 btn.addEventListener('click',function(){
     let rec = new Class();
-    rec.draggable()
-
+    view.onKeyDown = function(){
+        if(Key.isDown('/'))rec.addDivider();
+        else if (Key.isDown('c'))rec.addColumn();
+    }
 })
 
 // ===============================================
-// TODO: line 66 in class.js
+// layout tester
 // ===============================================
-
-
 
 let space = 5
 let btnSize = 25
@@ -168,8 +117,8 @@ let classInterfaceText = new PointText({
     fontSize: fontSize,
 });
 let classTemplateRect = new Path.Rectangle(
-    [classRect.bounds.right - 50, classRect.bounds.top],
-    [50,50]
+    [classRect.bounds.right - 40, classRect.bounds.top -10],
+    [50,40]
 )
 let classTemplateText = new PointText({
     point: classTemplateRect.bounds.center,
@@ -186,16 +135,16 @@ let column = new Path.Rectangle(// same outerRect
     new Size(classRect.bounds.width, 50)
 )
 let cInnerRect = new Path.Rectangle(
-    new Point(column.bounds.left  + space, column.bounds.top + space,),
+    new Point(column.bounds.left  + space, column.bounds.top + space),
     new Point(column.bounds.right - space, column.bounds.bottom - space)
 );
 let cBtn = new Shape.Rectangle({
-    center : [cInnerRect.bounds.left + btnSize, cInnerRect.bounds.center.y],
+    center : [cInnerRect.bounds.left + btnSize/2, cInnerRect.bounds.center.y],
     size:[btnSize,btnSize],
     radius: 5
 });
 let cText = new PointText({
-    point: [cInnerRect.bounds.left + cBtn.bounds.width*2, cInnerRect.bounds.center.y + 6 ],
+    point: [cInnerRect.bounds.left + cBtn.bounds.width+ space, cInnerRect.bounds.center.y + 6 ],
     content: `Column`,
     justification: 'left',
     fontWeight: 'Bold',
@@ -205,7 +154,7 @@ let cText = new PointText({
 //divider
 let divider = new Path.Rectangle(// same outerRect
     column.bounds.bottomLeft,
-    new Size(classRect.bounds.width, 50)
+    new Size(classRect.bounds.width, 5)
 )
 let dLine = new Path.Line(
     new Point(divider.bounds.left , divider.bounds.center.y),
@@ -234,21 +183,19 @@ dLine.strokeWidth = 5;
 // editable text code
 // --------------------------------------
 
-// input(textarea) is HTML side and decleaed in 14 line in this file
-// let pt = new PointText({
-//     point: [100, 100],
-//     content: "test",
-//     fillColor: 'black',
-//     fontFamily: 'Courier New',
-//     fontWeight: 'bold',
-//     fontSize: 25,
-//     // selected: true
-// })
-
 
 function ptTextMode(){
-
-
+    // there's focusDic in HTML side. decleaed in 14 line in this file
+    // FIXME: translate gives a place error
+    let pt = new PointText({
+        point: [100, 100],
+        content: "test",
+        fillColor: 'black',
+        fontFamily: 'Courier New',
+        fontWeight: 'bold',
+        fontSize: 25,
+        // selected: true
+    })
     let inputHTML = (left,top, h, w, fontSize, fontFamily)=>{
         return `
         <input 
