@@ -38,8 +38,6 @@ class UMLObject{
 
 }
 
-// TODO: add editable text to Column
-// TODO: add wholeRect to Class, and research about stroke, relation of group size  and rect size. 
 // TODO: create controrable method (adding column, and divider)(maybe after focus implemention)
 // TODO: reconsider, and rewrite todo.
 
