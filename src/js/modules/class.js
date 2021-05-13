@@ -38,9 +38,10 @@ class UMLObject{
 
 }
 
-
-
-// TODO: reconsider and rewrite todo.
+// TODO: add editable text to Column
+// TODO: add wholeRect to Class, and research about stroke, relation of group size  and rect size. 
+// TODO: create controrable method (adding column, and divider)(maybe after focus implemention)
+// TODO: reconsider, and rewrite todo.
 
 class Class extends UMLObject {
 
@@ -185,7 +186,69 @@ class Column extends UMLObject {
         this.group.addChild(this.btn); 
 
         //*****************************//
+        this.editableText()
 
+    }
+    editableText(){
+        // there's ediitableTextDiv in HTML side. decleaed in 14 line in main.js file
+        // FIXME: translate gives a place error
+        let inputHTML = (left,top, h, w, fontSize, fontFamily)=>{
+            return `
+            <input 
+                id='input' 
+                style="
+                    top: ${top}px; 
+                    left: ${left}px; 
+                    height:${h}px;
+                    width:${w}px;
+                    font-size:${fontSize}px;
+                    font-family:${fontFamily};
+                    cursor: default; 
+                    position: absolute; 
+                    outline: none; 
+                    white-space: pre-wrap; 
+                    overflow-wrap: break-word; 
+                "
+                role="textbox" 
+                contenteditable="true" 
+                autocorrect="off" 
+                spellcheck="false" 
+                aria-multiline="true"
+            >
+            </input>
+            `
+        }
+    
+        this.text.onClick = function(){
+            
+            let editableTextDiv = document.getElementById('editableTextDiv');
+            editableTextDiv.innerHTML += inputHTML(
+                this.point.x, 
+                this.point.y - this.fontSize, 
+                this.bounds.height,
+                this.bounds.width,
+                this.fontSize,
+                this.fontFamily
+            );
+    
+            let input = document.getElementById('input')
+            input.value = this.content
+    
+            this.visible = false
+    
+            let text = this;
+            input.addEventListener('keydown',function(e){
+                if(e.key == "Enter"){
+                    text.content = input.value;
+                    text.visible = true;
+                    editableTextDiv.innerHTML = ""
+                }
+            })
+    
+    
+        }
+    
+    
     }
 
 }

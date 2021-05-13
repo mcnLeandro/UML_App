@@ -10,7 +10,7 @@ body.innerHTML +=  `
 <div style="top: 0px;  cursor: default; position: absolute;  left: 0px;">
     <button id="btn" class='btn btn-primary'> create new Class </button>
 </div>
-<div id="focusDiv">
+<div id="editableTextDiv">
 </div>
 
 `
@@ -58,7 +58,7 @@ export{
 
 import { Field } from './modules/field.js'
 
-view.translate([100,100])
+// view.translate([100,100])
 
 
 Field.set()
@@ -178,84 +178,6 @@ dLine.strokeColor = '#00f';
 dLine.strokeWidth = 5;
 
 
-
-// --------------------------------------
-// editable text code
-// --------------------------------------
-
-
-function ptTextMode(){
-    // there's focusDic in HTML side. decleaed in 14 line in this file
-    // FIXME: translate gives a place error
-    let pt = new PointText({
-        point: [100, 100],
-        content: "test",
-        fillColor: 'black',
-        fontFamily: 'Courier New',
-        fontWeight: 'bold',
-        fontSize: 25,
-        // selected: true
-    })
-    let inputHTML = (left,top, h, w, fontSize, fontFamily)=>{
-        return `
-        <input 
-            id='input' 
-            style="
-                top: ${top}px; 
-                left: ${left}px; 
-                height:${h}px;
-                width:${w}px;
-                font-size:${fontSize}px;
-                font-family:${fontFamily};
-                cursor: default; 
-                position: absolute; 
-                outline: none; 
-                white-space: pre-wrap; 
-                overflow-wrap: break-word; 
-            "
-            role="textbox" 
-            contenteditable="true" 
-            autocorrect="off" 
-            spellcheck="false" 
-            aria-multiline="true"
-        >
-        </input>
-        `
-    }
-
-    pt.onClick = function(){
-        
-        let focusDiv = document.getElementById('focusDiv');
-        focusDiv.innerHTML += inputHTML(
-            this.point.x, 
-            this.point.y - this.fontSize, 
-            this.bounds.height,
-            this.bounds.width,
-            this.fontSize,
-            this.fontFamily
-        );
-
-        let input = document.getElementById('input')
-        input.value = this.content
-
-        this.visible = false
-
-        let pt = this;
-        input.addEventListener('keydown',function(e){
-            if(e.key == "Enter"){
-                pt.content = input.value;
-                pt.visible = true;
-                focusDiv.innerHTML = ""
-            }
-        })
-
-
-    }
-
-
-}
-
-// ptTextMode();
 
 
 
