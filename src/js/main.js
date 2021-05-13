@@ -1,4 +1,3 @@
-// import { from } from 'webpack-sources/lib/CompatSource';
 import './../css/style.css'
 
 // ===============================================
@@ -28,8 +27,11 @@ document.querySelector('body').innerHTML +=  `
         </g>
     </svg>
 `
-// TODO: move rect somehow. point-events:none should be work but it doesn't, so you have to test another place.
-
+// FIXME: when implement field's scale, and translate, pointer-events not works again,
+// FIXME: so go to the field branch, 
+// FIXME: implement those things,
+// FIXME: come back
+// FIXME: then fix pointer-events if it doesn't working.
 
 let canvas =  document.querySelector('#field')
 
@@ -107,6 +109,10 @@ btn.addEventListener('click',function(){
 // --------------------------------------
 // focus
 // --------------------------------------
+// TODO: add rect that can resize object in feature
+// TODO: consider where put thsi code .
+// TODO: consider how this code put and use.
+
 
 let fRect = new Class();
 let focusG = document.getElementById("focusG");
