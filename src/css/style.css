@@ -3,3 +3,9 @@
     overflow: hidden;
     
 }
+/* svg, g{
+    pointer-events: none;
+}
+canvas{
+    pointer-events: all;
+} */

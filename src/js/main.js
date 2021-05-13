@@ -5,25 +5,79 @@ import './../css/style.css'
 // global
 // ===============================================
 
-let body = document.querySelector('body');
-body.innerHTML +=  `
+document.querySelector('body').innerHTML +=  `
+
 <div style="top: 0px;  cursor: default; position: absolute;  left: 0px;">
     <button id="btn" class='btn btn-primary'> create new Class </button>
 </div>
-<div style="top: 0px; user-select: none; width: 100%; cursor: default; position: absolute; height: 100%; left: 0px;">
-    <svg data-canvasoverlay="true" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;">
-        <g class="translate" style="transform: translate(0px, 0px);">
-            <g class="scale" style="transform-origin: 0px 0px; transform: scale(0.220459, 0.220459);">
-                <g id="focusG" opacity="1" style="transition: opacity 0.2s ease 0s;">
+
+<div id="canvas-container" >
+
+    <canvas id="field"></canvas>
+
+    <div pointer-events="none"
+        
+        style="
+            position: absolute; 
+            top: 0px; 
+            left: 0px;
+            width: 100%; 
+            height: 100%; 
+            user-select: none; 
+            cursor: default; 
+        ">
+        <svg 
+             
+            style="
+                position: absolute; 
+                top: 0px; 
+                left: 0px; 
+                width: 100%; 
+                height: 100%;
+            ">
+            <g 
+                
+                class="translate" 
+                style="transform: translate(0px, 0px);"
+                >
+                <g 
                     
+                    class="scale" 
+                    style="transform-origin: 0px 0px; transform: scale(1, 1);"
+                    >
+                    <g id="focusGfill" >
+                        <rect 
+                            x="100px" 
+                            y="100px"
+                            width="100px" 
+                            height="100px" 
+                            stroke="#B471EA" 
+                            fill="black" 
+                            stroke-linejoin="round" 
+                            stroke-linecap="round" 
+                            stroke-width="10px" 
+                        ></rect>
+                    </g>
+                    <g pointer-events="none" id="focusG" >
+                        <rect 
+                            x="100px" 
+                            y="100px"
+                            width="100px" 
+                            height="100px" 
+                            stroke="#B471EA" 
+                            fill="none" 
+                            stroke-linejoin="round" 
+                            stroke-linecap="round" 
+                            stroke-width="10px" 
+                        ></rect>
+                    </g>
                 </g>
             </g>
-        </g>
-    </svg>
+        </svg>
+    </div>
 </div>
-
 `
-
+// TODO: move rect somehow. point-events:none should be work but it doesn't, so you have to test another place.
 
 
 let canvas =  document.querySelector('#field')
@@ -102,22 +156,22 @@ btn.addEventListener('click',function(){
 // --------------------------------------
 // focus
 // --------------------------------------
-// TODO: 
+
 let fRect = new Class();
 let focusG = document.getElementById("focusG");
 let focusRect = (paperObj)=>{
     return `
     <rect 
-        x="${paperObj.group.bounds.x}" 
-        y="${paperObj.group.bounds.y}" 
-        width="${paperObj.group.bounds.width}" 
-        height="${paperObj.group.bounds.height}" 
+        style="position: absolute; top: ${paperObj.group.bounds.y}px; left: ${paperObj.group.bounds.x}px; width: ${paperObj.group.bounds.width}px; height: ${paperObj.group.bounds.height}px;"
+        x="${paperObj.group.bounds.x}px" 
+        y="${paperObj.group.bounds.y}px" 
+        width="${paperObj.group.bounds.width}px" 
+        height="${paperObj.group.bounds.width}px" 
         stroke="#B471EA" 
-        fill="none" 
+        fill="rgba(0,0,0,0)" 
         stroke-linejoin="round" 
         stroke-linecap="round" 
-        stroke-width="9.072" 
-        style="--darkreader-inline-fill:none; --darkreader-inline-stroke:#a86bda;"
+        stroke-width="10px" 
     ></rect>
     `
 }
@@ -131,3 +185,6 @@ fRect.group.onClick = function(){
 
 
 
+document.getElementById("focusGfill").addEventListener('click',function(){
+    console.log('hey')
+})
