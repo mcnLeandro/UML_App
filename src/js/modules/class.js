@@ -61,6 +61,7 @@ class Class extends UMLObject {
     constructor(){
 
         super()
+        this.isFocused = false;
         this.contentsArr = [];
 
         //-----------------------------//
@@ -94,7 +95,7 @@ class Class extends UMLObject {
         // this.addDivider()
 
     }
-
+    
     addColumn(){
 
         let column = new Column(this)
