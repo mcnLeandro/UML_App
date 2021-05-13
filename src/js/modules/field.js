@@ -1,24 +1,22 @@
-
-
 import {mouse,
     canvas,
-    color,
-    strokeWidth
 } from './../main.js'
 
 
 
 class Field{
-
-    static gap;
-    static color;
-    static gridColor;
     
+    static defaultStyle = {
+        color: '#eef2f6',
+        gridGap: 100,
+        gridStroke : '#bbc8d3',
+    }
+    static set(style = Field.defaultStyle){
 
-    static set(){
-        this.gap = 100;
-        this.color = color.field;
-        this.gridColor = color.gridStroke;
+        this.color = style.color;
+        this.gridGap = style.gridGap;
+        this.gridColor = style.gridStroke;
+
     }
     static init(){
 
@@ -42,8 +40,8 @@ class Field{
         const verticalLineGroup = new Group()
         const horizontalLineGroup = new Group()
     
-        const remainderX = view.bounds.x%this.gap
-        const remainderY = view.bounds.y%this.gap
+        const remainderX = view.bounds.x%this.gridGap
+        const remainderY = view.bounds.y%this.gridGap
     
         const minX = view.bounds.x;
         const minY = view.bounds.y;
@@ -51,7 +49,7 @@ class Field{
         const maxY = view.bounds.height + minY;
     
     
-        for (let x = minX - remainderX; x < maxX; x+=this.gap) {
+        for (let x = minX - remainderX; x < maxX; x+=this.gridGap) {
     
             let line = new Path.Line(
                 [x, minY],
@@ -60,7 +58,7 @@ class Field{
             
             verticalLineGroup.addChild(line)
         }
-        for (let y = minY - remainderY; y < maxY; y+=this.gap) {
+        for (let y = minY - remainderY; y < maxY; y+=this.gridGap) {
     
             let line = new Path.Line(
                 [minX, y],
