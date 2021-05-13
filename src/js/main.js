@@ -11,71 +11,22 @@ document.querySelector('body').innerHTML +=  `
     <button id="btn" class='btn btn-primary'> create new Class </button>
 </div>
 
-<div id="canvas-container" >
 
     <canvas id="field"></canvas>
 
-    <div pointer-events="none"
-        
+    <svg pointer-events="none"
+            
         style="
             position: absolute; 
             top: 0px; 
-            left: 0px;
+            left: 0px; 
             width: 100%; 
-            height: 100%; 
-            user-select: none; 
-            cursor: default; 
+            height: 100%;
         ">
-        <svg 
-             
-            style="
-                position: absolute; 
-                top: 0px; 
-                left: 0px; 
-                width: 100%; 
-                height: 100%;
-            ">
-            <g 
-                
-                class="translate" 
-                style="transform: translate(0px, 0px);"
-                >
-                <g 
-                    
-                    class="scale" 
-                    style="transform-origin: 0px 0px; transform: scale(1, 1);"
-                    >
-                    <g id="focusGfill" >
-                        <rect 
-                            x="100px" 
-                            y="100px"
-                            width="100px" 
-                            height="100px" 
-                            stroke="#B471EA" 
-                            fill="black" 
-                            stroke-linejoin="round" 
-                            stroke-linecap="round" 
-                            stroke-width="10px" 
-                        ></rect>
-                    </g>
-                    <g pointer-events="none" id="focusG" >
-                        <rect 
-                            x="100px" 
-                            y="100px"
-                            width="100px" 
-                            height="100px" 
-                            stroke="#B471EA" 
-                            fill="none" 
-                            stroke-linejoin="round" 
-                            stroke-linecap="round" 
-                            stroke-width="10px" 
-                        ></rect>
-                    </g>
-                </g>
-            </g>
-        </svg>
-    </div>
-</div>
+        
+        <g pointer-events="none" id="focusG" >
+        </g>
+    </svg>
 `
 // TODO: move rect somehow. point-events:none should be work but it doesn't, so you have to test another place.
 
@@ -171,11 +122,15 @@ let focusRect = (paperObj)=>{
         fill="rgba(0,0,0,0)" 
         stroke-linejoin="round" 
         stroke-linecap="round" 
-        stroke-width="10px" 
+        stroke-width="5px" 
     ></rect>
     `
 }
+fRect.group.onMouseDown = function(){
+    focusG.innerHTML = ""
+}
 fRect.group.onClick = function(){
+    
     fRect.isFocused = !fRect.isFocused;
     if(fRect.isFocused){
         focusG.innerHTML = focusRect(fRect);
@@ -184,7 +139,3 @@ fRect.group.onClick = function(){
 
 
 
-
-document.getElementById("focusGfill").addEventListener('click',function(){
-    console.log('hey')
-})
