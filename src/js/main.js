@@ -25,6 +25,71 @@ document.querySelector('body').innerHTML +=  `
         
         <g pointer-events="none" id="focusG" >
         </g>
+        <g pointer-events="all">
+
+
+            <g cursor="nwse-resize" class"topLeft">
+                <image 
+                    x="0" 
+                    y="0" 
+                    width="20" 
+                    height="20" xlink:href="https://whimsical.com/s/images/handle-shadow@2x_705b643d74f0be5b2981996ea39a88a8.png" ></image>
+            </g>
+            <g cursor="nesw-resize" class="topRight">
+                <image 
+                    x="100" 
+                    y="0" 
+                    width="20" 
+                    height="20" xlink:href="https://whimsical.com/s/images/handle-shadow@2x_705b643d74f0be5b2981996ea39a88a8.png" ></image>
+            </g>
+            <g cursor="nwse-resize" class="bottomRight">
+                <image 
+                    x="100" 
+                    y="100" 
+                    width="20" 
+                    height="20" xlink:href="https://whimsical.com/s/images/handle-shadow@2x_705b643d74f0be5b2981996ea39a88a8.png" ></image>
+            </g>
+            <g cursor="nesw-resize" class="bottomLeft">
+                <image 
+                    x="0" 
+                    y="100" 
+                    width="20" 
+                    height="20" xlink:href="https://whimsical.com/s/images/handle-shadow@2x_705b643d74f0be5b2981996ea39a88a8.png" ></image>
+            </g>
+
+
+
+            <g cursor="ns-resize" class="topMiddle">
+                <image 
+                    x="50" 
+                    y="0" 
+                    width="20" 
+                    height="20" xlink:href="https://whimsical.com/s/images/handle-shadow@2x_705b643d74f0be5b2981996ea39a88a8.png" ></image>
+            </g>
+            <g cursor="ns-resize" class="bottomMiddle">
+                <image 
+                    x="50" 
+                    y="100" 
+                    width="20" 
+                    height="20" xlink:href="https://whimsical.com/s/images/handle-shadow@2x_705b643d74f0be5b2981996ea39a88a8.png" ></image>
+            </g>
+            <g cursor="ew-resize" class="leftMiddle">
+                <image 
+                    x="0" 
+                    y="50" 
+                    width="20" 
+                    height="20" xlink:href="https://whimsical.com/s/images/handle-shadow@2x_705b643d74f0be5b2981996ea39a88a8.png" ></image>
+            </g>
+            <g cursor="ew-resize" class="rightMiddle">
+                <image 
+                    x="100" 
+                    y="50" 
+                    width="20" 
+                    height="20" xlink:href="https://whimsical.com/s/images/handle-shadow@2x_705b643d74f0be5b2981996ea39a88a8.png" ></image>
+            </g>
+
+
+        </g>
     </svg>
 `
 // FIXME: when implement field's scale, and translate, pointer-events not works again,
