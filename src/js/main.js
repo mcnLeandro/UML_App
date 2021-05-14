@@ -23,9 +23,7 @@ document.querySelector('body').innerHTML +=  `
             height: 100%;
         ">
         
-        <g pointer-events="none" id="focusG" >
-        </g>
-        <g pointer-events="all" id="nineRectsG">
+        <g id="focusG" >
         </g>
     </svg>
 `
@@ -117,96 +115,93 @@ btn.addEventListener('click',function(){
 
 let fRect = new Class();
 let focusG = document.getElementById("focusG");
-let nineRectsG = document.getElementById("nineRectsG");
 let focusRect = (umlObj)=>{
     return `
-    <rect 
-        style="position: absolute; top: ${umlObj.group.bounds.y}px; left: ${umlObj.group.bounds.x}px; width: ${umlObj.group.bounds.width}px; height: ${umlObj.group.bounds.height}px;"
-        x="${umlObj.group.bounds.x}px" 
-        y="${umlObj.group.bounds.y}px" 
-        width="${umlObj.group.bounds.width}px" 
-        height="${umlObj.group.bounds.width}px" 
-        stroke="#B471EA" 
-        fill="rgba(0,0,0,0)" 
-        stroke-linejoin="round" 
-        stroke-linecap="round" 
-        stroke-width="5px" 
-    ></rect>
-    `
-}
-let nienResizeRects = (umlObj)=>{
-    return `
-    <g cursor="nwse-resize" class"topLeft">
-        <image 
-            x="${umlObj.group.bounds.topLeft.x - 10}" 
-            y="${umlObj.group.bounds.topLeft.y - 10}" 
-            width="20" 
-            height="20" xlink:href="https://whimsical.com/s/images/handle-shadow@2x_705b643d74f0be5b2981996ea39a88a8.png" ></image>
+    <g pointer-events="none">
+        <rect 
+            style="position: absolute; top: ${umlObj.group.bounds.y}px; left: ${umlObj.group.bounds.x}px; width: ${umlObj.group.bounds.width}px; height: ${umlObj.group.bounds.height}px;"
+            x="${umlObj.group.bounds.x}px" 
+            y="${umlObj.group.bounds.y}px" 
+            width="${umlObj.group.bounds.width}px" 
+            height="${umlObj.group.bounds.width}px" 
+            stroke="#B471EA" 
+            fill="rgba(0,0,0,0)" 
+            stroke-linejoin="round" 
+            stroke-linecap="round" 
+            stroke-width="5px" 
+        ></rect>
     </g>
-    <g cursor="nesw-resize" class="topRight">
-        <image 
-            x="${umlObj.group.bounds.topRight.x - 10}" 
-            y="${umlObj.group.bounds.topRight.y - 10}" 
-            width="20" 
-            height="20" xlink:href="https://whimsical.com/s/images/handle-shadow@2x_705b643d74f0be5b2981996ea39a88a8.png" ></image>
-    </g>
-    <g cursor="nwse-resize" class="bottomRight">
-        <image 
-            x="${umlObj.group.bounds.bottomRight.x - 10}" 
-            y="${umlObj.group.bounds.bottomRight.y - 10}" 
-            width="20" 
-            height="20" xlink:href="https://whimsical.com/s/images/handle-shadow@2x_705b643d74f0be5b2981996ea39a88a8.png" ></image>
-    </g>
-    <g cursor="nesw-resize" class="bottomLeft">
-        <image 
-            x="${umlObj.group.bounds.bottomLeft.x - 10}" 
-            y="${umlObj.group.bounds.bottomLeft.y - 10}" 
-            width="20" 
-            height="20" xlink:href="https://whimsical.com/s/images/handle-shadow@2x_705b643d74f0be5b2981996ea39a88a8.png" ></image>
-    </g>
+    <g pointer-events="all">
+        <g cursor="nwse-resize" class"topLeft">
+            <image 
+                x="${umlObj.group.bounds.topLeft.x - 10}" 
+                y="${umlObj.group.bounds.topLeft.y - 10}" 
+                width="20" 
+                height="20" xlink:href="https://whimsical.com/s/images/handle-shadow@2x_705b643d74f0be5b2981996ea39a88a8.png" ></image>
+        </g>
+        <g cursor="nesw-resize" class="topRight">
+            <image 
+                x="${umlObj.group.bounds.topRight.x - 10}" 
+                y="${umlObj.group.bounds.topRight.y - 10}" 
+                width="20" 
+                height="20" xlink:href="https://whimsical.com/s/images/handle-shadow@2x_705b643d74f0be5b2981996ea39a88a8.png" ></image>
+        </g>
+        <g cursor="nwse-resize" class="bottomRight">
+            <image 
+                x="${umlObj.group.bounds.bottomRight.x - 10}" 
+                y="${umlObj.group.bounds.bottomRight.y - 10}" 
+                width="20" 
+                height="20" xlink:href="https://whimsical.com/s/images/handle-shadow@2x_705b643d74f0be5b2981996ea39a88a8.png" ></image>
+        </g>
+        <g cursor="nesw-resize" class="bottomLeft">
+            <image 
+                x="${umlObj.group.bounds.bottomLeft.x - 10}" 
+                y="${umlObj.group.bounds.bottomLeft.y - 10}" 
+                width="20" 
+                height="20" xlink:href="https://whimsical.com/s/images/handle-shadow@2x_705b643d74f0be5b2981996ea39a88a8.png" ></image>
+        </g>
 
 
 
-    <g cursor="ns-resize" class="topMiddle">
-        <image 
-            x="${umlObj.group.bounds.center.x - 10}" 
-            y="${umlObj.group.bounds.top - 10}" 
-            width="20" 
-            height="20" xlink:href="https://whimsical.com/s/images/handle-shadow@2x_705b643d74f0be5b2981996ea39a88a8.png" ></image>
-    </g>
-    <g cursor="ns-resize" class="bottomMiddle">
-        <image 
-            x="${umlObj.group.bounds.center.x - 10}" 
-            y="${umlObj.group.bounds.bottom - 10}" 
-            width="20" 
-            height="20" xlink:href="https://whimsical.com/s/images/handle-shadow@2x_705b643d74f0be5b2981996ea39a88a8.png" ></image>
-    </g>
-    <g cursor="ew-resize" class="leftMiddle">
-        <image 
-            x="${umlObj.group.bounds.left - 10}" 
-            y="${umlObj.group.bounds.center.y - 10}" 
-            width="20" 
-            height="20" xlink:href="https://whimsical.com/s/images/handle-shadow@2x_705b643d74f0be5b2981996ea39a88a8.png" ></image>
-    </g>
-    <g cursor="ew-resize" class="rightMiddle">
-        <image 
-            x="${umlObj.group.bounds.right - 10}" 
-            y="${umlObj.group.bounds.center.y - 10}" 
-            width="20" 
-            height="20" xlink:href="https://whimsical.com/s/images/handle-shadow@2x_705b643d74f0be5b2981996ea39a88a8.png" ></image>
+        <g cursor="ns-resize" class="topMiddle">
+            <image 
+                x="${umlObj.group.bounds.center.x - 10}" 
+                y="${umlObj.group.bounds.top - 10}" 
+                width="20" 
+                height="20" xlink:href="https://whimsical.com/s/images/handle-shadow@2x_705b643d74f0be5b2981996ea39a88a8.png" ></image>
+        </g>
+        <g cursor="ns-resize" class="bottomMiddle">
+            <image 
+                x="${umlObj.group.bounds.center.x - 10}" 
+                y="${umlObj.group.bounds.bottom - 10}" 
+                width="20" 
+                height="20" xlink:href="https://whimsical.com/s/images/handle-shadow@2x_705b643d74f0be5b2981996ea39a88a8.png" ></image>
+        </g>
+        <g cursor="ew-resize" class="leftMiddle">
+            <image 
+                x="${umlObj.group.bounds.left - 10}" 
+                y="${umlObj.group.bounds.center.y - 10}" 
+                width="20" 
+                height="20" xlink:href="https://whimsical.com/s/images/handle-shadow@2x_705b643d74f0be5b2981996ea39a88a8.png" ></image>
+        </g>
+        <g cursor="ew-resize" class="rightMiddle">
+            <image 
+                x="${umlObj.group.bounds.right - 10}" 
+                y="${umlObj.group.bounds.center.y - 10}" 
+                width="20" 
+                height="20" xlink:href="https://whimsical.com/s/images/handle-shadow@2x_705b643d74f0be5b2981996ea39a88a8.png" ></image>
+        </g>
     </g>
     `
 }
 fRect.group.onMouseDown = function(){
     focusG.innerHTML = ""
-    nineRectsG.innerHTML = ""
 }
 fRect.group.onClick = function(){
     
     fRect.isFocused = !fRect.isFocused;
     if(fRect.isFocused){
         focusG.innerHTML = focusRect(fRect);
-        nineRectsG.innerHTML = nienResizeRects(fRect);
     }
 }
 
