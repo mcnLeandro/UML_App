@@ -1,5 +1,7 @@
 import './../css/style.css'
-
+import resizeRect from './../images/resize-rect.svg'
+import resizeTest1 from './../images/test1.png'
+// const resizeTest1 = require('./../images/test1.png')
 // ===============================================
 // global
 // ===============================================
@@ -13,8 +15,8 @@ document.querySelector('body').innerHTML +=  `
 
     <canvas id="field"></canvas>
 
-    <svg pointer-events="none"
-            
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        pointer-events="none"    
         style="
             position: absolute; 
             top: 0px; 
@@ -114,96 +116,114 @@ btn.addEventListener('click',function(){
 // FIXME: reconsider how , and when focus event fired.
 
 let fRect = new Class();
-let focusG = document.getElementById("focusG");
-let focusRect = (umlObj)=>{
-    return `
-    <g pointer-events="none">
-        <rect 
-            style="position: absolute; top: ${umlObj.group.bounds.y}px; left: ${umlObj.group.bounds.x}px; width: ${umlObj.group.bounds.width}px; height: ${umlObj.group.bounds.height}px;"
-            x="${umlObj.group.bounds.x}px" 
-            y="${umlObj.group.bounds.y}px" 
-            width="${umlObj.group.bounds.width}px" 
-            height="${umlObj.group.bounds.width}px" 
-            stroke="#B471EA" 
-            fill="rgba(0,0,0,0)" 
-            stroke-linejoin="round" 
-            stroke-linecap="round" 
-            stroke-width="5px" 
-        ></rect>
-    </g>
-    <g pointer-events="all">
-        <g cursor="nwse-resize" class"topLeft">
-            <image 
-                x="${umlObj.group.bounds.topLeft.x - 10}" 
-                y="${umlObj.group.bounds.topLeft.y - 10}" 
-                width="20" 
-                height="20" xlink:href="https://whimsical.com/s/images/handle-shadow@2x_705b643d74f0be5b2981996ea39a88a8.png" ></image>
+
+class Focus {
+    static focusG =document.getElementById("focusG");
+    static focusingObj = null;
+    static getFocusRect(umlObj){
+        return `
+        <g pointer-events="none">
+            <rect 
+                style="position: absolute; top: ${umlObj.group.bounds.y}px; left: ${umlObj.group.bounds.x}px; width: ${umlObj.group.bounds.width}px; height: ${umlObj.group.bounds.height}px;"
+                x="${umlObj.group.bounds.x}px" 
+                y="${umlObj.group.bounds.y}px" 
+                width="${umlObj.group.bounds.width}px" 
+                height="${umlObj.group.bounds.width}px" 
+                stroke="#B471EA" 
+                fill="rgba(0,0,0,0)" 
+                stroke-linejoin="round" 
+                stroke-linecap="round" 
+                stroke-width="5px" 
+            ></rect>
         </g>
-        <g cursor="nesw-resize" class="topRight">
-            <image 
-                x="${umlObj.group.bounds.topRight.x - 10}" 
-                y="${umlObj.group.bounds.topRight.y - 10}" 
-                width="20" 
-                height="20" xlink:href="https://whimsical.com/s/images/handle-shadow@2x_705b643d74f0be5b2981996ea39a88a8.png" ></image>
-        </g>
-        <g cursor="nwse-resize" class="bottomRight">
-            <image 
-                x="${umlObj.group.bounds.bottomRight.x - 10}" 
-                y="${umlObj.group.bounds.bottomRight.y - 10}" 
-                width="20" 
-                height="20" xlink:href="https://whimsical.com/s/images/handle-shadow@2x_705b643d74f0be5b2981996ea39a88a8.png" ></image>
-        </g>
-        <g cursor="nesw-resize" class="bottomLeft">
-            <image 
-                x="${umlObj.group.bounds.bottomLeft.x - 10}" 
-                y="${umlObj.group.bounds.bottomLeft.y - 10}" 
-                width="20" 
-                height="20" xlink:href="https://whimsical.com/s/images/handle-shadow@2x_705b643d74f0be5b2981996ea39a88a8.png" ></image>
-        </g>
+        <g  id='imgTest'
+            pointer-events="all">
 
 
-
-        <g cursor="ns-resize" class="topMiddle">
-            <image 
-                x="${umlObj.group.bounds.center.x - 10}" 
-                y="${umlObj.group.bounds.top - 10}" 
-                width="20" 
-                height="20" xlink:href="https://whimsical.com/s/images/handle-shadow@2x_705b643d74f0be5b2981996ea39a88a8.png" ></image>
-        </g>
-        <g cursor="ns-resize" class="bottomMiddle">
-            <image 
-                x="${umlObj.group.bounds.center.x - 10}" 
-                y="${umlObj.group.bounds.bottom - 10}" 
-                width="20" 
-                height="20" xlink:href="https://whimsical.com/s/images/handle-shadow@2x_705b643d74f0be5b2981996ea39a88a8.png" ></image>
-        </g>
-        <g cursor="ew-resize" class="leftMiddle">
-            <image 
-                x="${umlObj.group.bounds.left - 10}" 
-                y="${umlObj.group.bounds.center.y - 10}" 
-                width="20" 
-                height="20" xlink:href="https://whimsical.com/s/images/handle-shadow@2x_705b643d74f0be5b2981996ea39a88a8.png" ></image>
-        </g>
-        <g cursor="ew-resize" class="rightMiddle">
-            <image 
-                x="${umlObj.group.bounds.right - 10}" 
-                y="${umlObj.group.bounds.center.y - 10}" 
-                width="20" 
-                height="20" xlink:href="https://whimsical.com/s/images/handle-shadow@2x_705b643d74f0be5b2981996ea39a88a8.png" ></image>
-        </g>
-    </g>
-    `
-}
-fRect.group.onMouseDown = function(){
-    focusG.innerHTML = ""
-}
-fRect.group.onClick = function(){
+            <g cursor="nwse-resize" class"topLeft">
+                <img 
+                    x="${umlObj.group.bounds.topLeft.x - 10}" 
+                    y="${umlObj.group.bounds.topLeft.y - 10}" 
+                    width="20" 
+                    height="20" src="${resizeTest1}" ></img>
+            </g>
+            <g cursor="nesw-resize" class="topRight">
+                <img 
+                    x="${umlObj.group.bounds.topRight.x - 10}" 
+                    y="${umlObj.group.bounds.topRight.y - 10}" 
+                    width="20" 
+                    height="20" src="${resizeTest1}" ></img>
+            </g>
+            <g cursor="nwse-resize" class="bottomRight">
+                <img 
+                    x="${umlObj.group.bounds.bottomRight.x - 10}" 
+                    y="${umlObj.group.bounds.bottomRight.y - 10}" 
+                    width="20" 
+                    height="20" src="${resizeTest1}" ></img>
+            </g>
+            <g cursor="nesw-resize" class="bottomLeft">
+                <img 
+                    x="${umlObj.group.bounds.bottomLeft.x - 10}" 
+                    y="${umlObj.group.bounds.bottomLeft.y - 10}" 
+                    width="20" 
+                    height="20" src="${resizeTest1}" ></img>
+            </g>
     
-    fRect.isFocused = !fRect.isFocused;
-    if(fRect.isFocused){
-        focusG.innerHTML = focusRect(fRect);
+    
+    
+            <g cursor="ns-resize" class="topMiddle">
+                <img 
+                    x="${umlObj.group.bounds.center.x - 10}" 
+                    y="${umlObj.group.bounds.top - 10}" 
+                    width="20" 
+                    height="20" src="${resizeTest1}" ></img>
+            </g>
+            <g cursor="ns-resize" class="bottomMiddle">
+                <img 
+                    x="${umlObj.group.bounds.center.x - 10}" 
+                    y="${umlObj.group.bounds.bottom - 10}" 
+                    width="20" 
+                    height="20" src="${resizeTest1}" ></img>
+            </g>
+            <g cursor="ew-resize" class="leftMiddle">
+                <img 
+                    x="${umlObj.group.bounds.left - 10}" 
+                    y="${umlObj.group.bounds.center.y - 10}" 
+                    width="20" 
+                    height="20" src="${resizeTest1}" ></img>
+            </g>
+            <g cursor="ew-resize" class="rightMiddle">
+                <img 
+                    x="${umlObj.group.bounds.right - 10}" 
+                    y="${umlObj.group.bounds.center.y - 10}" 
+                    width="20" 
+                    height="20" src="${resizeTest1}" ></img>
+            </g>
+
+        </g>
+        `
+    }
+    static to(umlObj){
+
+        Focus.focusingObj = umlObj;
+
+        view.onMouseDown = function(){
+            if(umlObj.isFocused){
+                umlObj.isFocused = false;
+                focusG.innerHTML = ""
+            }
+        }
+        umlObj.group.onMouseUp = function(){
+            if(!umlObj.isFocused){
+                umlObj.isFocused = true;
+                focusG.innerHTML = Focus.getFocusRect(umlObj);
+                document.getElementById()
+            }
+        
+        }
     }
 }
+Focus.to(fRect)
 
-
-
+console.log(resizeRect)
+console.log(resizeTest1)

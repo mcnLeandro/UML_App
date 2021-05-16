@@ -21,6 +21,11 @@ const config = {
                 include: path.resolve(__dirname, 'src/css'),
             },
             {
+                test: /\.(svg|jpg|png)$/,
+                use: ['url-loader'],
+                include: path.resolve(__dirname, 'src/images'),
+            },
+            {
                 // Babel 用のローダー
                 test: /\.js$/,
                 exclude: /node_modules/,
