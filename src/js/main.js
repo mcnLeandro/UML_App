@@ -1,4 +1,4 @@
-import './../css/style.css'
+import './../css/main.scss'
 import resizeRect from './../images/resize-rect.svg'
 import resizeTest1 from './../images/test1.png'
 // const resizeTest1 = require('./../images/test1.png')
@@ -217,12 +217,13 @@ class Focus {
             if(!umlObj.isFocused){
                 umlObj.isFocused = true;
                 focusG.innerHTML = Focus.getFocusRect(umlObj);
-                document.getElementById()
+                document.querySelectorAll('#imgTest g img').forEach(e => e.src = resizeTest1)
             }
         
         }
     }
 }
+
 Focus.to(fRect)
 
 console.log(resizeRect)
