@@ -226,5 +226,6 @@ class Focus {
 
 Focus.to(fRect)
 
+
 console.log(resizeRect)
 console.log(resizeTest1)
