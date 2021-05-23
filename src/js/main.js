@@ -1,7 +1,7 @@
 import './../css/main.scss'
 import resizeRect from './../images/resize-rect.svg'
 import resizeTest1 from './../images/test1.png'
-// const resizeTest1 = require('./../images/test1.png')
+
 // ===============================================
 // global
 // ===============================================
@@ -25,7 +25,7 @@ document.querySelector('body').innerHTML +=  `
             height: 100%;
         ">
         
-        <g id="focusG" >
+        <g id="focusG" pointer-events="none" >
         </g>
     </svg>
 `
@@ -140,64 +140,72 @@ class Focus {
             pointer-events="all">
 
 
-            <g cursor="nwse-resize" class"topLeft">
-                <img 
-                    x="${umlObj.group.bounds.topLeft.x - 10}" 
-                    y="${umlObj.group.bounds.topLeft.y - 10}" 
-                    width="20" 
-                    height="20" src="${resizeTest1}" ></img>
+            <g cursor="nwse-resize" class="topLeft">
+                <image
+                    x="${umlObj.group.bounds.topLeft.x - 10}"
+                    y="${umlObj.group.bounds.topLeft.y - 10}"
+                    width="20"
+                    height="20"
+                    href="${resizeTest1}" ></img>
             </g>
             <g cursor="nesw-resize" class="topRight">
-                <img 
-                    x="${umlObj.group.bounds.topRight.x - 10}" 
-                    y="${umlObj.group.bounds.topRight.y - 10}" 
-                    width="20" 
-                    height="20" src="${resizeTest1}" ></img>
+                <image
+                    x="${umlObj.group.bounds.topRight.x - 10}"
+                    y="${umlObj.group.bounds.topRight.y - 10}"
+                    width="20"
+                    height="20"
+                    href="${resizeTest1}" ></image>
             </g>
             <g cursor="nwse-resize" class="bottomRight">
-                <img 
-                    x="${umlObj.group.bounds.bottomRight.x - 10}" 
-                    y="${umlObj.group.bounds.bottomRight.y - 10}" 
-                    width="20" 
-                    height="20" src="${resizeTest1}" ></img>
+                <image
+                    x="${umlObj.group.bounds.bottomRight.x - 10}"
+                    y="${umlObj.group.bounds.bottomRight.y - 10}"
+                    width="20"
+                    height="20"
+                    href="${resizeTest1}" ></image>
             </g>
             <g cursor="nesw-resize" class="bottomLeft">
-                <img 
-                    x="${umlObj.group.bounds.bottomLeft.x - 10}" 
-                    y="${umlObj.group.bounds.bottomLeft.y - 10}" 
-                    width="20" 
-                    height="20" src="${resizeTest1}" ></img>
+                <image
+                    x="${umlObj.group.bounds.bottomLeft.x - 10}"
+                    y="${umlObj.group.bounds.bottomLeft.y - 10}"
+                    width="20"
+                    height="20"
+                    href="${resizeTest1}" ></image>
             </g>
     
     
     
             <g cursor="ns-resize" class="topMiddle">
-                <img 
-                    x="${umlObj.group.bounds.center.x - 10}" 
-                    y="${umlObj.group.bounds.top - 10}" 
-                    width="20" 
-                    height="20" src="${resizeTest1}" ></img>
+                <image
+                    x="${umlObj.group.bounds.center.x - 10}"
+                    y="${umlObj.group.bounds.top - 10}"
+                    width="20"
+                    height="20"
+                    href="${resizeTest1}" ></image>
             </g>
             <g cursor="ns-resize" class="bottomMiddle">
-                <img 
-                    x="${umlObj.group.bounds.center.x - 10}" 
-                    y="${umlObj.group.bounds.bottom - 10}" 
-                    width="20" 
-                    height="20" src="${resizeTest1}" ></img>
+                <image
+                    x="${umlObj.group.bounds.center.x - 10}"
+                    y="${umlObj.group.bounds.bottom - 10}"
+                    width="20"
+                    height="20"
+                    href="${resizeTest1}" ></image>
             </g>
             <g cursor="ew-resize" class="leftMiddle">
-                <img 
-                    x="${umlObj.group.bounds.left - 10}" 
-                    y="${umlObj.group.bounds.center.y - 10}" 
-                    width="20" 
-                    height="20" src="${resizeTest1}" ></img>
+                <image
+                    x="${umlObj.group.bounds.left - 10}"
+                    y="${umlObj.group.bounds.center.y - 10}"
+                    width="20"
+                    height="20"
+                    href="${resizeTest1}" ></image>
             </g>
             <g cursor="ew-resize" class="rightMiddle">
-                <img 
-                    x="${umlObj.group.bounds.right - 10}" 
-                    y="${umlObj.group.bounds.center.y - 10}" 
-                    width="20" 
-                    height="20" src="${resizeTest1}" ></img>
+                <image
+                    x="${umlObj.group.bounds.right - 10}"
+                    y="${umlObj.group.bounds.center.y - 10}"
+                    width="20"
+                    height="20"
+                    href="${resizeTest1}" ></image>
             </g>
 
         </g>
@@ -217,7 +225,6 @@ class Focus {
             if(!umlObj.isFocused){
                 umlObj.isFocused = true;
                 focusG.innerHTML = Focus.getFocusRect(umlObj);
-                document.querySelectorAll('#imgTest g img').forEach(e => e.src = resizeTest1)
             }
         
         }
