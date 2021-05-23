@@ -11,7 +11,7 @@ module.exports = merge(common, {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'main.js',
-        assetModuleFilename: "imgs/[name].[ext]",
+        assetModuleFilename: "images/[name][ext]",
     },
     devServer: {
         contentBase: path.resolve(__dirname, 'dist'),

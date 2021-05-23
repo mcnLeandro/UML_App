@@ -113,6 +113,7 @@ btn.addEventListener('click',function(){
 // --------------------------------------
 // TODO: consider where put thsi code .
 // TODO: consider how this code put and use.
+// TODO: create better svg image
 // FIXME: reconsider how , and when focus event fired.
 
 let fRect = new Class();
@@ -232,7 +233,3 @@ class Focus {
 }
 
 Focus.to(fRect)
-
-
-console.log(resizeRect)
-console.log(resizeTest1)
