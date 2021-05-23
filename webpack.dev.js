@@ -6,13 +6,12 @@ const {merge}= require("webpack-merge");
 module.exports = merge(common, {
 
     mode: "development",
-    watch: true,
 
     context: path.resolve(__dirname, 'src'),
-    entry: './js/main.js',
     output: {
-        filename: 'main.js',
         path: path.resolve(__dirname, 'dist'),
+        filename: 'main.js',
+        assetModuleFilename: "imgs/[name].[ext]",
     },
     devServer: {
         contentBase: path.resolve(__dirname, 'dist'),

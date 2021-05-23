@@ -16,13 +16,12 @@ module.exports = {
         rules: [
             {
                 test: /\.scss$/,
-                use: ['style-loader', 'css-loader','sass-loader'],
+                use: [
+                    'style-loader', 
+                    'css-loader',
+                    'sass-loader'
+                ],
                 include: path.resolve(__dirname, 'src/css'),
-            },
-            {
-                test: /\.(svg|jpg|png)$/,
-                use: ['url-loader'],
-                include: path.resolve(__dirname, 'src/images'),
             },
             {
                 // Babel 用のローダー
@@ -41,7 +40,15 @@ module.exports = {
                 resolve: {
                     fullySpecified: false
                 }
-            }
+            },
+            {
+                test:/\.html$/,
+                use: ["html-loader"]
+            },
+            {
+                test: /\.(svg|jpg|png)$/,
+                type: "asset/resource",
+            },
         ],
     },
     
