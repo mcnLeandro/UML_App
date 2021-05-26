@@ -1,7 +1,9 @@
+import {Group} from 'paper'
 import {
     mouse,
     canvas,
 } from './../main.js'
+
 
 
 // TODO: focus (svg should be implemented in another branch)
@@ -13,35 +15,11 @@ import {
 // TODO: resize (just a method or something)
 // TODO: resize (with svg)
 
-class UMLObject{
-
-    static defaultStyle = {
-        
-        fillColor: 'white',
-        strokeColor: '#bbc8d3',
-
-    }
-    constructor(){
-
-        this.group = new Group();
-
-    }
-    draggable(){
-
-        this.group.onMouseDrag = function(e){
-            this.position.x += e.delta.x;
-            this.position.y += e.delta.y;
-            
-        }
-
-    }
-
-}
 
 // TODO: create controrable method (adding column, and divider)(maybe after focus implemention)
 // TODO: reconsider, and rewrite todo.
 
-class Class extends UMLObject {
+class Class extends Group {
 
     static defaultRectStyle = {
         
@@ -84,8 +62,8 @@ class Class extends UMLObject {
 
         this.statusGroup.addChild(this.rect);
         this.statusGroup.addChild(this.nameText);
-        this.group.addChild(this.statusGroup);
-        this.group.addChild(this.contentsGroup);
+        this.addChild(this.statusGroup);
+        this.addChild(this.contentsGroup);
 
         //*****************************//
         // set default contents
@@ -110,9 +88,18 @@ class Class extends UMLObject {
         this.contentsGroup.addChild(divider.group)
 
     }
+    draggable(){
+
+        this.onMouseDrag = function(e){
+            this.position.x += e.delta.x;
+            this.position.y += e.delta.y;
+            
+        }
+
+    }
 
 }
-class Column extends UMLObject {
+class Column extends Group {
 
     static defaultRectStyle = {
 
@@ -179,10 +166,10 @@ class Column extends UMLObject {
         //*****************************//
         // adding child. building structure
 
-        this.group.addChild(this.outerRect);
-        this.group.addChild(this.innerRect)
-        this.group.addChild(this.text);
-        this.group.addChild(this.btn); 
+        this.addChild(this.outerRect);
+        this.addChild(this.innerRect)
+        this.addChild(this.text);
+        this.addChild(this.btn); 
 
         //*****************************//
         this.editableText()
@@ -251,7 +238,7 @@ class Column extends UMLObject {
     }
 
 }
-class Divider extends UMLObject {
+class Divider extends Group {
 
     static defaultRectStyle = {
 
@@ -294,8 +281,8 @@ class Divider extends UMLObject {
         //*****************************/
         // adding child. building structure
 
-        this.group.addChild(this.outerRect)
-        this.group.addChild(this.bar);
+        this.addChild(this.outerRect)
+        this.addChild(this.bar);
 
         //*****************************/
 

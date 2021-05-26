@@ -1,6 +1,9 @@
+import * as paper from 'paper'
 import './../css/main.scss'
 import resizeRect from './../images/resize-rect.svg'
 import resizeTest1 from './../images/test1.png'
+
+// Wait for canvas to be created
 
 // ===============================================
 // global
@@ -40,7 +43,6 @@ let canvas =  document.querySelector('#field')
 
 canvas.width = innerWidth;
 canvas.height = innerHeight;
-
 
 
 
