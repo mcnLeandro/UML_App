@@ -1,21 +1,39 @@
-// import { from } from 'webpack-sources/lib/CompatSource';
-import './../css/style.css'
+import './../css/main.scss'
+import resizeRect from './../images/resize-rect.svg'
+import resizeTest1 from './../images/test1.png'
 
 // ===============================================
 // global
 // ===============================================
 
-let body = document.querySelector('body');
-body.innerHTML +=  `
+document.querySelector('body').innerHTML +=  `
+
 <div style="top: 0px;  cursor: default; position: absolute;  left: 0px;">
     <button id="btn" class='btn btn-primary'> create new Class </button>
 </div>
-<div id="editableTextDiv">
-</div>
 
+
+    <canvas id="field"></canvas>
+
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        pointer-events="none"    
+        style="
+            position: absolute; 
+            top: 0px; 
+            left: 0px; 
+            width: 100%; 
+            height: 100%;
+        ">
+        
+        <g id="focusG" pointer-events="none" >
+        </g>
+    </svg>
 `
-
-
+// FIXME: when implement field's scale, and translate, pointer-events not works again,
+// FIXME: so go to the field branch, 
+// FIXME: implement those things,
+// FIXME: come back
+// FIXME: then fix pointer-events if it doesn't working.
 
 let canvas =  document.querySelector('#field')
 
@@ -58,7 +76,7 @@ export{
 
 import { Field } from './modules/field.js'
 
-// view.translate([100,100])
+// view.translate([-9981,3372])
 
 
 Field.set()
@@ -90,95 +108,128 @@ btn.addEventListener('click',function(){
     }
 })
 
-// ===============================================
-// layout tester
-// ===============================================
+// --------------------------------------
+// focus
+// --------------------------------------
+// TODO: consider where put thsi code .
+// TODO: consider how this code put and use.
+// TODO: create better svg image
+// FIXME: reconsider how , and when focus event fired.
 
-let space = 5
-let btnSize = 25
-let fontSize = 15;
-// class
-let classRect = new Path.Rectangle(
-    [0,0],
-    [240, 70]
-)
+let fRect = new Class();
 
-let classText = new PointText({
-    point: [classRect.bounds.center.x, classRect.bounds.center.y + 10],
-    content: `Class`,
-    justification: 'center' ,
-    fontSize: fontSize,
-});
-let classInterfaceText = new PointText({
-    point: [classRect.bounds.center.x, classRect.bounds.center.y - 10],
-    content: `<<Interface>>`,
-    justification: 'center' ,
-    fontWeight: 'Bold Italic',
-    fontSize: fontSize,
-});
-let classTemplateRect = new Path.Rectangle(
-    [classRect.bounds.right - 40, classRect.bounds.top -10],
-    [50,40]
-)
-let classTemplateText = new PointText({
-    point: classTemplateRect.bounds.center,
-    content: `T`,
-    justification: 'center' ,
-    fontWeight: 'Bold',
-    fontSize: fontSize,
-});
+class Focus {
+    static focusG =document.getElementById("focusG");
+    static focusingObj = null;
+    static getFocusRect(umlObj){
+        return `
+        <g pointer-events="none">
+            <rect 
+                style="position: absolute; top: ${umlObj.group.bounds.y}px; left: ${umlObj.group.bounds.x}px; width: ${umlObj.group.bounds.width}px; height: ${umlObj.group.bounds.height}px;"
+                x="${umlObj.group.bounds.x}px" 
+                y="${umlObj.group.bounds.y}px" 
+                width="${umlObj.group.bounds.width}px" 
+                height="${umlObj.group.bounds.width}px" 
+                stroke="#B471EA" 
+                fill="rgba(0,0,0,0)" 
+                stroke-linejoin="round" 
+                stroke-linecap="round" 
+                stroke-width="5px" 
+            ></rect>
+        </g>
+        <g  id='imgTest'
+            pointer-events="all">
 
 
-// column
-let column = new Path.Rectangle(// same outerRect
-    classRect.bounds.bottomLeft,
-    new Size(classRect.bounds.width, 50)
-)
-let cInnerRect = new Path.Rectangle(
-    new Point(column.bounds.left  + space, column.bounds.top + space),
-    new Point(column.bounds.right - space, column.bounds.bottom - space)
-);
-let cBtn = new Shape.Rectangle({
-    center : [cInnerRect.bounds.left + btnSize/2, cInnerRect.bounds.center.y],
-    size:[btnSize,btnSize],
-    radius: 5
-});
-let cText = new PointText({
-    point: [cInnerRect.bounds.left + cBtn.bounds.width+ space, cInnerRect.bounds.center.y + 6 ],
-    content: `Column`,
-    justification: 'left',
-    fontWeight: 'Bold',
-    fontSize: fontSize,
-});
+            <g cursor="nwse-resize" class="topLeft">
+                <image
+                    x="${umlObj.group.bounds.topLeft.x - 10}"
+                    y="${umlObj.group.bounds.topLeft.y - 10}"
+                    width="20"
+                    height="20"
+                    href="${resizeTest1}" ></img>
+            </g>
+            <g cursor="nesw-resize" class="topRight">
+                <image
+                    x="${umlObj.group.bounds.topRight.x - 10}"
+                    y="${umlObj.group.bounds.topRight.y - 10}"
+                    width="20"
+                    height="20"
+                    href="${resizeTest1}" ></image>
+            </g>
+            <g cursor="nwse-resize" class="bottomRight">
+                <image
+                    x="${umlObj.group.bounds.bottomRight.x - 10}"
+                    y="${umlObj.group.bounds.bottomRight.y - 10}"
+                    width="20"
+                    height="20"
+                    href="${resizeTest1}" ></image>
+            </g>
+            <g cursor="nesw-resize" class="bottomLeft">
+                <image
+                    x="${umlObj.group.bounds.bottomLeft.x - 10}"
+                    y="${umlObj.group.bounds.bottomLeft.y - 10}"
+                    width="20"
+                    height="20"
+                    href="${resizeTest1}" ></image>
+            </g>
+    
+    
+    
+            <g cursor="ns-resize" class="topMiddle">
+                <image
+                    x="${umlObj.group.bounds.center.x - 10}"
+                    y="${umlObj.group.bounds.top - 10}"
+                    width="20"
+                    height="20"
+                    href="${resizeTest1}" ></image>
+            </g>
+            <g cursor="ns-resize" class="bottomMiddle">
+                <image
+                    x="${umlObj.group.bounds.center.x - 10}"
+                    y="${umlObj.group.bounds.bottom - 10}"
+                    width="20"
+                    height="20"
+                    href="${resizeTest1}" ></image>
+            </g>
+            <g cursor="ew-resize" class="leftMiddle">
+                <image
+                    x="${umlObj.group.bounds.left - 10}"
+                    y="${umlObj.group.bounds.center.y - 10}"
+                    width="20"
+                    height="20"
+                    href="${resizeTest1}" ></image>
+            </g>
+            <g cursor="ew-resize" class="rightMiddle">
+                <image
+                    x="${umlObj.group.bounds.right - 10}"
+                    y="${umlObj.group.bounds.center.y - 10}"
+                    width="20"
+                    height="20"
+                    href="${resizeTest1}" ></image>
+            </g>
 
-//divider
-let divider = new Path.Rectangle(// same outerRect
-    column.bounds.bottomLeft,
-    new Size(classRect.bounds.width, 5)
-)
-let dLine = new Path.Line(
-    new Point(divider.bounds.left , divider.bounds.center.y),
-    new Point(divider.bounds.right, divider.bounds.center.y)
-);
+        </g>
+        `
+    }
+    static to(umlObj){
 
-classRect.strokeColor = '#000';
-classText.strokeColor = '#000';
-classInterfaceText.strokeColor = '#000';
-classTemplateRect.strokeColor  = '#000';
-classTemplateText.strokeColor  = '#000';
+        Focus.focusingObj = umlObj;
 
-column.strokeColor = '#000';
-cInnerRect.strokeColor = '#00f';
-cBtn.strokeColor = '#00f';
-cText.strokeColor = '#00f';
+        view.onMouseDown = function(){
+            if(umlObj.isFocused){
+                umlObj.isFocused = false;
+                focusG.innerHTML = ""
+            }
+        }
+        umlObj.group.onMouseUp = function(){
+            if(!umlObj.isFocused){
+                umlObj.isFocused = true;
+                focusG.innerHTML = Focus.getFocusRect(umlObj);
+            }
+        
+        }
+    }
+}
 
-
-divider.strokeColor = '#000';
-dLine.strokeColor = '#00f';
-dLine.strokeWidth = 5;
-
-
-
-
-
-
+Focus.to(fRect)
