@@ -3,16 +3,16 @@ import './../css/main.scss'
 import resizeRect from './../images/resize-rect.svg'
 import resizeTest1 from './../images/test1.png'
 
-// Wait for canvas to be created
-
 // ===============================================
-// global
+// global setup
 // ===============================================
 
 document.querySelector('body').innerHTML +=  `
 
 <div style="top: 0px;  cursor: default; position: absolute;  left: 0px;">
     <button id="btn" class='btn btn-primary'> create new Class </button>
+</div>
+<div id="editableTextDiv">
 </div>
 
 
@@ -48,7 +48,7 @@ canvas.height = innerHeight;
 
 //  paper setup
 paper.install(window);
-paper.setup(document.getElementById('field'));
+paper.setup(canvas);
 
 
 
@@ -97,6 +97,7 @@ import {
 
 
 
+
 // --------------------------------------
 // btn that create a class
 // --------------------------------------
@@ -104,8 +105,11 @@ import {
 let btn = document.getElementById('btn');
 btn.addEventListener('click',function(){
     let rec = new Class();
+    rec.set();
     view.onKeyDown = function(){
         if(Key.isDown('/'))rec.addDivider();
         else if (Key.isDown('c'))rec.addColumn();
     }
+
 })
+
