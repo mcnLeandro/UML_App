@@ -54,31 +54,41 @@ class Class extends Group {
         // this.set() 
     }
     set(){
+
         this.initShape();
         this.initStyle();
         this.initNestStracture();
         this.initAdditionalOptionsDemo()
+
     }
     initShape(){
+
         this.rect.bounds = new Rectangle([100,100],[240,70]);
         this.nameText.bounds.point = new Point(this.rect.bounds.center.x, this.rect.bounds.center.y + 10);
+
     }
     initStyle(){
+
         this.rect.set(Class.defaultRectStyle);
         this.nameText.set(Class.defaultTextStyle);
+
     }
     initNestStracture(){
+
         this.statusGroup.addChild(this.rect);
         this.statusGroup.addChild(this.nameText);
         this.addChild(this.statusGroup);
         this.addChild(this.contentsGroup);
+
     }
     // TODO: this is used for now because not suit;
     initAdditionalOptionsDemo(){
+
         this.draggable()
         // this.addDivider()
         // this.addColumn()
         // this.addDivider()
+
     }
     addColumn(){
         //when succeed to add item , addChild method returns the item.
@@ -276,6 +286,7 @@ class Divider extends Group {
         this.initShape();
         this.initStyle();
         this.initNestStracture();
+        
     }
     initShape(){
         let pp = this.parent.parent;
@@ -294,12 +305,16 @@ class Divider extends Group {
 
     }
     initStyle(){
+        
         this.outerRect.set(Divider.defaultRectStyle)
         this.bar.set(Divider.defaultBarStyle)
+        
     }
     initNestStracture(){
+        
         this.addChild(this.outerRect)
         this.addChild(this.bar);
+        
     }
     
 

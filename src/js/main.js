@@ -104,6 +104,7 @@ import {
 
 let btn = document.getElementById('btn');
 btn.addEventListener('click',function(){
+    
     let rec = new Class();
     rec.set();
     view.onKeyDown = function(){
