@@ -1,5 +1,5 @@
 import * as paper from 'paper'
-import './../css/main.scss'
+import 'css/main.scss'
 
 
 // ===============================================
@@ -75,7 +75,7 @@ export{
 // field
 // ===============================================
 
-import { Field } from './modules/field.js'
+import { Field } from 'js/modules/field'
 
 // view.translate([-9981,3372])
 
@@ -92,7 +92,7 @@ import {
     Class,
     Column,
     Divider
-} from './modules/class.js'
+} from 'js/modules/class'
 
 
 
@@ -114,7 +114,8 @@ btn.addEventListener('click',function(){
 })
 
 
-import { Focus } from "./models/focus"
+import { Focus } from "js/models/focus"
+
 let fRect = new Class();
 fRect.set()
 Focus.to(fRect)

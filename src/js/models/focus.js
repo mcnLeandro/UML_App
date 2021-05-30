@@ -1,5 +1,5 @@
-import resizeRect from './../../images/resize-rect.svg'
-import resizeTest1 from './../../images/test1.png'
+import resizeRect from 'images/resize-rect.svg'
+import resizeTest1 from 'images/test1.png'
 
 // ===============================================
 // (SVG)
