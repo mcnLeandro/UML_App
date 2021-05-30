@@ -1,15 +1,18 @@
+import * as paper from 'paper'
 import './../css/main.scss'
 import resizeRect from './../images/resize-rect.svg'
 import resizeTest1 from './../images/test1.png'
 
 // ===============================================
-// global
+// global setup
 // ===============================================
 
 document.querySelector('body').innerHTML +=  `
 
 <div style="top: 0px;  cursor: default; position: absolute;  left: 0px;">
     <button id="btn" class='btn btn-primary'> create new Class </button>
+</div>
+<div id="editableTextDiv">
 </div>
 
 
@@ -43,10 +46,9 @@ canvas.height = innerHeight;
 
 
 
-
 //  paper setup
 paper.install(window);
-paper.setup(document.getElementById('field'));
+paper.setup(canvas);
 
 
 
@@ -95,141 +97,20 @@ import {
 
 
 
+
 // --------------------------------------
 // btn that create a class
 // --------------------------------------
 
 let btn = document.getElementById('btn');
 btn.addEventListener('click',function(){
+    
     let rec = new Class();
+    rec.set();
     view.onKeyDown = function(){
         if(Key.isDown('/'))rec.addDivider();
         else if (Key.isDown('c'))rec.addColumn();
     }
+
 })
 
-// --------------------------------------
-// focus
-// --------------------------------------
-// TODO: consider where put thsi code .
-// TODO: consider how this code put and use.
-// TODO: create better svg image
-// FIXME: reconsider how , and when focus event fired.
-
-let fRect = new Class();
-
-class Focus {
-    static focusG =document.getElementById("focusG");
-    static focusingObj = null;
-    static getFocusRect(umlObj){
-        return `
-        <g pointer-events="none">
-            <rect 
-                style="position: absolute; top: ${umlObj.group.bounds.y}px; left: ${umlObj.group.bounds.x}px; width: ${umlObj.group.bounds.width}px; height: ${umlObj.group.bounds.height}px;"
-                x="${umlObj.group.bounds.x}px" 
-                y="${umlObj.group.bounds.y}px" 
-                width="${umlObj.group.bounds.width}px" 
-                height="${umlObj.group.bounds.width}px" 
-                stroke="#B471EA" 
-                fill="rgba(0,0,0,0)" 
-                stroke-linejoin="round" 
-                stroke-linecap="round" 
-                stroke-width="5px" 
-            ></rect>
-        </g>
-        <g  id='imgTest'
-            pointer-events="all">
-
-
-            <g cursor="nwse-resize" class="topLeft">
-                <image
-                    x="${umlObj.group.bounds.topLeft.x - 10}"
-                    y="${umlObj.group.bounds.topLeft.y - 10}"
-                    width="20"
-                    height="20"
-                    href="${resizeTest1}" ></img>
-            </g>
-            <g cursor="nesw-resize" class="topRight">
-                <image
-                    x="${umlObj.group.bounds.topRight.x - 10}"
-                    y="${umlObj.group.bounds.topRight.y - 10}"
-                    width="20"
-                    height="20"
-                    href="${resizeTest1}" ></image>
-            </g>
-            <g cursor="nwse-resize" class="bottomRight">
-                <image
-                    x="${umlObj.group.bounds.bottomRight.x - 10}"
-                    y="${umlObj.group.bounds.bottomRight.y - 10}"
-                    width="20"
-                    height="20"
-                    href="${resizeTest1}" ></image>
-            </g>
-            <g cursor="nesw-resize" class="bottomLeft">
-                <image
-                    x="${umlObj.group.bounds.bottomLeft.x - 10}"
-                    y="${umlObj.group.bounds.bottomLeft.y - 10}"
-                    width="20"
-                    height="20"
-                    href="${resizeTest1}" ></image>
-            </g>
-    
-    
-    
-            <g cursor="ns-resize" class="topMiddle">
-                <image
-                    x="${umlObj.group.bounds.center.x - 10}"
-                    y="${umlObj.group.bounds.top - 10}"
-                    width="20"
-                    height="20"
-                    href="${resizeTest1}" ></image>
-            </g>
-            <g cursor="ns-resize" class="bottomMiddle">
-                <image
-                    x="${umlObj.group.bounds.center.x - 10}"
-                    y="${umlObj.group.bounds.bottom - 10}"
-                    width="20"
-                    height="20"
-                    href="${resizeTest1}" ></image>
-            </g>
-            <g cursor="ew-resize" class="leftMiddle">
-                <image
-                    x="${umlObj.group.bounds.left - 10}"
-                    y="${umlObj.group.bounds.center.y - 10}"
-                    width="20"
-                    height="20"
-                    href="${resizeTest1}" ></image>
-            </g>
-            <g cursor="ew-resize" class="rightMiddle">
-                <image
-                    x="${umlObj.group.bounds.right - 10}"
-                    y="${umlObj.group.bounds.center.y - 10}"
-                    width="20"
-                    height="20"
-                    href="${resizeTest1}" ></image>
-            </g>
-
-        </g>
-        `
-    }
-    static to(umlObj){
-
-        Focus.focusingObj = umlObj;
-
-        view.onMouseDown = function(){
-            if(umlObj.isFocused){
-                umlObj.isFocused = false;
-                focusG.innerHTML = ""
-            }
-        }
-        umlObj.group.onMouseUp = function(){
-            if(!umlObj.isFocused){
-                umlObj.isFocused = true;
-                focusG.innerHTML = Focus.getFocusRect(umlObj);
-            }
-        
-        }
-    }
-}
-
-Focus.to(fRect)

@@ -1,7 +1,9 @@
+import {Group} from 'paper'
 import {
     mouse,
     canvas,
 } from './../main.js'
+
 
 
 // TODO: focus (svg should be implemented in another branch)
@@ -13,35 +15,11 @@ import {
 // TODO: resize (just a method or something)
 // TODO: resize (with svg)
 
-class UMLObject{
-
-    static defaultStyle = {
-        
-        fillColor: 'white',
-        strokeColor: '#bbc8d3',
-
-    }
-    constructor(){
-
-        this.group = new Group();
-
-    }
-    draggable(){
-
-        this.group.onMouseDrag = function(e){
-            this.position.x += e.delta.x;
-            this.position.y += e.delta.y;
-            
-        }
-
-    }
-
-}
 
 // TODO: create controrable method (adding column, and divider)(maybe after focus implemention)
 // TODO: reconsider, and rewrite todo.
 
-class Class extends UMLObject {
+class Class extends Group {
 
     static defaultRectStyle = {
         
@@ -62,7 +40,6 @@ class Class extends UMLObject {
 
         super()
         this.isFocused = false;
-        this.contentsArr = [];
 
         //-----------------------------//
         // paper.js
@@ -70,49 +47,71 @@ class Class extends UMLObject {
         this.statusGroup = new Group();
         this.contentsGroup = new Group();
 
-        this.rect = new Path.Rectangle([100,100],[240,70]);
-        this.nameText = new PointText([this.rect.bounds.center.x, this.rect.bounds.center.y + 10]);
+        this.rect = new Path.Rectangle(1,1,1,1);
+        this.nameText = new PointText(1,1);
 
-        //*****************************//
-        // styling
+        // CONSIDER: set method decrear in here, or decrear like column and divider.
+        // this.set() 
+    }
+    set(){
+
+        this.initShape();
+        this.initStyle();
+        this.initNestStracture();
+        this.initAdditionalOptionsDemo()
+
+    }
+    initShape(){
+
+        this.rect.bounds = new Rectangle([100,100],[240,70]);
+        this.nameText.bounds.point = new Point(this.rect.bounds.center.x, this.rect.bounds.center.y + 10);
+
+    }
+    initStyle(){
 
         this.rect.set(Class.defaultRectStyle);
         this.nameText.set(Class.defaultTextStyle);
-        
-        //******************************//
-        //adding child. building structure
+
+    }
+    initNestStracture(){
 
         this.statusGroup.addChild(this.rect);
         this.statusGroup.addChild(this.nameText);
-        this.group.addChild(this.statusGroup);
-        this.group.addChild(this.contentsGroup);
+        this.addChild(this.statusGroup);
+        this.addChild(this.contentsGroup);
 
-        //*****************************//
-        // set default contents
+    }
+    // TODO: this is used for now because not suit;
+    initAdditionalOptionsDemo(){
+
         this.draggable()
         // this.addDivider()
         // this.addColumn()
         // this.addDivider()
 
     }
-    
     addColumn(){
-
-        let column = new Column(this)
-        this.contentsArr.push(column);
-        this.contentsGroup.addChild(column.group)
+        //when succeed to add item , addChild method returns the item.
+        this.contentsGroup.addChild(new Column()).set()
 
     }
     addDivider(){
 
-        let divider = new Divider(this)
-        this.contentsArr.push(divider);
-        this.contentsGroup.addChild(divider.group)
+        this.contentsGroup.addChild(new Divider()).set()
+
+    }
+    draggable(){
+
+        this.onMouseDrag = function(e){
+            this.position.x += e.delta.x;
+            this.position.y += e.delta.y;
+            
+        }
 
     }
 
 }
-class Column extends UMLObject {
+class Column extends Group {
 
     static defaultRectStyle = {
 
@@ -124,8 +123,6 @@ class Column extends UMLObject {
 
         content: "Column",
         fillColor: '#25313c',
-        // fontFamily: 'Courier New',
-        // fontWeight: 'bold',
         fontSize: 15,
 
     }
@@ -135,57 +132,68 @@ class Column extends UMLObject {
         radius : 5,
 
     }
-    constructor(parent){
+    constructor(){
 
         super();
-        this.parent = parent
-        this.space = 7; // CONSIDER: there's any reason that this isn't immutable
+        this.space = 7;
         this.btnSize = 25;
+        this.outerRect = new Path.Rectangle(new Rectangle(1,1,1,1));
+        this.innerRect = new Path.Rectangle(new Rectangle(1,1,1,1));
 
-        //-----------------------------//
-        // paper.js
+        this.btn  = new Path.Rectangle(new Rectangle(1,1,1,1));
+        this.text  = new PointText(1,1);
 
-        let bounds = this.parent.rect.bounds;
-        let isEmpty = this.parent.contentsGroup.isEmpty()
-        let x = bounds.left;
-        let y = isEmpty ? bounds.bottom : this.parent.group.bounds.bottom;
+    }
+    set(){
+
+        this.initShape();
+        this.initStyle();
+        this.initNestStracture();
+        this.editableText();
+
+    }
+    initShape(){
+
+        let pp = this.parent.parent;
+        let bounds = pp.bounds;
+        let l = bounds.left;
+        let r = bounds.right;
+        let b = bounds.bottom;
         let w = bounds.width;
-        // let h = bounds.height;
 
-        this.outerRect = new Shape.Rectangle([x,y],[w,50]);
-        this.innerRect = new Shape.Rectangle(
-            new Point(this.outerRect.bounds.left  + this.space, this.outerRect.bounds.top + this.space),
-            new Point(this.outerRect.bounds.right - this.space, this.outerRect.bounds.bottom - this.space)
+
+        this.outerRect.bounds = new Rectangle([l,b],[w,50]);
+
+        this.innerRect.bounds = new Rectangle(
+            new Point(l  + this.space, this.outerRect.bounds.top + this.space),
+            new Point(r - this.space, this.outerRect.bounds.bottom - this.space)
         );
 
-        this.btn  = new Shape.Rectangle({
+        this.btn.bounds  = new Rectangle({
             center :[this.innerRect.bounds.left + this.btnSize/2, this.innerRect.bounds.center.y], 
             size: [this.btnSize,this.btnSize]
         });
-        this.text  = new PointText(
+        this.text.bounds.point  = new Point(
             [this.innerRect.bounds.left + this.btn.bounds.width + this.space, this.innerRect.bounds.center.y + 6 ]
         );
 
-        //*****************************//
-        // styling
+    }
+    initStyle(){
 
-        // this.outerRect.strokeColor = '#f0f';
-        // this.innerRect.strokeColor = '#00f'
-        
+        this.outerRect.strokeColor = '#f0f';
+        this.innerRect.strokeColor = '#00f'
+
         this.outerRect.set(Column.defaultRectStyle)
         this.text.set(Column.defaultTextStyle);
         this.btn.set(Column.defaultBtnStayle)
 
-        //*****************************//
-        // adding child. building structure
-
-        this.group.addChild(this.outerRect);
-        this.group.addChild(this.innerRect)
-        this.group.addChild(this.text);
-        this.group.addChild(this.btn); 
-
-        //*****************************//
-        this.editableText()
+    }
+    initNestStracture(){
+        
+        this.addChild(this.outerRect);
+        this.addChild(this.innerRect)
+        this.addChild(this.text);
+        this.addChild(this.btn); 
 
     }
     editableText(){
@@ -251,7 +259,7 @@ class Column extends UMLObject {
     }
 
 }
-class Divider extends UMLObject {
+class Divider extends Group {
 
     static defaultRectStyle = {
 
@@ -265,41 +273,50 @@ class Divider extends UMLObject {
         strokeColor : '#bbc8d3',
 
     }
-    constructor(parent){
+    constructor(){
 
         super()
-        this.parent = parent;
 
-        //------------------
-        // paper.js
-        let bounds = this.parent.rect.bounds;
-        let isEmpty = this.parent.contentsGroup.isEmpty()
-        let x = bounds.left;
-        let y = isEmpty ? bounds.bottom : this.parent.group.bounds.bottom;
-        let w = bounds.width;
-        // let h = bounds.height;
-
-        this.outerRect = new Path.Rectangle([x,y],[w,Divider.defaultBarStyle.strokeWidth]);
-        this.bar = new Path.Line(
-            new Point(this.outerRect.bounds.left , this.outerRect.bounds.center.y),
-            new Point(this.outerRect.bounds.right, this.outerRect.bounds.center.y)
-        );
-        
-        //*****************************/
-        // styling
-
-        this.outerRect.set(Divider.defaultRectStyle)
-        this.bar.set(Divider.defaultBarStyle)
-
-        //*****************************/
-        // adding child. building structure
-
-        this.group.addChild(this.outerRect)
-        this.group.addChild(this.bar);
-
-        //*****************************/
+        this.outerRect = new Path.Rectangle(new Rectangle(1,1,1,1));
+        this.bar = new Path.Line()
 
     }
+    set(){
+
+        this.initShape();
+        this.initStyle();
+        this.initNestStracture();
+        
+    }
+    initShape(){
+        let pp = this.parent.parent;
+        let bounds = pp.bounds;
+        let l = bounds.left;
+        let r = bounds.right;
+        let b = bounds.bottom;
+        let w = bounds.width;
+        this.outerRect.bounds = new Rectangle([l,b],[w,Divider.defaultBarStyle.strokeWidth]);
+
+        this.bar.removeSegments()
+        this.bar.addSegments([
+            new Point(l , this.outerRect.bounds.center.y),
+            new Point(r, this.outerRect.bounds.center.y)
+        ]);
+
+    }
+    initStyle(){
+        
+        this.outerRect.set(Divider.defaultRectStyle)
+        this.bar.set(Divider.defaultBarStyle)
+        
+    }
+    initNestStracture(){
+        
+        this.addChild(this.outerRect)
+        this.addChild(this.bar);
+        
+    }
+    
 
 }
 
