@@ -1,7 +1,6 @@
 import * as paper from 'paper'
 import './../css/main.scss'
-import resizeRect from './../images/resize-rect.svg'
-import resizeTest1 from './../images/test1.png'
+
 
 // ===============================================
 // global setup
@@ -114,3 +113,8 @@ btn.addEventListener('click',function(){
 
 })
 
+
+import { Focus } from "./models/focus"
+let fRect = new Class();
+fRect.set()
+Focus.to(fRect)
