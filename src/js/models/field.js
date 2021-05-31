@@ -1,9 +1,9 @@
 
-
 import {
     mouse,
     canvas,
-} from './../main.js'
+} from 'js/main.js'
+
 
 
 
@@ -14,7 +14,9 @@ class Field{
         gridGap: 100,
         gridStroke : '#bbc8d3',
     }
-    static set(style = this.defaultStyle){
+
+    static set(style = Field.defaultStyle){
+
 
         this.color = style.color;
         this.gridGap = style.gridGap;

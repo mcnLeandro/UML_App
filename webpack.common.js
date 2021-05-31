@@ -1,23 +1,33 @@
-const path = require('path');
 
-const config = {
-    mode: "development",
+const path = require('path');
+var HtmlWebpackPlugin = require("html-webpack-plugin");
+
+module.exports = {
+
     context: path.resolve(__dirname, 'src'),
     entry: './js/main.js',
-    output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'main.js',
+   
+
+    plugins:[new HtmlWebpackPlugin({
+        template:"./index.html"
+    })],
+
+    resolve: {
+        modules: [
+            path.resolve(__dirname, 'src'),
+            'node_modules'
+        ]
     },
-    watch: true,
+
     module: {
         rules: [
             {
-                test: /\.js$/,
-                include: path.resolve(__dirname, 'src/js/modules'),
-            },
-            {
-                test: /\.css$/,
-                use: ['style-loader', 'css-loader'],
+                test: /\.scss$/,
+                use: [
+                    'style-loader', 
+                    'css-loader',
+                    'sass-loader'
+                ],
                 include: path.resolve(__dirname, 'src/css'),
             },
             {
@@ -37,13 +47,16 @@ const config = {
                 resolve: {
                     fullySpecified: false
                 }
-            }
+            },
+            {
+                test:/\.html$/,
+                use: ["html-loader"]
+            },
+            {
+                test: /\.(svg|jpg|png)$/,
+                type: "asset/resource",
+            },
         ],
     },
-    devServer: {
-        contentBase: path.resolve(__dirname, 'dist'),
-        port: 3000,
-    },
+    
 };
-
-module.exports = config;
