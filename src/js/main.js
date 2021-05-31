@@ -89,9 +89,7 @@ Field.grabbable();
 // ===============================================
 
 import { 
-    Class,
-    Column,
-    Divider
+    Class
 } from 'js/modules/class'
 
 
@@ -114,8 +112,8 @@ btn.addEventListener('click',function(){
 })
 
 
-import { Focus } from "js/models/focus"
+import { FociController } from "js/controllers/foci_controller"
 
 let fRect = new Class();
 fRect.set()
-Focus.to(fRect)
+FociController.to(fRect)
