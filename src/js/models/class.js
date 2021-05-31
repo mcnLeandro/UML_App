@@ -45,17 +45,11 @@ export class Class extends Group {
         this.addChild(this.contentsGroup);
 
     }
-    addColumn(){
-        //when succeed to add item , addChild method returns the item.
-        this.contentsGroup.addChild(new Column()).set()
-
-    }
     addDivider(){
 
         this.contentsGroup.addChild(new Divider()).set()
 
     }
-
 }
 
 

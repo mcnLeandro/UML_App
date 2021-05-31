@@ -1,7 +1,7 @@
 import * as paper from 'paper'
 import 'css/main.scss'
 
-
+// TODO: create config
 // ===============================================
 // global setup
 // ===============================================
@@ -76,8 +76,6 @@ export{
 // ===============================================
 
 import { Field } from 'js/models/field'
-
-// view.translate([-9981,3372])
 
 
 Field.set()
