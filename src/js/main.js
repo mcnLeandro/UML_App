@@ -1,7 +1,7 @@
 import * as paper from 'paper'
 import 'css/main.scss'
 
-
+// TODO: create config
 // ===============================================
 // global setup
 // ===============================================
@@ -75,9 +75,7 @@ export{
 // field
 // ===============================================
 
-import { Field } from 'js/modules/field'
-
-// view.translate([-9981,3372])
+import { Field } from 'js/models/field'
 
 
 Field.set()
@@ -88,34 +86,23 @@ Field.grabbable();
 // Class
 // ===============================================
 
-import { 
-    Class,
-    Column,
-    Divider
-} from 'js/modules/class'
-
-
-
+import { Class } from 'js/models/class'
+import { ClassesController } from './controllers/classes_controller';
 
 // --------------------------------------
 // btn that create a class
 // --------------------------------------
 
 let btn = document.getElementById('btn');
-btn.addEventListener('click',function(){
-    
-    let rec = new Class();
-    rec.set();
-    view.onKeyDown = function(){
-        if(Key.isDown('/'))rec.addDivider();
-        else if (Key.isDown('c'))rec.addColumn();
-    }
+btn.addEventListener('click',  ()=>ClassesController.create() )
 
-})
-
+// ===============================================
+// Focus
+// ===============================================
 
 import { Focus } from "js/models/focus"
 
-let fRect = new Class();
-fRect.set()
-Focus.to(fRect)
+
+// let fRect = new Class();
+// fRect.set()
+// Focus.to(fRect)
