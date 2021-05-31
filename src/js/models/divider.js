@@ -1,6 +1,6 @@
 import { Group } from 'paper'
 
-class Divider extends Group {
+export class Divider extends Group {
 
     static defaultRectStyle = {
 
@@ -61,5 +61,3 @@ class Divider extends Group {
 
 }
 
-
-export{ Divider }

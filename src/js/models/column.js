@@ -1,6 +1,6 @@
 import { Group } from 'paper'
 
-class Column extends Group {
+export class Column extends Group {
 
     static defaultRectStyle = {
 
@@ -148,6 +148,3 @@ class Column extends Group {
     }
 
 }
-
-
-export{ Column }
