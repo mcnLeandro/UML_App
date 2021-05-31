@@ -100,9 +100,9 @@ btn.addEventListener('click',  ()=>ClassesController.create() )
 // Focus
 // ===============================================
 
-import { Focus } from "js/models/focus"
+import { FociController } from "js/controllers/foci_controller"
 
 
 // let fRect = new Class();
 // fRect.set()
-// Focus.to(fRect)
+// FociController.to(fRect)
