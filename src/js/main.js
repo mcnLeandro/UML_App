@@ -75,7 +75,7 @@ export{
 // field
 // ===============================================
 
-import { Field } from 'js/models/field'
+import { Field } from 'js/models/paper/field'
 
 // view.translate([-9981,3372])
 
@@ -88,11 +88,7 @@ Field.grabbable();
 // Class
 // ===============================================
 
-import { Class } from 'js/models/class'
-import { Column } from 'js/models/column'
-import { Divider } from 'js/models/divider'
-
-
+import { Class } from 'js/models/paper/class'
 
 
 // --------------------------------------
@@ -111,8 +107,11 @@ btn.addEventListener('click',function(){
 
 })
 
+// ===============================================
+// Focus
+// ===============================================
 
-import { Focus } from "js/models/focus"
+import { Focus } from "js/models/svg/focus"
 
 let fRect = new Class();
 fRect.set()

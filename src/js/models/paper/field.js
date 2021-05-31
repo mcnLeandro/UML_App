@@ -1,4 +1,5 @@
-import {mouse,
+import {
+    mouse,
     canvas,
 } from 'js/main.js'
 
