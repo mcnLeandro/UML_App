@@ -88,11 +88,9 @@ Field.grabbable();
 // Class
 // ===============================================
 
-import { 
-    Class,
-    Column,
-    Divider
-} from 'js/models/class'
+import { Class } from 'js/models/class'
+import { Column } from 'js/models/column'
+import { Divider } from 'js/models/divider'
 
 
 
