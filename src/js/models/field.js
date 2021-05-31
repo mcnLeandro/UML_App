@@ -1,6 +1,6 @@
 import {mouse,
     canvas,
-} from './../main.js'
+} from 'js/main.js'
 
 
 

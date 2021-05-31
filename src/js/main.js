@@ -75,7 +75,7 @@ export{
 // field
 // ===============================================
 
-import { Field } from 'js/modules/field'
+import { Field } from 'js/models/field'
 
 // view.translate([-9981,3372])
 
@@ -92,7 +92,7 @@ import {
     Class,
     Column,
     Divider
-} from 'js/modules/class'
+} from 'js/models/class'
 
 
 

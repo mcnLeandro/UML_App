@@ -2,7 +2,7 @@ import {Group} from 'paper'
 import {
     mouse,
     canvas,
-} from './../main.js'
+} from 'js/main.js'
 
 
 
