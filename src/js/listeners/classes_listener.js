@@ -1,4 +1,5 @@
 import { ColumnsController } from "js/controllers/columns_controller";
+import { DividersController } from "js/controllers/dividers_controller";
 
 export class ClassesListener {
 
@@ -22,8 +23,8 @@ export class ClassesListener {
 
         //FIXME: have to be controllable when focusing
         view.onKeyDown = function(){
-            if(Key.isDown('/'))_class.addDivider();
-            else if (Key.isDown('c'))ColumnsController.createInto(_class);
+            if(Key.isDown('/')) DividersController.createInto(_class);
+            else if (Key.isDown('c')) ColumnsController.createInto(_class);
         }
 
     }

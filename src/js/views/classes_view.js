@@ -33,5 +33,6 @@ export class ClassesView {
         _class.nameText.set(ClassesView.defaultTextStyle);
 
     }
+    
 }
 

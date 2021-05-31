@@ -9,7 +9,7 @@ export class ColumnsController {
         let column = new Column();
         _class.contentsGroup.addChild(column)
         ColumnsView.set(column);
-        // column.set();
+        column.set();
         ColumnsListener.setListeners(column)
 
     }
