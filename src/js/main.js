@@ -69,18 +69,17 @@ view.onMouseUp = function(){
 export{
     mouse,
     canvas,
+    paper
 }
 
 // ===============================================
 // field
 // ===============================================
 
-import { Field } from 'js/models/field'
 
+import { FieldsController } from "js/controllers/fields_controller"
+FieldsController.init();
 
-Field.set()
-Field.init();
-Field.grabbable();
 
 // ===============================================
 // Class
@@ -101,6 +100,7 @@ btn.addEventListener('click',  ()=>ClassesController.create() )
 // ===============================================
 
 import { FociController } from "js/controllers/foci_controller"
+
 
 
 // let fRect = new Class();
