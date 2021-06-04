@@ -1,7 +1,7 @@
 import * as paper from 'paper'
 import 'css/main.scss'
 
-
+// TODO: create config
 // ===============================================
 // global setup
 // ===============================================
@@ -69,51 +69,40 @@ view.onMouseUp = function(){
 export{
     mouse,
     canvas,
+    paper
 }
 
 // ===============================================
 // field
 // ===============================================
 
-import { Field } from 'js/modules/field'
 
-// view.translate([-9981,3372])
+import { FieldsController } from "js/controllers/fields_controller"
+FieldsController.init();
 
-
-Field.set()
-Field.init();
-Field.grabbable();
 
 // ===============================================
 // Class
 // ===============================================
 
-import { 
-    Class
-} from 'js/modules/class'
-
-
-
+import { Class } from 'js/models/class'
+import { ClassesController } from './controllers/classes_controller';
 
 // --------------------------------------
 // btn that create a class
 // --------------------------------------
 
 let btn = document.getElementById('btn');
-btn.addEventListener('click',function(){
-    
-    let rec = new Class();
-    rec.set();
-    view.onKeyDown = function(){
-        if(Key.isDown('/'))rec.addDivider();
-        else if (Key.isDown('c'))rec.addColumn();
-    }
+btn.addEventListener('click',  ()=>ClassesController.create() )
 
-})
-
+// ===============================================
+// Focus
+// ===============================================
 
 import { FociController } from "js/controllers/foci_controller"
 
-let fRect = new Class();
-fRect.set()
-FociController.to(fRect)
+
+
+// let fRect = new Class();
+// fRect.set()
+// FociController.to(fRect)
