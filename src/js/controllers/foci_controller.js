@@ -9,7 +9,6 @@ export class FociController {
         Focus.obj = umlObj;
 
     }
-
     static to(umlObj){
 
         FociController.setObj(umlObj);

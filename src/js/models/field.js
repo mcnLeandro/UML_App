@@ -22,4 +22,3 @@ export class Field{
 // TODO: zoom 
 // TODO: wheel
 // TODO: resize
-// TODO: resize
