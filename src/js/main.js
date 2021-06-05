@@ -15,7 +15,7 @@ document.querySelector('body').innerHTML +=  `
 </div>
 
 
-    <canvas id="field" resize></canvas>
+    <canvas id="field" resize="true"></canvas>
 
     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
         pointer-events="none"    

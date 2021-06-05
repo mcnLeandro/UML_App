@@ -42,7 +42,7 @@ export class FieldsListener {
         }
     }
     static resizable(){
-
+        // FIXME: the resolution of view become worse when resize.
         addEventListener('resize',function(){
 
             canvas.width = innerWidth;
