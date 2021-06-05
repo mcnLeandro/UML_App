@@ -1,11 +1,14 @@
 import { mouse, canvas } from 'js/main.js'
 import { FieldsController } from 'js/controllers/fields_controller';
+import { FieldsView } from 'js/views/fields_view';
+import { Field } from 'js/models/field';
 
 export class FieldsListener {
 
     static setListeners(){
 
         FieldsListener.grabbable();
+        FieldsListener.resizable();
 
     }
     static grabbable(){
@@ -37,5 +40,22 @@ export class FieldsListener {
                 canvas.style.cursor = 'default'
             }
         }
+    }
+    static resizable(){
+
+        addEventListener('resize',function(){
+
+            canvas.width = innerWidth;
+            canvas.height = innerHeight;
+
+            view.bounds.width = canvas.width;
+            view.bounds.height = canvas.height;
+
+            Field.viewRect.bounds.width = canvas.width;
+            Field.viewRect.bounds.height = canvas.height;
+            
+            FieldsView.drawGrid()
+
+        })
     }
 }

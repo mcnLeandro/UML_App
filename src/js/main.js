@@ -15,12 +15,12 @@ document.querySelector('body').innerHTML +=  `
 </div>
 
 
-    <canvas id="field"></canvas>
+    <canvas id="field" resize></canvas>
 
     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
         pointer-events="none"    
         style="
-            position: absolute; 
+            position: absolute;
             top: 0px; 
             left: 0px; 
             width: 100%; 
@@ -103,6 +103,3 @@ import { FociController } from "js/controllers/foci_controller"
 
 
 
-// let fRect = new Class();
-// fRect.set()
-// FociController.to(fRect)
