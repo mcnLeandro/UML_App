@@ -10,7 +10,6 @@ export class FieldsController {
         FieldsController.updateStatus(status)
 
         Field.viewRect.bounds = new Rectangle([view.bounds.x, view.bounds.y],[innerWidth,innerHeight])
-
         FieldsView.drawGrid()
         Field.layer.set({
 
@@ -29,6 +28,14 @@ export class FieldsController {
         Field.color = status.color || Field.color;
         Field.gridGap = status.gridGap || Field.gridGap;
         Field.gridStrokeColor = status.gridStrokeColor || Field.gridStrokeColor;
+
+    }
+    static refresh(){
+
+        const zoom = view.zoom > 0 ? view.zoom : 1 ;
+        Field.viewRect.bounds.size = new Size(innerWidth/zoom, innerHeight/zoom);
+        Field.viewRect.bounds.center = new Point(innerWidth/2,innerHeight/2);
+        FieldsView.drawGrid();
 
     }
     

@@ -110,13 +110,19 @@ const scaleInput = document.getElementById("scale-input");
 scaleInput.value = Math.round(view.zoom * 100) + "%"; 
 
 plusBtn.addEventListener("click", function(){
+    
     view.zoom += 0.1;
     scaleInput.value = Math.round(view.zoom * 100) + "%"; 
+    FieldsController.refresh();
+
 });
 
 minusBtn.addEventListener("click", function(){
-    view.zoom -= 0.1;
-    scaleInput.value = Math.round(view.zoom * 100) + "%";
+    
+    view.zoom = view.zoom > 0.2 ? view.zoom - 0.1 : 0.1 ;
+    scaleInput.value = Math.round((view.zoom) * 100) + "%";
+    FieldsController.refresh();
+
 });
 
 
