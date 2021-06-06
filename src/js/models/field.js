@@ -8,8 +8,6 @@ paper.setup(canvas);
 
 export class Field{
 
-    static paper = PaperScope.get(0)
-
     static color;
     static gridGap;
     static gridStrokerColor;

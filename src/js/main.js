@@ -8,12 +8,21 @@ import 'css/main.scss'
 
 document.querySelector('body').innerHTML +=  `
 
-<div style="top: 0px;  cursor: default; position: absolute;  left: 0px;">
-    <button id="btn" class='btn btn-primary'> create new Class </button>
-</div>
-<div id="editableTextDiv">
-</div>
+    <div style="top: 0px; left: 0px; cursor: default; position: absolute;">
+        <button id="btn" class='btn btn-primary'> create new Class </button>
+    </div>
+    <div class="d-flex"style="top: 0px; left: 200px; cursor: default; position: absolute;">
 
+        <button id="plus-btn" class='btn btn-primary'> + </button>
+
+        <input id="scale-input" type="text" class="form-control" style="width:80px;" disabled=true/>
+
+        <button id="minus-btn" class='btn btn-primary'> - </button>
+
+    </div>
+
+    <div id="editableTextDiv">
+    </div>
 
     <canvas id="field" resize="true"></canvas>
 
@@ -27,7 +36,7 @@ document.querySelector('body').innerHTML +=  `
             height: 100%;
         ">
         
-        <g id="focusG" pointer-events="none" >
+        <g id="focus-group" pointer-events="none" >
         </g>
     </svg>
 `
@@ -85,21 +94,29 @@ FieldsController.init();
 // Class
 // ===============================================
 
-import { Class } from 'js/models/class'
 import { ClassesController } from './controllers/classes_controller';
-
-// --------------------------------------
-// btn that create a class
-// --------------------------------------
 
 let btn = document.getElementById('btn');
 btn.addEventListener('click',  ()=>ClassesController.create() )
 
+
 // ===============================================
-// Focus
+// Field's scale
 // ===============================================
 
-import { FociController } from "js/controllers/foci_controller"
+const plusBtn = document.getElementById("plus-btn");
+const minusBtn = document.getElementById("minus-btn");
+const scaleInput = document.getElementById("scale-input");
+scaleInput.value = Math.round(view.zoom * 100) + "%"; 
 
+plusBtn.addEventListener("click", function(){
+    view.zoom += 0.1;
+    scaleInput.value = Math.round(view.zoom * 100) + "%"; 
+});
+
+minusBtn.addEventListener("click", function(){
+    view.zoom -= 0.1;
+    scaleInput.value = Math.round(view.zoom * 100) + "%";
+});
 
 
