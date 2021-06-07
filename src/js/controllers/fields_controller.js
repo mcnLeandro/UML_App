@@ -1,7 +1,7 @@
 import { FieldsListener } from "js/listeners/fields_listener"
 import { FieldsView } from "js/views/fields_view";
 import { Field } from "js/models/field";
-
+import { canvas } from "js/main"
 
 export class FieldsController {
     
@@ -33,8 +33,10 @@ export class FieldsController {
     static refresh(){
 
         const zoom = view.zoom > 0 ? view.zoom : 1 ;
-        Field.viewRect.bounds.size = new Size(innerWidth/zoom, innerHeight/zoom);
-        Field.viewRect.bounds.center = new Point(innerWidth/2,innerHeight/2);
+
+        Field.viewRect.bounds.size = new Size(Math.ceil(innerWidth/zoom), Math.ceil(innerHeight/zoom)); 
+        Field.viewRect.bounds.center = view.center;
+        
         FieldsView.drawGrid();
 
     }

@@ -17,6 +17,6 @@ export class Field{
     static layer = new Layer();
 
 }
-// TODO: zoom 
-// TODO: wheel
-// TODO: resize
+// TODO: zoom (paper)
+// TODO: zoom (svg)
+// TODO: resize(svg)
