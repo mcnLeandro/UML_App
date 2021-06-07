@@ -49,8 +49,8 @@ document.querySelector('body').innerHTML +=  `
 let canvas =  document.querySelector('#field')
 
 
-canvas.width = innerWidth;
-canvas.height = innerHeight;
+// canvas.width = innerWidth;
+// canvas.height = innerHeight;
 
 
 
@@ -126,7 +126,6 @@ minusBtn.addEventListener("click", function(){
 });
 
 // Field
-// TODO: fix the issue that rect doesn't fit when resize
 // TODO: create same code of above, and just change the events(to wheel or something)
 // TODO: implement zoom implemention with pinchiin & pinchiout.
 // TODO: delete the commentout in js/models/field.js
