@@ -110,7 +110,7 @@ const scaleInput = document.getElementById("scale-input");
 scaleInput.value = Math.round(view.zoom * 100) + "%"; 
 
 plusBtn.addEventListener("click", function(){
-    
+
     view.zoom += 0.1;
     scaleInput.value = Math.round(view.zoom * 100) + "%"; 
     FieldsController.refresh();
@@ -125,4 +125,9 @@ minusBtn.addEventListener("click", function(){
 
 });
 
-
+// Field
+// TODO: fix the issue that rect doesn't fit when resize
+// TODO: create same code of above, and just change the events(to wheel or something)
+// TODO: implement zoom implemention with pinchiin & pinchiout.
+// TODO: delete the commentout in js/models/field.js
+// TODO: ajust above code to Fields MVC
