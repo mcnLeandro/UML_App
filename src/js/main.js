@@ -49,9 +49,7 @@ document.querySelector('body').innerHTML +=  `
 let canvas =  document.querySelector('#field')
 
 
-// canvas.width = innerWidth;
-// canvas.height = innerHeight;
-
+// window.pointerEvents = "none";
 
 
 //  paper setup
@@ -125,8 +123,37 @@ minusBtn.addEventListener("click", function(){
 
 });
 
+addEventListener("wheel", function(event){
+
+    event.preventDefault()
+
+    if(Math.abs(event.wheelDelta) == 120){
+        if(Math.sign(event.wheelDelta) == 1){
+            // pinchiout
+            
+            view.zoom += 0.01;
+            scaleInput.value = Math.round(view.zoom * 100) + "%"; 
+            FieldsController.refresh();
+        }
+        else if(Math.sign(event.wheelDelta) == -1){
+            //pinchiin
+
+            view.zoom = view.zoom > 0.02 ? view.zoom - 0.01 : 0.01 ;
+            scaleInput.value = Math.round((view.zoom) * 100) + "%";
+            FieldsController.refresh();
+
+        }
+        else{
+            FieldsController.refresh()
+        }
+    }
+    else{
+
+        FieldsController.translate(-event.deltaX, -event.deltaY);
+        
+
+    }
+
+},{ passive: false})
 // Field
-// TODO: create same code of above, and just change the events(to wheel or something)
-// TODO: implement zoom implemention with pinchiin & pinchiout.
-// TODO: delete the commentout in js/models/field.js
 // TODO: ajust above code to Fields MVC
