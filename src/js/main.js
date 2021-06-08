@@ -6,40 +6,6 @@ import 'css/main.scss'
 // global setup
 // ===============================================
 
-document.querySelector('body').innerHTML +=  `
-
-    <div style="top: 0px; left: 0px; cursor: default; position: absolute;">
-        <button id="btn" class='btn btn-primary'> create new Class </button>
-    </div>
-    <div class="d-flex"style="top: 0px; left: 200px; cursor: default; position: absolute;">
-
-        <button id="plus-btn" class='btn btn-primary'> + </button>
-
-        <input id="scale-input" type="text" class="form-control" style="width:80px;" disabled=true/>
-
-        <button id="minus-btn" class='btn btn-primary'> - </button>
-
-    </div>
-
-    <div id="editableTextDiv">
-    </div>
-
-    <canvas id="field" resize="true"></canvas>
-
-    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-        pointer-events="none"    
-        style="
-            position: absolute;
-            top: 0px; 
-            left: 0px; 
-            width: 100%; 
-            height: 100%;
-        ">
-        
-        <g id="focus-group" pointer-events="none" >
-        </g>
-    </svg>
-`
 // FIXME: when implement field's scale, and translate, pointer-events not works again,
 // FIXME: so go to the field branch, 
 // FIXME: implement those things,
@@ -83,10 +49,9 @@ export{
 // field
 // ===============================================
 
-
+import { Field } from "js/models/field"
 import { FieldsController } from "js/controllers/fields_controller"
 FieldsController.init();
-
 
 // ===============================================
 // Class
@@ -98,62 +63,6 @@ let btn = document.getElementById('btn');
 btn.addEventListener('click',  ()=>ClassesController.create() )
 
 
-// ===============================================
-// Field's scale
-// ===============================================
 
-const plusBtn = document.getElementById("plus-btn");
-const minusBtn = document.getElementById("minus-btn");
-const scaleInput = document.getElementById("scale-input");
-scaleInput.value = Math.round(view.zoom * 100) + "%"; 
-
-plusBtn.addEventListener("click", function(){
-
-    view.zoom += 0.1;
-    scaleInput.value = Math.round(view.zoom * 100) + "%"; 
-    FieldsController.refresh();
-
-});
-
-minusBtn.addEventListener("click", function(){
-    
-    view.zoom = view.zoom > 0.2 ? view.zoom - 0.1 : 0.1 ;
-    scaleInput.value = Math.round((view.zoom) * 100) + "%";
-    FieldsController.refresh();
-
-});
-
-addEventListener("wheel", function(event){
-
-    event.preventDefault()
-
-    if(Math.abs(event.wheelDelta) == 120){
-        if(Math.sign(event.wheelDelta) == 1){
-            // pinchiout
-            
-            view.zoom += 0.01;
-            scaleInput.value = Math.round(view.zoom * 100) + "%"; 
-            FieldsController.refresh();
-        }
-        else if(Math.sign(event.wheelDelta) == -1){
-            //pinchiin
-
-            view.zoom = view.zoom > 0.02 ? view.zoom - 0.01 : 0.01 ;
-            scaleInput.value = Math.round((view.zoom) * 100) + "%";
-            FieldsController.refresh();
-
-        }
-        else{
-            FieldsController.refresh()
-        }
-    }
-    else{
-
-        FieldsController.translate(-event.deltaX, -event.deltaY);
-        
-
-    }
-
-},{ passive: false})
 // Field
-// TODO: ajust above code to Fields MVC
+// TODO: the zoom place is always center so fix to mouse point
