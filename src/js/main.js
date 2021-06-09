@@ -11,7 +11,6 @@ FieldsController.init();
 let btn = document.getElementById('btn');
 btn.addEventListener('click',  ()=>ClassesController.create() )
 
-
 // Field
 
 // TODO: have to sepalation of concern in listeners.

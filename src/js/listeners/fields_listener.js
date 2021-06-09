@@ -66,7 +66,6 @@ export class FieldsListener {
             }
         
         },{ passive: false})
-
     }
     static onWheelPinchOutToZoomIn(){
 

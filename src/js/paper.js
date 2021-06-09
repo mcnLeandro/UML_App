@@ -15,7 +15,7 @@ mouse.activate()
 
 mouse.name          = "mouse"
 mouse.isMouseDown   = false;
-mouse.point         = new Point(1,1);
+mouse.point         = view.center;
 
 
 mouse.onMouseDown = function(){
