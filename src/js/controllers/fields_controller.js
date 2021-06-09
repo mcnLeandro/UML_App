@@ -1,7 +1,7 @@
 import { FieldsListener } from "js/listeners/fields_listener"
 import { FieldsView } from "js/views/fields_view";
 import { Field } from "js/models/field";
-import { canvas } from "js/main"
+// import { canvas } from "js/main"
 
 export class FieldsController {
     
@@ -47,7 +47,6 @@ export class FieldsController {
         FieldsView.drawGrid();
 
     }
-    
     static translate(x, y){
 
         view.translate([x, y]);

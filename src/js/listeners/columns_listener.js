@@ -4,7 +4,7 @@ export class ColumnsListener {
 
     static setListeners(column){
 
-        console.log(this.text.onClickToEdit(column))
+        this.text.onClickToEdit(column);
 
     }
     static text = {
