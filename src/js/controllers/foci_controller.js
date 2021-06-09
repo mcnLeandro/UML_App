@@ -9,7 +9,7 @@ export class FociController {
         Focus.umlObj = umlObj;
         FociListener.setListeners();
 
-        console.log("Set focus : " + Focus.umlObj)
+        // console.log("Set focus : " + Focus.umlObj)
 
         FociController.unfocus()
         FociController.focus()
@@ -20,7 +20,7 @@ export class FociController {
         if(!Focus.umlObj.isFocused){//CONSIDER:isFocused is not default variabel.
 
             Focus.umlObj.isFocused = true;
-            focusG.innerHTML = FociView.focusSvg();
+            Focus.focusG.innerHTML = FociView.focusSvg();
 
 
         }
@@ -31,7 +31,7 @@ export class FociController {
         if(Focus.umlObj.isFocused){
 
             Focus.umlObj.isFocused = false;
-            focusG.innerHTML = ""
+            Focus.focusG.innerHTML = ""
 
         }
 
