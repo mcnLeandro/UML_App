@@ -85,7 +85,6 @@ FieldsController.init();
 // Class
 // ===============================================
 
-import { Class } from 'js/models/class'
 import { ClassesController } from './controllers/classes_controller';
 
 // --------------------------------------
@@ -95,14 +94,3 @@ import { ClassesController } from './controllers/classes_controller';
 let btn = document.getElementById('btn');
 btn.addEventListener('click',  ()=>ClassesController.create() )
 
-// ===============================================
-// Focus
-// ===============================================
-
-import { FociController } from "js/controllers/foci_controller"
-
-
-
-// let fRect = new Class();
-// fRect.set()
-// FociController.to(fRect)
