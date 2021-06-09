@@ -23,8 +23,8 @@ export class FieldsListener {
         view.onMouseDrag = function(e){
             if(Key.isDown('space')){
         
-                let x = e.point.x - mouse._downPoint.x;
-                let y = e.point.y - mouse._downPoint.y;
+                let x = e.point.x - paper.mouse._downPoint.x;
+                let y = e.point.y - paper.mouse._downPoint.y;
         
                 FieldsController.translate(x,y)
             }
@@ -34,7 +34,7 @@ export class FieldsListener {
             if(Key.isDown('space')){
                 canvas.style.cursor =  "grab";
             } 
-            if(Key.isDown('space') && mouse.isMouseDown){
+            if(Key.isDown('space') && paper.mouse.isMouseDown){
                 canvas.style.cursor = 'grabbing'
             }
             mouse.onMouseUp = function(){
@@ -78,10 +78,7 @@ export class FieldsListener {
         
             if(Math.abs(event.wheelDelta) == 120 && Math.sign(event.wheelDelta) == 1){
                     
-                // view.zoom += 0.01;
-                view.scale(1.01, paper.tool._point);
-                // console.log(paper.tool)
-
+                view.scale(1.01, paper.mouse.point);
                 FieldsController.refreshZoomInput();
                 FieldsController.refresh();
 
@@ -98,7 +95,7 @@ export class FieldsListener {
         
             if(Math.abs(event.wheelDelta) == 120 && Math.sign(event.wheelDelta) == -1){
 
-                view.zoom = view.zoom > 0.02 ? view.zoom - 0.01 : 0.01 ;
+                view.scale((view.zoom > 0.02 ? 0.989 : 1), paper.mouse.point)
                 FieldsController.refreshZoomInput();
                 FieldsController.refresh();
         
