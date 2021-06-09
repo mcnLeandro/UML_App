@@ -1,3 +1,4 @@
+import { Group } from 'paper'
 import { Column } from './column'
 import { Divider } from './divider'
 

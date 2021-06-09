@@ -22,7 +22,6 @@ export class FociController {
             Focus.umlObj.isFocused = true;
             focusG.innerHTML = FociView.focusSvg();
 
-
         }
 
     }
