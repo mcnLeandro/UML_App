@@ -50,6 +50,7 @@ export class FieldsController {
     static translate(x, y){
 
         view.translate([x, y]);
+        Field.svgTranslate.style.transform = `translate(${-view.bounds.x}px,${-view.bounds.y}px)`
         
         FieldsView.drawGrid();
 

@@ -12,5 +12,6 @@ export class Field {
     static zoomInBtn = document.getElementById("zoom-in-btn");
     static zoomOutBtn = document.getElementById("zoom-out-btn");
     static zoomInput = document.getElementById("zoom-input");
+    static svgTranslate = document.getElementById("svg-translate");
 
 }

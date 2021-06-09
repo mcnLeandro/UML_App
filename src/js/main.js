@@ -12,4 +12,5 @@ btn.addEventListener('click',  ()=>ClassesController.create() )
 
 // Field
 // TODO: zoom (svg)
-// TODO: resize(svg)
+// TODO: g tag with id translate
+// TODO: g tag with id scale
