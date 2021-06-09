@@ -1,5 +1,3 @@
-import { Group } from 'paper'
-
 export class Column extends Group {
 
     

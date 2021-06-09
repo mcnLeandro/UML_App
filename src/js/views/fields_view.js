@@ -54,6 +54,5 @@ export class FieldsView {
             strokeColor :Field.gridStrokeColor
         })
 
-
     }
 }
