@@ -57,4 +57,18 @@ export class FieldsController {
         Field.viewRect.position.y = view.center.y;
 
     }
+    static scale(scalingFactor, center){
+
+        view.scale(scalingFactor, center);
+        FieldsController.refreshZoomInput();
+        FieldsController.refresh();
+
+    }
+    static zoom(value){
+
+        view.zoom = value;
+        FieldsController.refreshZoomInput(); 
+        FieldsController.refresh();
+
+    }
 }

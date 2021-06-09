@@ -1,7 +1,6 @@
 import { FieldsController } from 'js/controllers/fields_controller';
-import { FieldsView } from 'js/views/fields_view';
 import { Field } from 'js/models/field';
-
+import { canvas } from "js/paper"
 
 
 export class FieldsListener {
@@ -54,6 +53,7 @@ export class FieldsListener {
            FieldsController.refresh()
 
         })
+
     }
     static onWheelScrollToMove(){
 
@@ -62,13 +62,11 @@ export class FieldsListener {
             event.preventDefault()
         
             if(Math.abs(event.wheelDelta) != 120){
-        
-                FieldsController.translate(-event.deltaX, -event.deltaY);
-                
-        
+                FieldsController.translate(-event.deltaX/view.zoom, -event.deltaY/view.zoom);
             }
         
         },{ passive: false})
+
     }
     static onWheelPinchOutToZoomIn(){
 
@@ -77,11 +75,7 @@ export class FieldsListener {
             event.preventDefault()
         
             if(Math.abs(event.wheelDelta) == 120 && Math.sign(event.wheelDelta) == 1){
-                    
-                view.scale(1.01, paper.mouse.point);
-                FieldsController.refreshZoomInput();
-                FieldsController.refresh();
-
+                FieldsController.scale(1.06, paper.mouse.point);
             }
         
         },{ passive: false});
@@ -94,11 +88,7 @@ export class FieldsListener {
             event.preventDefault()
         
             if(Math.abs(event.wheelDelta) == 120 && Math.sign(event.wheelDelta) == -1){
-
-                view.scale((view.zoom > 0.02 ? 0.989 : 1), paper.mouse.point)
-                FieldsController.refreshZoomInput();
-                FieldsController.refresh();
-        
+                FieldsController.scale((view.zoom > 0.02 ? 0.95 : 1), paper.mouse.point)
             }
 
         
@@ -107,11 +97,9 @@ export class FieldsListener {
     }
     static onClickZoomInBtnToZoomIn(){
 
-        Field.zoomInBtn.addEventListener("click", function(event){
+        Field.zoomInBtn.addEventListener("click", function(){
 
-            view.zoom += 0.1;
-            FieldsController.refreshZoomInput(); 
-            FieldsController.refresh();
+            FieldsController.zoom(view.zoom + 0.1)
         
         });
 
@@ -120,9 +108,7 @@ export class FieldsListener {
 
         Field.zoomOutBtn.addEventListener("click", function(){
     
-            view.zoom = view.zoom > 0.2 ? view.zoom - 0.1 : 0.1 ;
-            FieldsController.refreshZoomInput();
-            FieldsController.refresh();
+            FieldsController.zoom(view.zoom > 0.2 ? view.zoom - 0.1 : 0.1)
         
         });
 

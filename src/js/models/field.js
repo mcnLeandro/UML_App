@@ -14,6 +14,3 @@ export class Field {
     static zoomInput = document.getElementById("zoom-input");
 
 }
-
-// TODO: zoom (svg)
-// TODO: resize(svg)

@@ -27,3 +27,5 @@ mouse.onMouseUp = function(){
 mouse.onMouseMove = function(event){
     mouse.point = event.point;
 }
+
+export { canvas }
