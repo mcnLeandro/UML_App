@@ -1,7 +1,7 @@
-import { mouse, canvas } from 'js/main.js'
 import { FieldsController } from 'js/controllers/fields_controller';
 import { FieldsView } from 'js/views/fields_view';
 import { Field } from 'js/models/field';
+
 
 
 export class FieldsListener {
@@ -13,6 +13,8 @@ export class FieldsListener {
         FieldsListener.onWheelScrollToMove();
         FieldsListener.onWheelPinchiInToZoomOut();
         FieldsListener.onWheelPinchOutToZoomIn();
+        FieldsListener.onClickZoomInBtnToZoomIn();
+        FieldsListener.onClickZoomOutBtnToZoomOut();
 
     }
     static onMouseDragToGrab(){
@@ -76,7 +78,10 @@ export class FieldsListener {
         
             if(Math.abs(event.wheelDelta) == 120 && Math.sign(event.wheelDelta) == 1){
                     
-                view.zoom += 0.01;
+                // view.zoom += 0.01;
+                view.scale(1.01, paper.tool._point);
+                // console.log(paper.tool)
+
                 FieldsController.refreshZoomInput();
                 FieldsController.refresh();
 
@@ -105,7 +110,7 @@ export class FieldsListener {
     }
     static onClickZoomInBtnToZoomIn(){
 
-        Field.zoomInBtn.addEventListener("click", function(){
+        Field.zoomInBtn.addEventListener("click", function(event){
 
             view.zoom += 0.1;
             FieldsController.refreshZoomInput(); 
@@ -116,7 +121,7 @@ export class FieldsListener {
     }
     static onClickZoomOutBtnToZoomOut(){
 
-        Field.zoom.addEventListener("click", function(){
+        Field.zoomOutBtn.addEventListener("click", function(){
     
             view.zoom = view.zoom > 0.2 ? view.zoom - 0.1 : 0.1 ;
             FieldsController.refreshZoomInput();
