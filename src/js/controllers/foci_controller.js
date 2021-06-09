@@ -4,30 +4,37 @@ import { Focus } from "js/models/focus";
 
 export class FociController {
 
-    static setObj(umlObj){
+    static set(umlObj){
 
-        Focus.obj = umlObj;
+        Focus.umlObj = umlObj;
+        FociListener.setListeners();
+
+        // console.log("Set focus : " + Focus.umlObj)
+
+        FociController.unfocus()
+        FociController.focus()
 
     }
-    static to(umlObj){
+    static focus(){
 
-        FociController.setObj(umlObj);
-        
-        // CONSIDER: how, and when focus event fired.
-        // FIXME: these code are should be in listener file
-        view.onMouseDown = function(){
-            if(umlObj.isFocused){
-                umlObj.isFocused = false;
-                focusG.innerHTML = ""
-            }
-        }
-        umlObj.onMouseUp = function(){
-            if(!umlObj.isFocused){
-                umlObj.isFocused = true;
-                focusG.innerHTML = FociView.focusSvg(umlObj);
-            }
+        if(!Focus.umlObj.isFocused){//CONSIDER:isFocused is not default variabel.
+
+            Focus.umlObj.isFocused = true;
+            Focus.focusG.innerHTML = FociView.focusSvg();
 
         }
+
     }
+    static unfocus(){
+
+        if(Focus.umlObj.isFocused){
+
+            Focus.umlObj.isFocused = false;
+            Focus.focusG.innerHTML = ""
+
+        }
+
+    }
+    
 
 }
