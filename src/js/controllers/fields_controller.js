@@ -47,10 +47,16 @@ export class FieldsController {
         FieldsView.drawGrid();
 
     }
+    static refreshSVG(){
+
+        Field.svgScale.style.transform = `scale(${view.zoom, view.zoom})`
+        Field.svgTranslate.style.transform = `translate(${-view.bounds.x*view.zoom}px,${-view.bounds.y*view.zoom}px)`
+
+    }
     static translate(x, y){
 
         view.translate([x, y]);
-        Field.svgTranslate.style.transform = `translate(${-view.bounds.x}px,${-view.bounds.y}px)`
+        FieldsController.refreshSVG()
         
         FieldsView.drawGrid();
 
@@ -61,6 +67,8 @@ export class FieldsController {
     static scale(scalingFactor, center){
 
         view.scale(scalingFactor, center);
+        FieldsController.refreshSVG()
+
         FieldsController.refreshZoomInput();
         FieldsController.refresh();
 
@@ -68,6 +76,8 @@ export class FieldsController {
     static zoom(value){
 
         view.zoom = value;
+        FieldsController.refreshSVG();
+
         FieldsController.refreshZoomInput(); 
         FieldsController.refresh();
 
