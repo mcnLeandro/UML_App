@@ -1,6 +1,5 @@
 import { FieldsController } from 'js/controllers/fields_controller';
 import { Field } from 'js/models/field';
-import { canvas } from "js/paper"
 
 
 export class FieldsListener {
@@ -18,7 +17,6 @@ export class FieldsListener {
     }
     static onMouseDragToGrab(){
 
-        // FIXME: there's some issues.
         view.onMouseDrag = function(e){
             if(Key.isDown('space')){
         
@@ -26,28 +24,25 @@ export class FieldsListener {
                 let y = e.point.y - paper.mouse._downPoint.y;
         
                 FieldsController.translate(x,y)
+
             }
         }
         
         view.onKeyDown = function(){
             if(Key.isDown('space')){
-                canvas.style.cursor =  "grab";
+                FieldsController.changeCursorStyle("grab");
             } 
             if(Key.isDown('space') && paper.mouse.isMouseDown){
-                canvas.style.cursor = 'grabbing'
-            }
-            mouse.onMouseUp = function(){
-                if(Key.isDown('space')){
-                    canvas.style.cursor = 'grab'
-                }
+                FieldsController.changeCursorStyle("grabbing");
             }
             view.onKeyUp = function(){
-                canvas.style.cursor = 'default'
+                FieldsController.changeCursorStyle("default");
             }
         }
+
     }
     static onResizeToResize(){
-        // FIXME: the resolution of view become worse when resize.
+
         addEventListener('resize',function(){
 
            FieldsController.refresh()
@@ -66,7 +61,6 @@ export class FieldsListener {
             }
         
         },{ passive: false})
-
     }
     static onWheelPinchOutToZoomIn(){
 

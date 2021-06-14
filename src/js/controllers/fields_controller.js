@@ -1,7 +1,7 @@
 import { FieldsListener } from "js/listeners/fields_listener"
 import { FieldsView } from "js/views/fields_view";
 import { Field } from "js/models/field";
-
+import { canvas } from "js/paper"
 
 export class FieldsController {
     
@@ -10,7 +10,7 @@ export class FieldsController {
         FieldsController.updateStatus(status)
 
         Field.viewRect.bounds = new Rectangle([view.bounds.x, view.bounds.y],[innerWidth,innerHeight])
-        FieldsView.drawGrid()
+        FieldsView.drawGrid(Field.gridGap)
         Field.layer.set({
 
             children: [Field.viewRect, Field.gridGroup],
@@ -44,14 +44,21 @@ export class FieldsController {
         Field.viewRect.bounds.size = new Size(Math.ceil(innerWidth/zoom), Math.ceil(innerHeight/zoom)); 
         Field.viewRect.bounds.center = view.center;
 
-        FieldsView.drawGrid();
+        FieldsView.drawGrid(Field.gridGap);
+
+    }
+    static refreshSVG(){
+
+        Field.svgScale.style.transform = `scale(${view.zoom, view.zoom})`
+        Field.svgTranslate.style.transform = `translate(${-view.bounds.x*view.zoom}px,${-view.bounds.y*view.zoom}px)`
 
     }
     static translate(x, y){
 
         view.translate([x, y]);
+        FieldsController.refreshSVG()
         
-        FieldsView.drawGrid();
+        FieldsView.drawGrid(Field.gridGap);
 
         Field.viewRect.position.x = view.center.x;
         Field.viewRect.position.y = view.center.y;
@@ -60,6 +67,8 @@ export class FieldsController {
     static scale(scalingFactor, center){
 
         view.scale(scalingFactor, center);
+        FieldsController.refreshSVG()
+
         FieldsController.refreshZoomInput();
         FieldsController.refresh();
 
@@ -67,8 +76,27 @@ export class FieldsController {
     static zoom(value){
 
         view.zoom = value;
+        FieldsController.refreshSVG();
+
         FieldsController.refreshZoomInput(); 
         FieldsController.refresh();
 
     }
+    static changeCursorStyle(styleString){
+
+        canvas.style.cursor = styleString;
+
+    }
+    static setGridGroupChildren(horizontalLineGroup, verticalLineGroup){
+
+        Field.gridGroup.set({
+            children : [
+                horizontalLineGroup,
+                verticalLineGroup
+            ],
+            strokeColor :Field.gridStrokeColor
+        })
+
+    }
+
 }
