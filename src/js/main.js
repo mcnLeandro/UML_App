@@ -10,4 +10,6 @@ FieldsController.init();
 let btn = document.getElementById('btn');
 btn.addEventListener('click',  ()=>ClassesController.create() )
 
-// Field
+document.querySelector("#svg-scale").addEventListener("click", function(){
+    console.log("hey")
+})

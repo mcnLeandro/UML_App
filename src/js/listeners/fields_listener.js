@@ -18,7 +18,6 @@ export class FieldsListener {
     }
     static onMouseDragToGrab(){
 
-        // FIXME: there's some issues.
         view.onMouseDrag = function(e){
             if(Key.isDown('space')){
         
@@ -30,24 +29,21 @@ export class FieldsListener {
         }
         
         view.onKeyDown = function(){
+            console.log("hello")
             if(Key.isDown('space')){
                 canvas.style.cursor =  "grab";
             } 
             if(Key.isDown('space') && paper.mouse.isMouseDown){
                 canvas.style.cursor = 'grabbing'
             }
-            mouse.onMouseUp = function(){
-                if(Key.isDown('space')){
-                    canvas.style.cursor = 'grab'
-                }
-            }
             view.onKeyUp = function(){
                 canvas.style.cursor = 'default'
             }
         }
+
     }
     static onResizeToResize(){
-        // FIXME: the resolution of view become worse when resize.
+
         addEventListener('resize',function(){
 
            FieldsController.refresh()

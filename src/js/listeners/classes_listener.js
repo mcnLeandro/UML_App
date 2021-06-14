@@ -23,11 +23,12 @@ export class ClassesListener {
     }
     static onKeyDownToAddDivider_Column(_class){
 
-        //FIXME: have to be controllable when focusing
-        view.onKeyDown = function(){
-            if(Key.isDown('/')) DividersController.createInto(_class);
-            else if (Key.isDown('c')) ColumnsController.createInto(_class);
-        }
+        // FIXME: have to be controllable when focusing
+        // FIXME: comment out because view.onKeyDown use When grab field, fix later.
+        // view.onKeyDown = function(){
+        //     if(Key.isDown('/')) DividersController.createInto(_class);
+        //     else if (Key.isDown('c')) ColumnsController.createInto(_class);
+        // }
 
     }
     static onClickToFocus(_class){
