@@ -1,7 +1,6 @@
 import { Column } from './column'
 import { Divider } from './divider'
 
-// TODO: focus (svg should be implemented in another branch)
 
 // TODO: edit menu (svg)
 // TODO: edit status (svg)

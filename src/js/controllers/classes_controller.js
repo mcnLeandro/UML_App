@@ -2,6 +2,7 @@ import { ClassesListener } from "js/listeners/classes_listener.js"
 import { ClassesView } from "js/views/classes_view"
 import { Class } from "js/models/class"
 
+
 export class ClassesController {
     
     static create(){
@@ -13,6 +14,9 @@ export class ClassesController {
 
         return _class;
 
+    }
+    static edit(_class){
+        ClassesView.edit(_class);
     }
 
 }
