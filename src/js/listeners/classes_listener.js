@@ -1,14 +1,13 @@
-import { ColumnsController } from "js/controllers/columns_controller";
-import { DividersController } from "js/controllers/dividers_controller";
+import { UMLObjectsListener } from "js/listeners/uml_objects_listener";
+
 import { FociController } from "js/controllers/foci_controller";
 import { ClassesController } from "js/controllers/classes_controller";
 
-export class ClassesListener {
+export class ClassesListener extends UMLObjectsListener{
 
-    static setListeners(_class){
+    static set(_class){
         
         ClassesListener.onMouseDragToDrag(_class)
-        ClassesListener.onKeyDownToAddDivider_Column(_class)//read Fixme
         ClassesListener.onClickToFocus(_class)
 
     }
@@ -29,12 +28,8 @@ export class ClassesListener {
         // TODO: if use addEventListener rathar than paper's listener, you should destroy the function every time because it's only fires from focused obj.
         // TODO: way1 ; cache function into Focus class when setting listenner and , use removeEventListener.
         // TODO: way2 ; create paper rect into Focus, like called focusRect, then focusRect.onKeydown = function(){}. done.
-        config.canvas.addEventListener("keydown",this.shortCuts(_class));
+        config.canvas.addEventListener("keydown",ClassesController.shortCuts(_class));
 
-    }
-    static shortCuts(_class){
-        if(Key.isDown('/')) DividersController.createInto(_class);
-        if(Key.isDown('c')) ColumnsController.createInto(_class);
     }
     static onClickToFocus(_class){
 

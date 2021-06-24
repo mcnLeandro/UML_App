@@ -1,4 +1,6 @@
-export class Column extends Group {
+import { UMLObject } from "./uml_object";
+
+export class Column extends UMLObject {
 
     
     constructor(){

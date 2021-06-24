@@ -1,5 +1,7 @@
-export class DividersListener {
+import { UMLObjectsListener } from "js/listeners/uml_objects_listener";
 
-    static setListeners(divider){}
+export class DividersListener extends UMLObjectsListener{
+
+    // static set(divider){}
 
 }

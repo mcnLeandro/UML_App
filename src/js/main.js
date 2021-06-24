@@ -26,9 +26,8 @@ FieldsController.init();
 
 
 config.btn.addEventListener('click',  ()=>ClassesController.create() )
-// TODO: create UMLObject class that has dependencies and inheritenced Group of paper.js
-// TODO: create ApplicationListener for setShortCutsMethod
+// TODO: create arrow prototype when you are boring
 // TODO: create edit menu for Class
-// TODO: create arrow branch
-// TODO: make sure that what is workspace.code-workspace
 // TODO: i wanna let columns switchable like trello
+
+// TODO: choose way of fix. 1 or 2.

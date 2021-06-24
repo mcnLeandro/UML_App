@@ -1,7 +1,6 @@
-import { Column } from './column'
-import { Divider } from './divider'
-
-
+import { Column } from 'js/models/column'
+import { Divider } from 'js/models/divider'
+import { UMLObject } from 'js/models/uml_object';
 // TODO: edit menu (svg)
 // TODO: edit status (svg)
 
@@ -11,16 +10,12 @@ import { Divider } from './divider'
 
 
 
-export class Class extends Group {
+export class Class extends UMLObject {
 
     
     constructor(){
 
         super()
-        this.isFocused = false;
-
-        //-----------------------------//
-        // paper.js
 
         this.statusGroup = new Group();
         this.contentsGroup = new Group();
@@ -41,11 +36,6 @@ export class Class extends Group {
         this.statusGroup.addChild(this.nameText);
         this.addChild(this.statusGroup);
         this.addChild(this.contentsGroup);
-
-    }
-    addDivider(){
-
-        this.contentsGroup.addChild(new Divider()).set()
 
     }
 }
