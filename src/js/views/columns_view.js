@@ -74,8 +74,6 @@ export class ColumnsView {
     // ===============================================
     // html
     // ===============================================
-    // there's ediitableTextDiv in HTML side. decleaed in 14 line in main.js file
-    // FIXME: translate gives a place error
     static editInputHTML(pointText){
         return `
         <input 

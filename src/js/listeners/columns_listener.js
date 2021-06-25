@@ -1,9 +1,11 @@
+import { UMLObjectsListener } from "js/listeners/uml_objects_listener";
+
 import { ColumnsController } from "js/controllers/columns_controller"
 import { FociController } from "js/controllers/foci_controller"
 
-export class ColumnsListener {
+export class ColumnsListener extends UMLObjectsListener{
 
-    static setListeners(column){
+    static set(column){
 
         ColumnsListener.text.onClickToEdit(column);
         // ColumnsListener.onClickToFocus(column); // FIXME: this doesn't work yet

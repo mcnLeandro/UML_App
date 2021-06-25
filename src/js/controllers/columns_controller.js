@@ -1,8 +1,10 @@
-import { ColumnsListener } from "../listeners/columns_listener";
+import { UMLObjectsController } from "js/controllers/uml_objects_controller";
+
+import { ColumnsListener } from "js/listeners/columns_listener";
 import { ColumnsView } from "js/views/columns_view";
 import { Column } from "js/models/column";
 
-export class ColumnsController {
+export class ColumnsController extends UMLObjectsController {
 
     static createInto(_class){
 
@@ -10,7 +12,7 @@ export class ColumnsController {
         _class.contentsGroup.addChild(column)
         ColumnsView.set(column);
         column.set();
-        ColumnsListener.setListeners(column)
+        ColumnsListener.set(column)
 
     }
     static text = {

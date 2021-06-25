@@ -1,4 +1,6 @@
-export class Divider extends Group {
+import { UMLObject } from "./uml_object";
+
+export class Divider extends UMLObject {
 
     
     constructor(){
@@ -14,7 +16,6 @@ export class Divider extends Group {
         this.initNestStracture();
         
     }
-    
     initNestStracture(){
         
         this.addChild(this.outerRect)
