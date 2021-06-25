@@ -1,96 +1,33 @@
-import * as paper from 'paper'
 import 'css/main.scss'
 
-// TODO: create config
-// ===============================================
-// global setup
-// ===============================================
-
-document.querySelector('body').innerHTML +=  `
-
-<div style="top: 0px;  cursor: default; position: absolute;  left: 0px;">
-    <button id="btn" class='btn btn-primary'> create new Class </button>
-</div>
-<div id="editableTextDiv">
-</div>
-
-
-    <canvas id="field"></canvas>
-
-    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-        pointer-events="none"    
-        style="
-            position: absolute; 
-            top: 0px; 
-            left: 0px; 
-            width: 100%; 
-            height: 100%;
-        ">
-        
-        <g id="focusG" pointer-events="none" >
-        </g>
-    </svg>
-`
-// FIXME: when implement field's scale, and translate, pointer-events not works again,
-// FIXME: so go to the field branch, 
-// FIXME: implement those things,
-// FIXME: come back
-// FIXME: then fix pointer-events if it doesn't working.
-
-let canvas =  document.querySelector('#field')
-
-
-canvas.width = innerWidth;
-canvas.height = innerHeight;
-
-
-
-//  paper setup
-paper.install(window);
-paper.setup(canvas);
-
-
-
-// mouse
-let mouse = new Tool()
-mouse.isMouseDown = false;
-
-view.onMouseDown = function(){
-    mouse.isMouseDown = true;
-}
-view.onMouseUp = function(){
-    mouse.isMouseDown = false;
-}
-
-// ===============================================
-// export
-// ===============================================
-
-export{
-    mouse,
-    canvas,
-    paper
-}
-
-// ===============================================
-// field
-// ===============================================
-
-
 import { FieldsController } from "js/controllers/fields_controller"
+import { ClassesController } from 'js/controllers/classes_controller';
+
+window.config = {
+    
+    btn             : document.getElementById("btn"), // for create class testing.
+
+    canvas          : document.getElementById("field"),
+
+    editableText    : document.getElementById("editableTextDiv"),
+    editMenu        : document.getElementById("edit-menu"),
+    zoomInBtn       : document.getElementById("zoom-in-btn"),
+    zoomOutBtn      : document.getElementById("zoom-out-btn"),
+    zoomInput       : document.getElementById("zoom-input"),
+
+    svgTranslate    : document.getElementById("svg-translate"),
+    svgScale        : document.getElementById("svg-scale"),
+    focusGroup      : document.getElementById("focus-group")
+
+}
+
 FieldsController.init();
 
 
-// ===============================================
-// Class
-// ===============================================
 
-import { ClassesController } from './controllers/classes_controller';
+config.btn.addEventListener('click',  ()=>ClassesController.create() )
+// TODO: create arrow prototype when you are boring
+// TODO: create edit menu for Class
+// TODO: i wanna let columns switchable like trello
 
-// --------------------------------------
-// btn that create a class
-// --------------------------------------
-
-let btn = document.getElementById('btn');
-btn.addEventListener('click',  ()=>ClassesController.create() )
-
+// TODO: choose way of fix. 1 or 2.

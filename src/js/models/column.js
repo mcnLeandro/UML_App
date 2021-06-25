@@ -1,6 +1,6 @@
-import { Group } from 'paper'
+import { UMLObject } from "./uml_object";
 
-export class Column extends Group {
+export class Column extends UMLObject {
 
     
     constructor(){

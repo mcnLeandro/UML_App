@@ -5,7 +5,7 @@
 // ===============================================
 export class Focus {
 
-    static focusG =document.getElementById("focusG");
+    static focusG = document.getElementById("focus-group");
     static umlObj = null;
 
 }

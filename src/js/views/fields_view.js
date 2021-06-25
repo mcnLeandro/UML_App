@@ -1,5 +1,4 @@
-import { Field } from "js/models/field"
-
+import { FieldsController } from "js/controllers/fields_controller"
 
 export class FieldsView {
     // ===============================================
@@ -12,14 +11,14 @@ export class FieldsView {
         gridStrokeColor : '#bbc8d3',
 
     }
-    static drawGrid(){
+    static drawGrid(gridGap){
 
         //TODO: optimizate using deque
         const verticalLineGroup = new Group()
         const horizontalLineGroup = new Group()
     
-        const remainderX = view.bounds.x%Field.gridGap
-        const remainderY = view.bounds.y%Field.gridGap
+        const remainderX = view.bounds.x%gridGap
+        const remainderY = view.bounds.y%gridGap
     
         const minX = view.bounds.x;
         const minY = view.bounds.y;
@@ -27,7 +26,7 @@ export class FieldsView {
         const maxY = view.bounds.height + minY;
     
     
-        for (let x = minX - remainderX; x < maxX; x+=Field.gridGap) {
+        for (let x = minX - remainderX; x < maxX; x+=gridGap) {
     
             let line = new Path.Line(
                 [x, minY],
@@ -36,7 +35,7 @@ export class FieldsView {
             
             verticalLineGroup.addChild(line)
         }
-        for (let y = minY - remainderY; y < maxY; y+=Field.gridGap) {
+        for (let y = minY - remainderY; y < maxY; y+=gridGap) {
     
             let line = new Path.Line(
                 [minX, y],
@@ -45,15 +44,8 @@ export class FieldsView {
         
             horizontalLineGroup.addChild(line)
         }
-    
-        Field.gridGroup.set({
-            children : [
-                horizontalLineGroup,
-                verticalLineGroup
-            ],
-            strokeColor :Field.gridStrokeColor
-        })
-
-
+        
+        FieldsController.setGridGroupChildren(horizontalLineGroup, verticalLineGroup);
+        
     }
 }
