@@ -2,9 +2,10 @@ import { FociController } from "js/controllers/foci_controller";
 import { Focus } from "js/models/focus";
 
 
+
 export class FociListener {
 
-    static setListeners(){
+    static set(){
 
         FociListener.onMouseDownToUnfocus();
         FociListener.onMouseUpToFocus();
@@ -27,6 +28,11 @@ export class FociListener {
             FociController.focus()
 
         }
+
+    }
+    static resetShortCuts(shortCutsCallBack){
+
+        paper.mouse.onKeyDown = shortCutsCallBack
 
     }
 

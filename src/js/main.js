@@ -27,7 +27,12 @@ FieldsController.init();
 
 config.btn.addEventListener('click',  ()=>ClassesController.create() )
 // TODO: create arrow prototype when you are boring
-// TODO: create edit menu for Class
+
 // TODO: i wanna let columns switchable like trello
 
-// TODO: choose way of fix. 1 or 2.
+// TODO: i prefer to cahnge the name of mouse ti UI or Some thing includes meaning of keyboad , and mouse
+// CONSIDER: mouse Events are already got in paper.js file, have to think onother way use tow toools.
+// TODO: commit for now
+// TODO: create edit menu for Class
+
+// 

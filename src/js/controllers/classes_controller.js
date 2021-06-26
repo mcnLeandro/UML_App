@@ -21,17 +21,16 @@ export class ClassesController extends UMLObjectsController{
         return _class;
 
     }
+    static edit(_class){
+
+        // ClassesView.edit(_class);
+
+    }
     static shortCuts(_class){
 
         if(Key.isDown('/')) DividersController.createInto(_class);
-        if(Key.isDown('c')) ColumnsController.createInto(_class);
+        if(Key.isDown('enter')) ColumnsController.createInto(_class);
 
     }
-    static edit(_class){
-
-        ClassesView.edit(_class);
-
-    }
-    
 
 }

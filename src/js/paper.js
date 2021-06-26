@@ -1,4 +1,4 @@
-let canvas =  document.querySelector('#field')
+let canvas = document.querySelector('#field')
 
 canvas.width = innerWidth;
 canvas.height = innerHeight;
@@ -7,9 +7,12 @@ paper.install(window);
 paper.setup(canvas);
 
 
-// mouse
-let mouse = new Tool()
+const mouse = new Tool()
+
 paper.mouse = mouse;
+
+
+
 mouse.activate()
 
 
@@ -20,6 +23,7 @@ mouse.point         = view.center;
 
 mouse.onMouseDown = function(){
     mouse.isMouseDown = true;
+    console.log(this)
 }
 mouse.onMouseUp = function(){
     mouse.isMouseDown = false;
