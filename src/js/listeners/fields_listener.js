@@ -69,7 +69,7 @@ export class FieldsListener {
             event.preventDefault()
         
             if(Math.abs(event.wheelDelta) == 120 && Math.sign(event.wheelDelta) == 1){
-                FieldsController.scale(1.06, paper.UI.point);
+                FieldsController.scale(1.06, paper.UI.mousePoint);
             }
         
         },{ passive: false});
@@ -82,7 +82,7 @@ export class FieldsListener {
             event.preventDefault()
         
             if(Math.abs(event.wheelDelta) == 120 && Math.sign(event.wheelDelta) == -1){
-                FieldsController.scale((view.zoom > 0.02 ? 0.95 : 1), paper.UI.point)
+                FieldsController.scale((view.zoom > 0.02 ? 0.95 : 1), paper.UI.mousePoint)
             }
 
         
