@@ -32,7 +32,7 @@ export class FociListener {
     }
     static resetShortCuts(shortCutsCallBack){
 
-        paper.mouse.onKeyDown = shortCutsCallBack
+        paper.UI.onKeyDown = shortCutsCallBack
 
     }
 

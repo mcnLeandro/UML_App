@@ -7,29 +7,29 @@ paper.install(window);
 paper.setup(canvas);
 
 
-const mouse = new Tool()
+const UI = new Tool()
 
-paper.mouse = mouse;
-
-
-
-mouse.activate()
+paper.UI = UI;
 
 
-mouse.name          = "mouse"
-mouse.isMouseDown   = false;
-mouse.point         = view.center;
+
+UI.activate()
 
 
-mouse.onMouseDown = function(){
-    mouse.isMouseDown = true;
+UI.name          = "UI"
+UI.isMouseDown   = false;
+UI.point         = view.center;
+
+
+UI.onMouseDown = function(){
+    UI.isMouseDown = true;
     console.log(this)
 }
-mouse.onMouseUp = function(){
-    mouse.isMouseDown = false;
+UI.onMouseUp = function(){
+    UI.isMouseDown = false;
 }
-mouse.onMouseMove = function(event){
-    mouse.point = event.point;
+UI.onMouseMove = function(event){
+    UI.point = event.point;
 }
 
 export { canvas }
