@@ -2,9 +2,10 @@ import { FociController } from "js/controllers/foci_controller";
 import { Focus } from "js/models/focus";
 
 
+
 export class FociListener {
 
-    static setListeners(){
+    static set(){
 
         FociListener.onMouseDownToUnfocus();
         FociListener.onMouseUpToFocus();
@@ -12,7 +13,6 @@ export class FociListener {
     }
     static onMouseDownToUnfocus(){
         
-        // CONSIDER: how, and when focus event fired. dont wanna use view.
         view.onMouseDown = function(){
 
             FociController.unfocus()
@@ -27,6 +27,11 @@ export class FociListener {
             FociController.focus()
 
         }
+
+    }
+    static resetShortCuts(shortCutsCallBack){
+
+        paper.UI.onKeyDown = shortCutsCallBack
 
     }
 

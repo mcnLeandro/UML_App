@@ -1,5 +1,9 @@
 export class ClassesView {
 
+    // ===============================================
+    // paper
+    // ===============================================
+
     static defaultRectStyle = {
         
         fillColor: 'white',
@@ -31,6 +35,32 @@ export class ClassesView {
 
         _class.rect.set(ClassesView.defaultRectStyle);
         _class.nameText.set(ClassesView.defaultTextStyle);
+
+    }
+
+    // ===============================================
+    // HTML
+    // ===============================================
+
+    static edit(_class){
+
+        config.editMenu.innerHTML = `
+            <div
+                id='' 
+                class="bg-danger"
+                style="
+                    top: ${_class.bounds.bottom}px; 
+                    left: ${_class.bounds.left}px; 
+                    height:${_class.bounds.height}px;
+                    width:${_class.bounds.width}px;
+                    cursor: none; 
+                    position: absolute; 
+                    outline: none; 
+                    white-space: pre-wrap; 
+                    overflow-wrap: break-word; 
+                "
+            ></div>
+        `
 
     }
     

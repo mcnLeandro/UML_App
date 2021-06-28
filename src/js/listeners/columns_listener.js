@@ -1,19 +1,21 @@
+import { UMLObjectsListener } from "js/listeners/uml_objects_listener";
+
 import { ColumnsController } from "js/controllers/columns_controller"
 import { FociController } from "js/controllers/foci_controller"
 
-export class ColumnsListener {
+export class ColumnsListener extends UMLObjectsListener{
 
-    static setListeners(column){
+    static set(column){
 
-        ColumnsListener.text.onClickToEdit(column);
-        // ColumnsListener.onClickToFocus(column); // FIXME: this doesn't work yet
+        ColumnsListener.text.onDoubleClickToEdit(column);
+        ColumnsListener.onClickToFocus(column);
 
     }
     static text = {
 
-        onClickToEdit: function(column){
+        onDoubleClickToEdit: function(column){
 
-            column.text.onClick = function(){
+            column.text.onDoubleClick = function(){
 
                 ColumnsController.text.edit(this)
                 
@@ -21,13 +23,13 @@ export class ColumnsListener {
             
         },
     }
-    // static onClickToFocus(column){
+    static onClickToFocus(column){
 
-    //     column.onClick = function(){
+        column.onClick = function(){
 
-    //         FociController.set(column);
+            FociController.set(column);
 
-    //     }
+        }
 
-    // }
+    }
 }

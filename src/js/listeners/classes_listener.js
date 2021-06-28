@@ -1,13 +1,13 @@
-import { ColumnsController } from "js/controllers/columns_controller";
-import { DividersController } from "js/controllers/dividers_controller";
+import { UMLObjectsListener } from "js/listeners/uml_objects_listener";
+
 import { FociController } from "js/controllers/foci_controller";
+import { ClassesController } from "js/controllers/classes_controller";
 
-export class ClassesListener {
+export class ClassesListener extends UMLObjectsListener{
 
-    static setListeners(_class){
+    static set(_class){
         
         ClassesListener.onMouseDragToDrag(_class)
-        ClassesListener.onKeyDownToAddDivider_Column(_class)//read Fixme
         ClassesListener.onClickToFocus(_class)
 
     }
@@ -21,21 +21,12 @@ export class ClassesListener {
         }
 
     }
-    static onKeyDownToAddDivider_Column(_class){
-
-        // FIXME: have to be controllable when focusing
-        // FIXME: comment out because view.onKeyDown use When grab field, fix later.
-        // view.onKeyDown = function(){
-        //     if(Key.isDown('/')) DividersController.createInto(_class);
-        //     else if (Key.isDown('c')) ColumnsController.createInto(_class);
-        // }
-
-    }
     static onClickToFocus(_class){
 
-        _class.onClick = function(){
+        _class.statusGroup.onClick = function(){
 
             FociController.set(_class);
+            // ClassesController.edit(_class);
 
         }
 
