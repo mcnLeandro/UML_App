@@ -13,7 +13,6 @@ export class FociListener {
     }
     static onMouseDownToUnfocus(){
         
-        // CONSIDER: how, and when focus event fired. dont wanna use view.
         view.onMouseDown = function(){
 
             FociController.unfocus()
