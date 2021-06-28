@@ -23,7 +23,7 @@ export class ClassesController extends UMLObjectsController{
     }
     static edit(_class){
 
-        // ClassesView.edit(_class);
+        ClassesView.edit(_class);
 
     }
     static shortCuts(_class){

@@ -23,10 +23,10 @@ export class ClassesListener extends UMLObjectsListener{
     }
     static onClickToFocus(_class){
 
-        _class.onClick = function(){
+        _class.statusGroup.onClick = function(){
 
             FociController.set(_class);
-            ClassesController.edit(_class);
+            // ClassesController.edit(_class);
 
         }
 
