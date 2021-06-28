@@ -7,15 +7,15 @@ export class ColumnsListener extends UMLObjectsListener{
 
     static set(column){
 
-        ColumnsListener.text.onClickToEdit(column);
-        // ColumnsListener.onClickToFocus(column); // FIXME: this doesn't work yet
+        ColumnsListener.text.onDoubleClickToEdit(column);
+        ColumnsListener.onClickToFocus(column);
 
     }
     static text = {
 
-        onClickToEdit: function(column){
+        onDoubleClickToEdit: function(column){
 
-            column.text.onClick = function(){
+            column.text.onDoubleClick = function(){
 
                 ColumnsController.text.edit(this)
                 
@@ -23,13 +23,13 @@ export class ColumnsListener extends UMLObjectsListener{
             
         },
     }
-    // static onClickToFocus(column){
+    static onClickToFocus(column){
 
-    //     column.onClick = function(){
+        column.onClick = function(){
 
-    //         FociController.set(column);
+            FociController.set(column);
 
-    //     }
+        }
 
-    // }
+    }
 }

@@ -9,7 +9,6 @@ import { UMLObject } from 'js/models/uml_object';
 // TODO: resize (with svg)
 
 
-
 export class Class extends UMLObject {
 
     
