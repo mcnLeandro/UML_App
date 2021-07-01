@@ -13,7 +13,7 @@ export class ClassesListener extends UMLObjectsListener{
     }
     static onMouseDragToDrag(_class){
 
-        _class.onMouseDrag = function(e){
+        _class.onMouseDrag = function(e){//FIXME: e -> event
 
             this.position.x += e.delta.x;
             this.position.y += e.delta.y;
