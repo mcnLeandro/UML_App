@@ -28,13 +28,10 @@ FieldsController.init();
 
 
 config.classBtn.addEventListener('click',  ()=>ClassesController.create())
-// TODO: create arrow prototype when you are boring
 
 // TODO: i wanna let columns switchable like trello
 
 // TODO: create edit menu for Class
-
-
 
 config.arrowBtn.addEventListener("click", ()=>ArrowsController.create())
 
