@@ -40,6 +40,6 @@ paper.UI.isMouseDown   = false;
 paper.UI.mousePoint    = view.center;
 
 
-paper.UI.onMouseUp   = function(){ UI.isMouseDown = false;}
-paper.UI.onMouseDown = function(){ UI.isMouseDown = true;}
-paper.UI.onMouseMove = function(event){UI.mousePoint = event.point;}
+paper.UI.onMouseUp   = function(){ this.isMouseDown = false;}
+paper.UI.onMouseDown = function(){ this.isMouseDown = true;}
+paper.UI.onMouseMove = function(event){this.mousePoint = event.point;}
