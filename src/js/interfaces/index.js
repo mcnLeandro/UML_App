@@ -47,7 +47,7 @@ class Focusable {
      * @name focus
      * @argumnt Void
      * @return  Void
-     * Call View's method that is provides View to focus it's self. 
+     * Call View's method that provides View to focus it's self. 
      * Or used by FociController to call umlObject's focus method.
      */
     static focus(){}
@@ -56,7 +56,7 @@ class Focusable {
      * @name unfocus
      * @argument Void
      * @return   Void
-     * Call View's method that is provides View to unfocus it's self. 
+     * Call View's method that provides View to unfocus it's self. 
      * Or used by FociController to call umlObject's unfocus method.
      */
     static unfocus(){}
