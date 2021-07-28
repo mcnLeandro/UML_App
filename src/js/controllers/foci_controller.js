@@ -23,7 +23,7 @@ export class FociController {
         if(!Focus.umlObj.isFocused){
 
             Focus.umlObj.isFocused = true;
-            Focus.focusG.innerHTML = FociView.focusSvg();
+            Focus.focusG.innerHTML = FociView.boundFocus();
             document.activeElement.blur()
 
         }

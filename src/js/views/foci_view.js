@@ -5,10 +5,7 @@ import { Focus } from "js/models/focus"
 export class FociView {
     // FIXME: view is provides view to browser, so have to add code of adding html like{ document.get... = ...}
     // to do that , you can create Helper class.
-    // ===============================================
-    // svg
-    // ===============================================
-    static focusSvg(){
+    static boundFocus(){
         return `
 
         <g pointer-events="none">
@@ -101,5 +98,8 @@ export class FociView {
 
         </g>
         `
+    }
+    static lineFocus(){
+        
     }
 }
