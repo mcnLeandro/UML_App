@@ -39,6 +39,29 @@ export class ColumnsController extends UMLObjectsController {
         }
     }
     
+
+    /*************************
+    * @interface Focasable   *
+    * ********************** *
+    * @argumnt Void          *
+    * @return  Void          *
+    *                        */
+     static focus(){
+
+        ColumnsView.focus()
+
+    }
+    /**                      *
+    * @argument Void         *
+    * @return   Void         *
+    *                        */
+    static unfocus(){
+
+        ColumnsView.unfocus()
+        
+    }
+    /* End of Focasable      *
+    **************************/
 }
 
 

@@ -2,10 +2,6 @@ import { UMLObjectsView } from 'js/views/uml_objects_view'
 
 export class ClassesView extends UMLObjectsView{
 
-    // ===============================================
-    // paper
-    // ===============================================
-
     static defaultRectStyle = {
         
         fillColor: 'white',

@@ -35,6 +35,7 @@ export class FociController {
             import('js/utils/index.js').then(module => {
                 
                 const MVCL = module.getMVCLFromUMLObject(Focus.umlObj)
+                
                 Focus.umlObj.isFocused = true;
                 MVCL.CONSTROLLER.focus()
 
@@ -52,6 +53,7 @@ export class FociController {
             import('js/utils/index.js').then(module => {
 
                 const MVCL = module.getMVCLFromUMLObject(Focus.umlObj)
+
                 Focus.umlObj.isFocused = false;
                 MVCL.CONSTROLLER.unfocus()
 
