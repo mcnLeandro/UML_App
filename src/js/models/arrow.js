@@ -26,3 +26,11 @@ export class Arrow extends UMLObject {
     }
 
 }
+
+
+
+/********************************
+ * load message                 *
+ * ******************************/
+ console.log('loaded : arrow.js')
+ /*******************************/

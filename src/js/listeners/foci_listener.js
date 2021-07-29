@@ -36,3 +36,11 @@ export class FociListener {
     }
 
 }
+
+
+
+/********************************
+ * load message                 *
+ * ******************************/
+ console.log('loaded : foci_listener.js')
+ /*******************************/

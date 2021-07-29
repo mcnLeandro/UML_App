@@ -45,3 +45,14 @@ export class DividersView {
     }
 
 }
+
+
+
+
+
+
+/********************************
+ * load message                 *
+ * ******************************/
+ console.log('loaded : dividers_view.js')
+ /*******************************/

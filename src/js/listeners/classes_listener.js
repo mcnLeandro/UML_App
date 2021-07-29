@@ -1,7 +1,7 @@
 import { UMLObjectsListener } from "js/listeners/uml_objects_listener";
 
 import { FociController } from "js/controllers/foci_controller";
-import { ClassesController } from "js/controllers/classes_controller";
+// import { ClassesController } from "js/controllers/classes_controller";
 
 export class ClassesListener extends UMLObjectsListener{
 
@@ -21,6 +21,9 @@ export class ClassesListener extends UMLObjectsListener{
         }
 
     }
+    /**
+     * CONSIDER: this marked as issue at #13
+     */
     static onClickToFocus(_class){
 
         _class.statusGroup.onClick = function(){
@@ -33,3 +36,15 @@ export class ClassesListener extends UMLObjectsListener{
     }
 
 }
+
+
+
+
+
+
+
+/********************************
+ * load message                 *
+ * ******************************/
+ console.log('loaded : classes_listener.js')
+ /*******************************/

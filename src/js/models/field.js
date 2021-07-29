@@ -17,3 +17,14 @@ export class Field {
     static svgScale      = document.getElementById("svg-scale")
 
 }
+
+
+
+
+
+
+/********************************
+ * load message                 *
+ * ******************************/
+ console.log('loaded : field.js')
+ /*******************************/

@@ -30,3 +30,16 @@ export class ArrowsController extends UMLObjectsController {
 
     }
 }
+
+
+
+
+
+
+
+
+/********************************
+ * load message                 *
+ * ******************************/
+ console.log('loaded : arrows_controller.js')
+ /*******************************/

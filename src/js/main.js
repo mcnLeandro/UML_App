@@ -36,3 +36,14 @@ config.classBtn.addEventListener('click',  ()=>ClassesController.create())
 config.arrowBtn.addEventListener("click", ()=>ArrowsController.create())
 
 
+
+
+
+
+
+
+/********************************
+ * load message                 *
+ * ******************************/
+ console.log('loaded : main.js')
+ /*******************************/

@@ -6,3 +6,14 @@ export class UMLObjectsController{
     static edit(){}
 
 }
+
+
+
+
+
+
+/********************************
+ * load message                 *
+ * ******************************/
+ console.log('loaded : uml_objects_controller.js')
+ /*******************************/

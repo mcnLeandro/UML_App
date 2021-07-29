@@ -30,3 +30,14 @@ export class Column extends UMLObject {
     }
 
 }
+
+
+
+
+
+
+/********************************
+ * load message                 *
+ * ******************************/
+ console.log('loaded : column.js')
+ /*******************************/

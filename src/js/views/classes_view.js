@@ -1,8 +1,6 @@
-export class ClassesView {
+import { UMLObjectsView } from 'js/views/uml_objects_view'
 
-    // ===============================================
-    // paper
-    // ===============================================
+export class ClassesView extends UMLObjectsView{
 
     static defaultRectStyle = {
         
@@ -38,10 +36,6 @@ export class ClassesView {
 
     }
 
-    // ===============================================
-    // HTML
-    // ===============================================
-
     static edit(_class){
 
         config.editMenu.innerHTML = `
@@ -63,6 +57,32 @@ export class ClassesView {
         `
 
     }
+
+    /**
+     * CONSIDER: this focus method is considering at issue #10
+     */
+    static focus(){
+
+        super.boundFocus()
+
+    }
+    static unfocus(){
+
+        super.unfocus()
+
+    }
     
 }
 
+
+
+
+
+
+
+
+/********************************
+ * load message                 *
+ * ******************************/
+ console.log('loaded : classes_view.js')
+ /*******************************/

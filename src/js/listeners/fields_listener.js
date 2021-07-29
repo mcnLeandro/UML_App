@@ -109,3 +109,16 @@ export class FieldsListener {
     }
     
 }
+
+
+
+
+
+
+
+
+/********************************
+ * load message                 *
+ * ******************************/
+ console.log('loaded : fields_listener.js')
+ /*******************************/
