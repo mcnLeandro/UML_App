@@ -8,7 +8,7 @@ export class FociView {
         config.focusGroup.innerHTML = FociViewHelper.boundFocus()
     }
     static lineFocus(){
-        
+
     }
     static unfocus(){
         config.focusGroup.innerHTML = ""
@@ -113,3 +113,17 @@ class FociViewHelper{
     }
 
 }
+
+
+
+
+
+
+
+
+
+/********************************
+ * load message                 *
+ * ******************************/
+ console.log('loaded : foci_view.js')
+ /*******************************/

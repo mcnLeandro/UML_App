@@ -102,3 +102,18 @@ export class ColumnsView {
     }
     
 }
+
+
+
+
+
+
+
+
+
+
+/********************************
+ * load message                 *
+ * ******************************/
+ console.log('loaded : columns_view.js')
+ /*******************************/

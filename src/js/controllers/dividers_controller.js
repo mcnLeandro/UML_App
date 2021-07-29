@@ -16,3 +16,14 @@ export class DividersController extends UMLObjectsController{
 
     }
 }
+
+
+
+
+
+
+/********************************
+ * load message                 *
+ * ******************************/
+ console.log('loaded : dividers_controller.js')
+ /*******************************/

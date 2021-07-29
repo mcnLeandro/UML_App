@@ -41,3 +41,12 @@ export class Class extends UMLObject {
 
 
 
+
+
+/********************************
+ * load message                 *
+ * ******************************/
+ console.log('loaded : field.js')
+ /*******************************/
+
+

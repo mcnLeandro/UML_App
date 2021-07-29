@@ -33,3 +33,15 @@ export class ClassesListener extends UMLObjectsListener{
     }
 
 }
+
+
+
+
+
+
+
+/********************************
+ * load message                 *
+ * ******************************/
+ console.log('loaded : classes_listener.js')
+ /*******************************/

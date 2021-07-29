@@ -73,3 +73,10 @@ export class FociController {
     }
 
 }
+
+
+/********************************
+ * load message                 *
+ * ******************************/
+ console.log('loaded : foci_controller.js')
+ /*******************************/

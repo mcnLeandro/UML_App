@@ -26,3 +26,8 @@ export class Divider extends UMLObject {
 
 }
 
+/********************************
+ * load message                 *
+ * ******************************/
+ console.log('loaded : divider.js')
+ /*******************************/

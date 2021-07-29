@@ -100,3 +100,14 @@ export class FieldsController {
     }
 
 }
+
+
+
+
+
+
+/********************************
+ * load message                 *
+ * ******************************/
+ console.log('loaded : fields_controller.js')
+ /*******************************/

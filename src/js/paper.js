@@ -43,3 +43,14 @@ paper.UI.mousePoint    = view.center;
 paper.UI.onMouseUp   = function(){ this.isMouseDown = false;}
 paper.UI.onMouseDown = function(){ this.isMouseDown = true;}
 paper.UI.onMouseMove = function(event){this.mousePoint = event.point;}
+
+
+
+
+
+
+/********************************
+ * load message                 *
+ * ******************************/
+ console.log('loaded : paper.js')
+ /*******************************/

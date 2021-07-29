@@ -73,8 +73,20 @@ export class ClassesView extends UMLObjectsView{
     static unfocus(){
 
         super.unfocus()
-        
+
     }
     
 }
 
+
+
+
+
+
+
+
+/********************************
+ * load message                 *
+ * ******************************/
+ console.log('loaded : classes_view.js')
+ /*******************************/

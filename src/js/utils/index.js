@@ -98,3 +98,11 @@ export function getMVCLFromUMLObject(umlObj){
     throw "There was no Set";
 }
 
+
+
+
+/********************************
+ * load message                 *
+ * ******************************/
+ console.log('loaded : utils/index.js')
+ /*******************************/

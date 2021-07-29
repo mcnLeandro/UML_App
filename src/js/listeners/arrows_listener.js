@@ -43,3 +43,14 @@ export class ArrowsListener extends UMLObjectsListener {
 
     }
 }
+
+
+
+
+
+
+/********************************
+ * load message                 *
+ * ******************************/
+ console.log('loaded : arrows_listener.js')
+ /*******************************/

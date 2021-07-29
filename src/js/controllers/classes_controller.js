@@ -59,3 +59,15 @@ export class ClassesController extends UMLObjectsController{
       */
 
 }
+
+
+
+
+
+
+
+/********************************
+ * load message                 *
+ * ******************************/
+ console.log('loaded : classes_controller.js')
+ /*******************************/

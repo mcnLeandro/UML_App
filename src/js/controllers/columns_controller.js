@@ -40,3 +40,15 @@ export class ColumnsController extends UMLObjectsController {
     }
     
 }
+
+
+
+
+
+
+
+/********************************
+ * load message                 *
+ * ******************************/
+ console.log('loaded : columns_controller.js')
+ /*******************************/
