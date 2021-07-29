@@ -4,10 +4,10 @@ import { Focus } from "js/models/focus";
 
 import { ClassesController } from "js/controllers/classes_controller";
 
-import { getMVCLFromUMLObject } from "../utils";
+
 
 /**
- * @implement Focasable
+ * @implement Focasable Interface
  */
 export class FociController {
 
@@ -16,8 +16,8 @@ export class FociController {
         Focus.umlObj = umlObj;
         FociListener.set();
 
-        // FociController.unfocus()
-        // FociController.focus()
+        FociController.unfocus()
+        FociController.focus()
 
 
         FociController.setShortCuts(umlObj);
@@ -32,12 +32,13 @@ export class FociController {
     static focus(){
 
         if(!Focus.umlObj.isFocused){
-            const MVCL = getMVCLFromUMLObject(Focus.umlObj)
-            console.log(MVCL)
-            Focus.umlObj.isFocused = true;
-            MVCL.CONSTROLLER.focus()
-            document.activeElement.blur()
+            import('js/utils/index.js').then(module => {
+                
+                const MVCL = module.getMVCLFromUMLObject(Focus.umlObj)
+                Focus.umlObj.isFocused = true;
+                MVCL.CONSTROLLER.focus()
 
+            });
         }
 
     }
@@ -48,10 +49,13 @@ export class FociController {
     static unfocus(){
 
         if(Focus.umlObj.isFocused){
-            const MVCL = getMVCLFromUMLObject(Focus.umlObj)
+            import('js/utils/index.js').then(module => {
 
-            Focus.umlObj.isFocused = false;
-            MVCL.CONSTROLLER.unfocus()
+                const MVCL = module.getMVCLFromUmlObject(Focus.umlObj)
+                Focus.umlObj.isFocused = false;
+                MVCL.CONSTROLLER.unfocus()
+
+            });
 
         }
 

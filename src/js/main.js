@@ -1,7 +1,7 @@
 import 'css/main.scss'
 
 import { FieldsController } from "js/controllers/fields_controller"
-// import { ClassesController } from 'js/controllers/classes_controller';
+import { ClassesController } from 'js/controllers/classes_controller';
 import { ArrowsController } from "js/controllers/arrows_controller"
 
 window.config = {
