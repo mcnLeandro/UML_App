@@ -36,27 +36,27 @@ export class ClassesController extends UMLObjectsController{
     }
 
     /*************************
-     * @interface Focasable  *
-     * ********************* *
-     * @argumnt Void         *
-     * @return  Void         *
-     *                       */
-     static focus(){
+    * @interface Focasable   *
+    * ********************** *
+    * @argumnt Void          *
+    * @return  Void          *
+    *                        */
+    static focus(){
 
         ClassesView.focus()
 
-     }
-     /**                     *
-      * @argument Void       *
-      * @return   Void       *
-      *                      */
-     static unfocus(){
+    }
+    /**                      *
+    * @argument Void         *
+    * @return   Void         *
+    *                        */
+    static unfocus(){
 
         ClassesView.unfocus()
         
-     }
-     /*    End of Focasable   *
-     *************************/
+    }
+    /* End of Focasable      *
+    **************************/
 
 }
 
