@@ -1,7 +1,7 @@
 import 'css/main.scss'
 
 import { FieldsController } from "js/controllers/fields_controller"
-import { ClassesController } from 'js/controllers/classes_controller';
+// import { ClassesController } from 'js/controllers/classes_controller';
 import { ArrowsController } from "js/controllers/arrows_controller"
 
 window.config = {
@@ -34,5 +34,24 @@ config.classBtn.addEventListener('click',  ()=>ClassesController.create())
 // TODO: create edit menu for Class
 
 config.arrowBtn.addEventListener("click", ()=>ArrowsController.create())
+import { getMVCLFromUMLObject } from 'js/utils/index'
 
+// console.log(getMVCLFromUMLObject(ArrowsController.create()))
+// console.log(getMVCLFromUMLObject(ClassesController.create()))
+
+import { ClassesController } from "js/controllers/classes_controller"
+import { ClassesListener } from "js/listeners/classes_listener"
+import { ClassesView } from "js/views/classes_view";
+import { Class } from 'js/models/class';
+
+const classesMVCL = {
+
+    CONSTROLLER : ClassesController,
+    LISTENER    : ClassesListener,
+    VIEW        : ClassesView,
+    MODEL       : Class,
+    
+}
+
+console.log(classesMVCL)
 

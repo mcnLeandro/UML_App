@@ -1,4 +1,6 @@
-export class ClassesView {
+import { UMLObjectsView } from 'js/views/uml_objects_view'
+
+export class ClassesView extends UMLObjectsView{
 
     // ===============================================
     // paper
@@ -38,10 +40,6 @@ export class ClassesView {
 
     }
 
-    // ===============================================
-    // HTML
-    // ===============================================
-
     static edit(_class){
 
         config.editMenu.innerHTML = `
@@ -62,6 +60,20 @@ export class ClassesView {
             ></div>
         `
 
+    }
+
+    /**
+     * CONSIDER: this focus method is considering at issue #10
+     */
+    static focus(){
+
+        super.boundFocus()
+
+    }
+    static unfocus(){
+
+        super.unfocus()
+        
     }
     
 }

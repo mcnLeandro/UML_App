@@ -12,6 +12,9 @@
  * 
 */ 
 
+/****************************
+ * Details
+ ****************************/
 
 class Editable {
     /**
@@ -43,7 +46,6 @@ class Shortcuttable {
 
 class Focusable {
     /**
-     * @interface Focasable
      * @name focus
      * @argumnt Void
      * @return  Void
@@ -52,7 +54,6 @@ class Focusable {
      */
     static focus(){}
     /**
-     * @interface Focasable
      * @name unfocus
      * @argument Void
      * @return   Void
@@ -60,4 +61,67 @@ class Focusable {
      * Or used by FociController to call umlObject's unfocus method.
      */
     static unfocus(){}
+}
+
+/****************************************
+ * Tamplates. you can copy and paste
+ ***************************************/
+
+
+/**
+ * @implements ShortCuttable
+ */
+class Shortcuttable {
+
+    /***********************
+     * @interface Shortcuttable
+     * *********************
+     * @argument UMLObject
+     * @return Void
+     */
+    static shortcuts(umlObj){
+        // examples...
+        // if(Key.isDown('/')) DividersController.createInto(umlObj);
+        // if(Key.isDown('enter')) ColumnsController.createInto(_class);
+    }
+    /************************
+     */
+    
+}
+/**
+ * @implements Editable
+ */
+class Editable {
+
+    /************************
+     * @interface Editable
+     * **********************
+     * @argument Void
+     * @return Void
+     */
+    static showEditMenu(){}
+    /************************
+     */
+}
+
+/**
+ * @implements Focussable Interface
+ */
+class Focusable{
+
+    /*************************
+     * @interface Focasable
+     * ***********************
+     * @argumnt Void
+     * @return  Void
+     */
+    static focus(){}
+    /**
+     * @argument Void
+     * @return   Void
+     */
+    static unfocus(){}
+    /*************************
+     */
+
 }

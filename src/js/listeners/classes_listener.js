@@ -1,7 +1,7 @@
 import { UMLObjectsListener } from "js/listeners/uml_objects_listener";
 
 import { FociController } from "js/controllers/foci_controller";
-import { ClassesController } from "js/controllers/classes_controller";
+// import { ClassesController } from "js/controllers/classes_controller";
 
 export class ClassesListener extends UMLObjectsListener{
 
