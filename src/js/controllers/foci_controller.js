@@ -24,11 +24,11 @@ export class FociController {
 
     }
     /*************************
-     * @interface Focasable
-     * ***********************
-     * @argumnt Void
-     * @return  Void
-     */
+     * @interface Focasable  *
+     * ********************* *
+     * @argumnt Void         *
+     * @return  Void         *
+     *                       */
     static focus(){
 
         if(!Focus.umlObj.isFocused){
@@ -42,10 +42,10 @@ export class FociController {
         }
 
     }
-    /**
-     * @argument Void
-     * @return   Void
-     */
+    /**                     *
+     * @argument Void       *
+     * @return   Void       *
+     *                      */
     static unfocus(){
 
         if(Focus.umlObj.isFocused){
@@ -60,8 +60,8 @@ export class FociController {
         }
 
     }
-    /*************************
-     */
+    /*    End of Focasable   *
+     *************************/
 
 
     static setShortCuts(umlObj){

@@ -73,19 +73,19 @@ class Focusable {
  */
 class Shortcuttable {
 
-    /***********************
-     * @interface Shortcuttable
-     * *********************
-     * @argument UMLObject
-     * @return Void
-     */
+    /****************************
+     * @interface Shortcuttable *
+     * ************************ *
+     * @argument UMLObject      *
+     * @return Void             *
+     *                          */
     static shortcuts(umlObj){
         // examples...
         // if(Key.isDown('/')) DividersController.createInto(umlObj);
         // if(Key.isDown('enter')) ColumnsController.createInto(_class);
     }
-    /************************
-     */
+    /*  End of Shortcuttable *
+     ************************/
     
 }
 /**
@@ -94,14 +94,14 @@ class Shortcuttable {
 class Editable {
 
     /************************
-     * @interface Editable
-     * **********************
-     * @argument Void
-     * @return Void
+     * @interface Editable  *
+     * ******************** *
+     * @argument Void       *
+     * @return Void         *
      */
     static showEditMenu(){}
-    /************************
-     */
+    /*   End of Editable    *
+     ************************/
 }
 
 /**
@@ -110,19 +110,27 @@ class Editable {
 class Focusable{
 
     /*************************
-     * @interface Focasable
-     * ***********************
-     * @argumnt Void
-     * @return  Void
-     */
-    static focus(){}
-    /**
-     * @argument Void
-     * @return   Void
-     */
-    static unfocus(){}
-    /*************************
-     */
+     * @interface Focasable  *
+     * ********************* *
+     * @argumnt Void         *
+     * @return  Void         *
+     *                       */
+     static focus(){
+
+        ClassesView.focus()
+
+     }
+    /**                      *
+     * @argument Void        *
+     * @return   Void        *
+     *                       */
+    static unfocus(){
+
+        ClassesView.unfocus()
+        
+     }
+    /*    End of Focasable   *
+     *************************/
 
 }
 
