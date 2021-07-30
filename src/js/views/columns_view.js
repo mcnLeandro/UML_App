@@ -15,11 +15,17 @@ export class ColumnsView extends UMLObjectsView{
         fontSize: 15,
 
     }
-    static defaultBtnStayle = {
+    static defaultBtnStyle = {
 
-        strokeColor : '#f55',
-        radius : 5,
+        // strokeColor : '#f55',
+        fillColor : '#f55'
 
+    }
+    static defaultBtnTextStyle = {
+        content : "+",
+        fillColor : "#fff",
+        justification: 'center',
+        fontSize: 15,
     }
     static set(column){
 
@@ -45,34 +51,42 @@ export class ColumnsView extends UMLObjectsView{
             new Point(r - column.space, column.outerRect.bounds.bottom - column.space)
 
         );
-
-        column.btn.bounds  = new Rectangle({
-
+        
+        column.btn.set({
+            radius: 0.2,
+            strokeWidth: 0.1,
+        })
+        column.btn.bounds = new Rectangle({
             center :[column.innerRect.bounds.left + column.btnSize/2, column.innerRect.bounds.center.y], 
-            size: [column.btnSize,column.btnSize]
+            size: [column.btnSize,column.btnSize],
 
         });
-        column.text.bounds.point  = new Point(
 
-            [column.innerRect.bounds.left + column.btn.bounds.width + column.space, column.innerRect.bounds.center.y + 6 ]
+        column.btnText.bounds.point = new Point([
+            column.btn.bounds.center.x,
+            column.btn.bounds.center.y + 5 // Don't kenow why but plus equal minus?
+        ])
 
-        );
+
+        column.text.bounds.point  = new Point([
+            column.innerRect.bounds.left + column.btn.bounds.width + column.space, 
+            column.innerRect.bounds.center.y + 6 
+        ]);
 
     }
     static initStyle(column){
 
         column.outerRect.strokeColor = '#f0f';
-        column.innerRect.strokeColor = '#00f'
+        // column.innerRect.strokeColor = '#00f'
 
-        column.outerRect.set(ColumnsView.defaultRectStyle)
+        column.outerRect.set(ColumnsView.defaultRectStyle);
         column.text.set(ColumnsView.defaultTextStyle);
-        column.btn.set(ColumnsView.defaultBtnStayle)
+        column.btn.set(ColumnsView.defaultBtnStyle);
+        column.btnText.set(ColumnsView.defaultBtnTextStyle);
 
     }
 
-    // ===============================================
-    // html
-    // ===============================================
+    
     static editInputHTML(pointText){
         return `
         <input 

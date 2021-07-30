@@ -11,7 +11,9 @@ export class Column extends UMLObject {
         this.outerRect = new Path.Rectangle(new Rectangle(1,1,1,1));
         this.innerRect = new Path.Rectangle(new Rectangle(1,1,1,1));
 
-        this.btn  = new Path.Rectangle(new Rectangle(1,1,1,1));
+        // this.btn  = new Path.Rectangle(new Rectangle(1,1,1,1));
+        this.btn  = new Shape.Rectangle(new Rectangle(1,1,1,1));
+        this.btnText = new PointText(1,1)
         this.text  = new PointText(1,1);
 
     }
@@ -30,14 +32,3 @@ export class Column extends UMLObject {
     }
 
 }
-
-
-
-
-
-
-/********************************
- * load message                 *
- * ******************************/
- console.log('loaded : column.js')
- /*******************************/
