@@ -4,6 +4,11 @@ import { Focus } from "js/models/focus";
 
 import { ClassesController } from "js/controllers/classes_controller";
 
+
+
+/**
+ * @implement Focasable Interface
+ */
 export class FociController {
 
     static set(umlObj){
@@ -18,27 +23,49 @@ export class FociController {
         FociController.setShortCuts(umlObj);
 
     }
+    /*************************
+    * @interface Focasable   *
+    * ********************** *
+    * @argumnt Void          *
+    * @return  Void          *
+    *                        */
     static focus(){
 
         if(!Focus.umlObj.isFocused){
+            import('js/utils/index.js').then(module => {
+                
+                const MVCL = module.getMVCLFromUMLObject(Focus.umlObj)
+                
+                Focus.umlObj.isFocused = true;
+                MVCL.CONSTROLLER.focus()
 
-            Focus.umlObj.isFocused = true;
-            Focus.focusG.innerHTML = FociView.focusSvg();
-            document.activeElement.blur()
-
+            });
         }
 
     }
+    /**                      *
+    * @argument Void         *
+    * @return   Void         *
+    *                        */
     static unfocus(){
 
         if(Focus.umlObj.isFocused){
+            import('js/utils/index.js').then(module => {
 
-            Focus.umlObj.isFocused = false;
-            Focus.focusG.innerHTML = ""
+                const MVCL = module.getMVCLFromUMLObject(Focus.umlObj)
+
+                Focus.umlObj.isFocused = false;
+                MVCL.CONSTROLLER.unfocus()
+
+            });
 
         }
 
     }
+    /* End of Focasable      *
+    **************************/
+
+
     static setShortCuts(umlObj){
 
         let shortCuts = function(){};
@@ -52,3 +79,10 @@ export class FociController {
     }
 
 }
+
+
+/********************************
+ * load message                 *
+ * ******************************/
+ console.log('loaded : foci_controller.js')
+ /*******************************/

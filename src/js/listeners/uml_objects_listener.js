@@ -5,3 +5,14 @@ export class UMLObjectsListener {
     static shortCuts(){}
     
 }
+
+
+
+
+
+
+/********************************
+ * load message                 *
+ * ******************************/
+ console.log('loaded : uml_objects_listener.js')
+ /*******************************/

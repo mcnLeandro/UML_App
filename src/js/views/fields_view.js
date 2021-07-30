@@ -49,3 +49,15 @@ export class FieldsView {
         
     }
 }
+
+
+
+
+
+
+
+/********************************
+ * load message                 *
+ * ******************************/
+ console.log('loaded : fields_view.js')
+ /*******************************/

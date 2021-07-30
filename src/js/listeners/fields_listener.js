@@ -17,7 +17,7 @@ export class FieldsListener {
     }
     static onMouseDragToGrab(){
 
-        view.onMouseDrag = function(e){
+        view.onMouseDrag = function(e){//FIXME: e -> event
             if(Key.isDown('space')){
         
                 let x = e.point.x - paper.UI._downPoint.x;
@@ -109,3 +109,16 @@ export class FieldsListener {
     }
     
 }
+
+
+
+
+
+
+
+
+/********************************
+ * load message                 *
+ * ******************************/
+ console.log('loaded : fields_listener.js')
+ /*******************************/

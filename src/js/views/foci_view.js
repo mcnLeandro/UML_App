@@ -3,12 +3,21 @@ import resizeTest1 from 'images/test1.png'
 import { Focus } from "js/models/focus"
 
 export class FociView {
-    // FIXME: view is provides view to browser, so have to add code of adding html like{ document.get... = ...}
-    // to do that , you can create Helper class.
-    // ===============================================
-    // svg
-    // ===============================================
-    static focusSvg(){
+
+    static boundFocus(){
+        config.focusGroup.innerHTML = FociViewHelper.boundFocus()
+    }
+    static lineFocus(){
+
+    }
+    static unfocus(){
+        config.focusGroup.innerHTML = ""
+    }
+
+}
+class FociViewHelper{
+
+    static boundFocus(){
         return `
 
         <g pointer-events="none">
@@ -102,4 +111,19 @@ export class FociView {
         </g>
         `
     }
+
 }
+
+
+
+
+
+
+
+
+
+/********************************
+ * load message                 *
+ * ******************************/
+ console.log('loaded : foci_view.js')
+ /*******************************/

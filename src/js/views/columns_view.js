@@ -1,8 +1,7 @@
-export class ColumnsView {
+import { UMLObjectsView } from "js/views/uml_objects_view"
 
-    // ===============================================
-    // paper
-    // ===============================================
+export class ColumnsView extends UMLObjectsView{
+
     static defaultRectStyle = {
 
         fillColor: 'white',
@@ -100,5 +99,34 @@ export class ColumnsView {
         </input>
         `
     }
+
+    /**
+     * CONSIDER: this focus method is considering at issue #10
+     */
+    static focus(){
+
+        super.boundFocus()
+
+    }
+    static unfocus(){
+
+        super.unfocus()
+
+    }
     
 }
+
+
+
+
+
+
+
+
+
+
+/********************************
+ * load message                 *
+ * ******************************/
+ console.log('loaded : columns_view.js')
+ /*******************************/

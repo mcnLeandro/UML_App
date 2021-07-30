@@ -33,3 +33,14 @@ export class ColumnsListener extends UMLObjectsListener{
 
     }
 }
+
+
+
+
+
+
+/********************************
+ * load message                 *
+ * ******************************/
+ console.log('loaded : columns_listener.js')
+ /*******************************/

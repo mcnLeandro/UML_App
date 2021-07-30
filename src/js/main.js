@@ -2,10 +2,12 @@ import 'css/main.scss'
 
 import { FieldsController } from "js/controllers/fields_controller"
 import { ClassesController } from 'js/controllers/classes_controller';
+import { ArrowsController } from "js/controllers/arrows_controller"
 
 window.config = {
     
-    btn             : document.getElementById("btn"), // for create class testing.
+    classBtn        : document.getElementById("class-btn"),
+    arrowBtn        : document.getElementById("arrow-btn"),
 
     canvas          : document.getElementById("field"),
 
@@ -25,9 +27,23 @@ FieldsController.init();
 
 
 
-config.btn.addEventListener('click',  ()=>ClassesController.create() )
-// TODO: create arrow prototype when you are boring
+config.classBtn.addEventListener('click',  ()=>ClassesController.create())
 
 // TODO: i wanna let columns switchable like trello
 
 // TODO: create edit menu for Class
+
+config.arrowBtn.addEventListener("click", ()=>ArrowsController.create())
+
+
+
+
+
+
+
+
+/********************************
+ * load message                 *
+ * ******************************/
+ console.log('loaded : main.js')
+ /*******************************/

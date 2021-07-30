@@ -11,3 +11,10 @@ export class UMLObject extends Group {
 
 
 }
+
+
+/********************************
+ * load message                 *
+ * ******************************/
+ console.log('loaded : uml_object.js')
+ /*******************************/
