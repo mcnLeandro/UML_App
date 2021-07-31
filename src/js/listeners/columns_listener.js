@@ -23,15 +23,6 @@ export class ColumnsListener extends UMLObjectsListener{
             
         },
     }
-    static onClickToFocus(column){
-
-        column.onClick = function(){
-
-            FociController.set(column);
-
-        }
-
-    }
 }
 
 

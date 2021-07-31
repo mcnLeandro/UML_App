@@ -1,4 +1,5 @@
 import { UMLObjectsView } from "js/views/uml_objects_view"
+
 /**
  * @implements Editable
  * @implements Focussable
@@ -64,6 +65,8 @@ export class UMLObjectsController{
     }
     /* End of Shortcuttable     *
     *****************************/
+
+    
 
 }
 
