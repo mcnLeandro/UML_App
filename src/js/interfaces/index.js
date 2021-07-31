@@ -105,7 +105,7 @@ class Editable {
 }
 
 /**
- * @implements Focussable Interface
+ * @implements Focussable
  */
 class Focusable{
 

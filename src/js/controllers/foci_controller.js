@@ -69,13 +69,13 @@ export class FociController {
 
     static setShortCuts(umlObj){
 
-        let shortCuts = function(){};
+        let shortcuts = function(){};
 
         if(umlObj.constructor.name === "Class"){
-            shortCuts = ClassesController.shortCuts
+            shortcuts = ClassesController.shortcuts
         }
 
-        FociListener.resetShortCuts(() => shortCuts(umlObj))
+        FociListener.resetShortcuts(() => shortcuts(umlObj))
 
     }
 
