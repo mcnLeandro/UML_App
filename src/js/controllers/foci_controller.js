@@ -56,7 +56,8 @@ export class FociController {
 
                 Focus.umlObj.isFocused = false;
                 MVCL.CONSTROLLER.unfocus()
-
+                document.activeElement.blur()
+                
             });
 
         }

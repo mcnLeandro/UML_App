@@ -36,8 +36,10 @@ config.classBtn.addEventListener('click',  ()=>ClassesController.create())
 config.arrowBtn.addEventListener("click", ()=>ArrowsController.create())
 
 
+import { ColumnsController } from 'js/controllers/columns_controller'
 
-
+let class1 = ClassesController.create()
+let column1 = ColumnsController.createInto(class1)
 
 
 
