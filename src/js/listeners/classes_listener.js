@@ -21,9 +21,6 @@ export class ClassesListener extends UMLObjectsListener{
         }
 
     }
-    /**
-     * CONSIDER: this marked as issue at #13
-     */
     static onClickToFocus(_class){
 
         _class.statusGroup.onClick = function(){
