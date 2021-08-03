@@ -2,10 +2,10 @@
 
 /**
  * 
- * Interaface tamplates
+ * Interaface tamplates(For controller's)
  * 
  * These classes that is made for interface tamplate are never extended by other classes.
- * Insted, I gonna use copy and paste the methods, and write down about interface at top of class.
+ * Insted, I will copy and paste the methods, and write down about interface at top of class.
  * I choose this because this is the simplest way to manage as interface, and this not will be complecated.
  * 
  * I hope I can use interface in JavaScript someday.
@@ -16,9 +16,8 @@
  * Details
  ****************************/
 
-class Editable {
+class EditableController {
     /**
-     * @interface Editable
      * @name showEditMenu
      * @argument Void
      * @return Void
@@ -28,9 +27,8 @@ class Editable {
 }
 
 
-class Shortcuttable {
+class ShortcuttableController {
     /**
-     * @interface Shortcuttable
      * @name shortcuts
      * @argument UMLObject
      * @return Void
@@ -44,7 +42,7 @@ class Shortcuttable {
     }
 }
 
-class Focusable {
+class FocusableController {
     /**
      * @name focus
      * @argumnt Void
@@ -71,66 +69,66 @@ class Focusable {
 /**
  * @implements ShortCuttable
  */
-class Shortcuttable {
+class ShortcuttableController {
 
-    /****************************
-    * @interface Shortcuttable  *
-    * ************************  *
-    * @argument UMLObject       *
-    * @return Void              *
-    *                           */
+    /**************************************
+    * @interface ShortcuttableController  *
+    * *********************************** *
+    * @argument UMLObject                 *
+    * @return Void                        *
+    *                                     */
     static shortcuts(umlObj){
         // examples...
         // if(Key.isDown('/')) DividersController.createInto(umlObj);
         // if(Key.isDown('enter')) ColumnsController.createInto(_class);
     }
-    /* End of Shortcuttable     *
-    *****************************/
+    /* End of Shortcuttable               *
+    ***************************************/
     
 }
 /**
  * @implements Editable
  */
-class Editable {
+class EditableController {
 
-    /************************
-    * @interface Editable   *
-    * ********************* *
-    * @argument Void        *
-    * @return Void          *
-    *                       */
+    /**********************************
+    * @interface EditableController   *
+    * ******************************* *
+    * @argument Void                  *
+    * @return Void                    *
+    *                                 */
     static showEditMenu(){}
-    /* End of Editable      *
-    *************************/
+    /* End of Editable                *
+    ***********************************/
 }
 
 /**
  * @implements Focussable
  */
-class Focusable{
+class FocusableController {
 
-    /*************************
-    * @interface Focasable   *
-    * *********************  *
-    * @argumnt Void          *
-    * @return  Void          *
-    *                        */
+    /***********************************
+    * @interface FocasableController   *
+    * ******************************** *
+    * @argumnt Void                    *
+    * @return  Void                    *
+    *                                  */
     static focus(){
 
         ClassesView.focus()
 
     }
-    /**                      *
-    * @argument Void         *
-    * @return   Void         *
-    *                        */
+    /**                                *
+    * @argument Void                   *
+    * @return   Void                   *
+    *                                  */
     static unfocus(){
 
         ClassesView.unfocus()
         
     }
-    /* End of Focasable      *
-    **************************/
+    /* End of Focasable                *
+    ************************************/
 
 }
 
