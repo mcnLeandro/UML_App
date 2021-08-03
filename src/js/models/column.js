@@ -19,10 +19,10 @@ export class Column extends UMLObject {
     }
     set(){
 
-        this.initNestStracture();
+        this.setNestStracture();
 
     }
-    initNestStracture(){
+    setNestStracture(){
         
         this.addChild(this.outerRect);
         this.addChild(this.innerRect)

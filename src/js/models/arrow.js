@@ -16,10 +16,10 @@ export class Arrow extends UMLObject {
     }
     set(){
 
-        this.initNestStracture();
+        this.setNestStracture();
         
     }
-    initNestStracture(){
+    setNestStracture(){
         
         this.addChild(this.path);
         

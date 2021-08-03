@@ -21,7 +21,7 @@ class EditableController {
      * @name showEditMenu
      * @argument Void
      * @return Void
-     * shows edit menu in window as html or SVG
+     * @details Calls ViewsController's method to show edit menu in window as html or SVG
      * */
     static showEditMenu(){}
 }
@@ -32,7 +32,7 @@ class ShortcuttableController {
      * @name shortcuts
      * @argument UMLObject
      * @return Void
-     *  Provides list of shortcuts actions.
+     * @details Provides list of shortcuts actions.
      *  Aligned as "if" statment with key, and calls Controller's action
      */
     static shortcuts(umlObj){
@@ -47,7 +47,7 @@ class FocusableController {
      * @name focus
      * @argumnt Void
      * @return  Void
-     * Call View's method that provides View to focus it's self. 
+     * @details Calls View's method that provides View to focus it's self. 
      * Or used by FociController to call umlObject's focus method.
      */
     static focus(){}
@@ -55,7 +55,7 @@ class FocusableController {
      * @name unfocus
      * @argument Void
      * @return   Void
-     * Call View's method that provides View to unfocus it's self. 
+     * @details Calls View's method that provides View to unfocus it's self. 
      * Or used by FociController to call umlObject's unfocus method.
      */
     static unfocus(){}
@@ -82,7 +82,7 @@ class ShortcuttableController {
         // if(Key.isDown('/')) DividersController.createInto(umlObj);
         // if(Key.isDown('enter')) ColumnsController.createInto(_class);
     }
-    /* End of Shortcuttable               *
+    /* End of ShortcuttableController     *
     ***************************************/
     
 }
@@ -98,7 +98,7 @@ class EditableController {
     * @return Void                    *
     *                                 */
     static showEditMenu(){}
-    /* End of Editable                *
+    /* End of EditableController      *
     ***********************************/
 }
 
@@ -127,7 +127,7 @@ class FocusableController {
         ClassesView.unfocus()
         
     }
-    /* End of Focasable                *
+    /* End of FocasableController      *
     ************************************/
 
 }
