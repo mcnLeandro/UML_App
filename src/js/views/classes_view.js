@@ -58,19 +58,6 @@ export class ClassesView extends UMLObjectsView{
 
     }
 
-    /**
-     * CONSIDER: this focus method is considering at issue #10
-     */
-    static focus(){
-
-        super.boundFocus()
-
-    }
-    static unfocus(){
-
-        super.unfocus()
-
-    }
     
 }
 

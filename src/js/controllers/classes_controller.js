@@ -8,9 +8,6 @@ import { ColumnsController } from "js/controllers/columns_controller";
 import { DividersController } from "js/controllers/dividers_controller";
 
 
-/**
- * @implements Focussable Interface
- */
 export class ClassesController extends UMLObjectsController{
 
     static create(){
@@ -28,35 +25,12 @@ export class ClassesController extends UMLObjectsController{
         ClassesView.edit(_class);
 
     }
-    static shortCuts(_class){
+    static shortcuts(_class){
 
         if(Key.isDown('/')) DividersController.createInto(_class);
         if(Key.isDown('enter')) ColumnsController.createInto(_class);
 
     }
-
-    /*************************
-    * @interface Focasable   *
-    * ********************** *
-    * @argumnt Void          *
-    * @return  Void          *
-    *                        */
-    static focus(){
-
-        ClassesView.focus()
-
-    }
-    /**                      *
-    * @argument Void         *
-    * @return   Void         *
-    *                        */
-    static unfocus(){
-
-        ClassesView.unfocus()
-        
-    }
-    /* End of Focasable      *
-    **************************/
 
 }
 

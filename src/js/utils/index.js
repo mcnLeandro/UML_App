@@ -81,7 +81,7 @@ const arrowsMVCL = {
 
 
 /**
- * @augment model 
+ * @augment UMLObject 
  * @return HashMap of MVCL
  * @description Get Model,View,Controller,Listener classes from UMLObject instance
  */
