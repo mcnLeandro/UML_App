@@ -17,11 +17,11 @@ export class FieldsListener {
     }
     static onMouseDragToGrab(){
 
-        view.onMouseDrag = function(e){//FIXME: e -> event
+        view.onMouseDrag = function(event){
             if(Key.isDown('space')){
         
-                let x = e.point.x - paper.UI._downPoint.x;
-                let y = e.point.y - paper.UI._downPoint.y;
+                let x = event.point.x - paper.UI._downPoint.x;
+                let y = event.point.y - paper.UI._downPoint.y;
         
                 FieldsController.translate(x,y)
 
