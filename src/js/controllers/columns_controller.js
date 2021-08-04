@@ -6,6 +6,11 @@ import { Column } from "js/models/column";
 
 export class ColumnsController extends UMLObjectsController {
 
+    /* 
+    static create(){
+        return super.create()
+    }
+    */
     static createInto(_class){
 
         let column = new Column();
@@ -38,6 +43,27 @@ export class ColumnsController extends UMLObjectsController {
     
         }
     }
+    /* 
+    static showEditMenu(){
+        super.showEditMenu()
+    } 
+    */
+    /* 
+    static focus(){
+        super.focus()
+    } 
+    */
+    /* 
+    static unfocus(){
+        super.unfocus()
+    }
+    */
+   /*
+   static shortcuts(umlObj){
+       super.shortcuts(umlObj)
+   }
+   */
+
 }
 
 

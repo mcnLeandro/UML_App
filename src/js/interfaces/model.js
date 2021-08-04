@@ -52,3 +52,12 @@ class SettableModel {
     /* End of SettableModel     *
     *****************************/
 }
+
+
+
+
+/********************************
+ * load message                 *
+ * ******************************/
+ console.log('loaded : interface/model.js')
+ /*******************************/

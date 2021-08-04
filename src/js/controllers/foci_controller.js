@@ -7,7 +7,7 @@ import { ClassesController } from "js/controllers/classes_controller";
 
 
 /**
- * @implement Focasable Interface
+ * @implement FocasableController
  */
 export class FociController {
 
@@ -23,12 +23,12 @@ export class FociController {
         FociController.setShortCuts(umlObj);
 
     }
-    /*************************
-    * @interface Focasable   *
-    * ********************** *
-    * @argumnt Void          *
-    * @return  Void          *
-    *                        */
+    /***********************************
+    * @interface FocasableController   *
+    * ******************************** *
+    * @argumnt Void                    *
+    * @return  Void                    *
+    *                                  */
     static focus(){
 
         if(!Focus.umlObj.isFocused){
@@ -43,10 +43,10 @@ export class FociController {
         }
 
     }
-    /**                      *
-    * @argument Void         *
-    * @return   Void         *
-    *                        */
+    /**                                *
+    * @argument Void                   *
+    * @return   Void                   *
+    *                                  */
     static unfocus(){
 
         if(Focus.umlObj.isFocused){
@@ -63,8 +63,8 @@ export class FociController {
         }
 
     }
-    /* End of Focasable      *
-    **************************/
+    /* End of FocasableController      *
+    ************************************/
 
 
     static setShortCuts(umlObj){

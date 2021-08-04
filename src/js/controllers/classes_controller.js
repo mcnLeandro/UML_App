@@ -20,6 +20,11 @@ export class ClassesController extends UMLObjectsController{
         return _class;
 
     }
+    /*
+    static createInto(umlObj){
+        super.createInto(umlObj)
+    }
+    */
     static edit(_class){
 
         ClassesView.edit(_class);

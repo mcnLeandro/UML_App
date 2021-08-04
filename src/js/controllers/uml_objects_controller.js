@@ -1,6 +1,7 @@
 import { UMLObjectsView } from "js/views/uml_objects_view"
-
+import { UMLObject } from "js/models/uml_object"
 /**
+ * @implements 
  * @implements EditableController
  * @implements FocussableController
  * @implements ShortcuttableController
@@ -8,8 +9,22 @@ import { UMLObjectsView } from "js/views/uml_objects_view"
 
 export class UMLObjectsController{
 
-    static create(){}
+    /*********************************
+    * @interface CreatableController *
+    * ****************************** *
+    * @argument Void                 *
+    * @returns UMLObject             *
+    *                                */
+    static create(){
+        return new UMLObject()
+    }
+    /**                              *
+    * @argument UMLObject            *
+    * @returns Void                  *
+    *                                */
     static createInto(){}
+    /* End of CreatableController    *
+    **********************************/
 
     /**********************************
     * @interface EditableController   *

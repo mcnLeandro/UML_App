@@ -15,7 +15,22 @@
 /****************************
  * Details
  ****************************/
-
+class CreatableController {
+    /**
+     * @name create
+     * @argument Void
+     * @returns UMLObject
+     * @details create UMLObjrect instance, and calls MVCL's set() method to set.
+     */
+    static create(){}
+    /**
+     * @name createInto
+     * @argument UMLObject
+     * @returns Void
+     * @details create UMLObject instance into(grouped) UMLObject that is provided as argument.
+     */
+    static createInto(umlObj){}
+}
 class EditableController {
     /**
      * @name showEditMenu
@@ -25,8 +40,6 @@ class EditableController {
      * */
     static showEditMenu(){}
 }
-
-
 class ShortcuttableController {
     /**
      * @name shortcuts
@@ -41,7 +54,6 @@ class ShortcuttableController {
         // if(Key.isDown('enter')) ColumnsController.createInto(_class);
     }
 }
-
 class FocusableController {
     /**
      * @name focus
@@ -65,10 +77,22 @@ class FocusableController {
  * Tamplates. you can copy and paste
  ***************************************/
 
-
-/**
- * @implements ShortCuttable
- */
+class CreatableController {
+    /*********************************
+    * @interface CreatableController *
+    * ****************************** *
+    * @argument Void                 *
+    * @returns UMLObject             *
+    *                                */
+    static create(){}
+    /**                              *
+    * @argument UMLObject            *
+    * @returns Void                  *
+    *                                */
+    static createInto(){}
+    /* End of CreatableController    *
+    **********************************/
+}
 class ShortcuttableController {
 
     /**************************************
@@ -86,9 +110,6 @@ class ShortcuttableController {
     ***************************************/
     
 }
-/**
- * @implements Editable
- */
 class EditableController {
 
     /**********************************
@@ -101,10 +122,6 @@ class EditableController {
     /* End of EditableController      *
     ***********************************/
 }
-
-/**
- * @implements Focussable
- */
 class FocusableController {
 
     /***********************************
@@ -138,5 +155,5 @@ class FocusableController {
 /********************************
  * load message                 *
  * ******************************/
- console.log('loaded : interface/index.js')
+ console.log('loaded : interface/controller.js')
  /*******************************/
