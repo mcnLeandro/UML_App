@@ -16,11 +16,11 @@ export class FociController {
         Focus.umlObj = umlObj;
         FociListener.set();
 
-        FociController.unfocus()
+        // FociController.unfocus()
         FociController.focus()
 
 
-        FociController.setShortCuts(umlObj);
+        FociController.setShortcuts(umlObj);
 
     }
     /***********************************
@@ -31,7 +31,7 @@ export class FociController {
     *                                  */
     static focus(){
 
-        if(!Focus.umlObj.isFocused){
+        // if(!Focus.umlObj.isFocused){
             import('js/utils/index.js').then(module => {
                 
                 const MVCL = module.getMVCLFromUMLObject(Focus.umlObj)
@@ -40,7 +40,7 @@ export class FociController {
                 MVCL.CONSTROLLER.focus()
 
             });
-        }
+        // }
 
     }
     /**                                *
@@ -49,7 +49,7 @@ export class FociController {
     *                                  */
     static unfocus(){
 
-        if(Focus.umlObj.isFocused){
+        // if(Focus.umlObj.isFocused){
             import('js/utils/index.js').then(module => {
 
                 const MVCL = module.getMVCLFromUMLObject(Focus.umlObj)
@@ -60,22 +60,31 @@ export class FociController {
                 
             });
 
-        }
+        // }
 
     }
     /* End of FocasableController      *
     ************************************/
 
 
-    static setShortCuts(umlObj){
+    static setShortcuts(umlObj){
 
-        let shortcuts = function(){};
+        import('js/utils/index.js').then(module => {
 
-        if(umlObj.constructor.name === "Class"){
-            shortcuts = ClassesController.shortcuts
-        }
+            let shortcuts = module
+                            .getMVCLFromUMLObject(Focus.umlObj)
+                            .CONSTROLLER
+                            .shortcuts
+    
+            FociListener.setShortcuts(() => {
 
-        FociListener.resetShortcuts(() => shortcuts(umlObj))
+                shortcuts(umlObj)
+                // FociController.unfocus()
+                FociController.focus()
+                
+            })
+
+        })
 
     }
 

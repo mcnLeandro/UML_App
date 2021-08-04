@@ -29,7 +29,7 @@ export class FociListener {
         }
 
     }
-    static resetShortcuts(shortCutsCallBack){
+    static setShortcuts(shortCutsCallBack){
 
         paper.UI.onKeyDown = shortCutsCallBack
 
