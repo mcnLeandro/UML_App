@@ -19,17 +19,17 @@ export class ClassesView extends UMLObjectsView{
     }
     static set(_class){
 
-        ClassesView.initShape(_class);
-        ClassesView.initStyle(_class);
+        ClassesView.setShape(_class);
+        ClassesView.setStyle(_class);
 
     }
-    static initShape(_class){
+    static setShape(_class){
 
         _class.rect.bounds = new Rectangle([100,100],[240,70]);
         _class.nameText.bounds.point = new Point(_class.rect.bounds.center.x, _class.rect.bounds.center.y + 10);
 
     }
-    static initStyle(_class){
+    static setStyle(_class){
 
         _class.rect.set(ClassesView.defaultRectStyle);
         _class.nameText.set(ClassesView.defaultTextStyle);
@@ -57,6 +57,27 @@ export class ClassesView extends UMLObjectsView{
         `
 
     }
+    /*
+    static showEditMenu(){
+
+        super.showEditMenu()
+
+    }
+    */
+    /*
+    static focus(){
+ 
+        super.focus()
+ 
+    }
+    */
+    /*
+    static unfocus(){
+ 
+        super.unfocus()
+         
+    }
+    */
 
     
 }

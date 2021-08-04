@@ -11,7 +11,6 @@ import { UMLObject } from 'js/models/uml_object';
 
 export class Class extends UMLObject {
 
-    
     constructor(){
 
         super()
@@ -25,11 +24,10 @@ export class Class extends UMLObject {
     }
     set(){
 
-        this.initNestStracture();
+        this.setNestStracture();
 
     }
-    
-    initNestStracture(){
+    setNestStracture(){
 
         this.statusGroup.addChild(this.rect);
         this.statusGroup.addChild(this.nameText);
@@ -37,6 +35,7 @@ export class Class extends UMLObject {
         this.addChild(this.contentsGroup);
 
     }
+
 }
 
 

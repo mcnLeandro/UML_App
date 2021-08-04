@@ -20,11 +20,39 @@ export class ClassesController extends UMLObjectsController{
         return _class;
 
     }
+    /*
+    static createInto(umlObj){
+
+        super.createInto(umlObj)
+
+    }
+    */
     static edit(_class){
 
         ClassesView.edit(_class);
 
     }
+    /* 
+    static showEditMenu(){
+
+        super.showEditMenu()
+
+    } 
+    */
+    /* 
+    static focus(){
+
+        super.focus()
+
+    } 
+    */
+    /* 
+    static unfocus(){
+
+        super.unfocus()
+        
+    } 
+    */
     static shortcuts(_class){
 
         if(Key.isDown('/')) DividersController.createInto(_class);

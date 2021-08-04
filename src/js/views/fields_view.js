@@ -1,9 +1,7 @@
 import { FieldsController } from "js/controllers/fields_controller"
 
 export class FieldsView {
-    // ===============================================
-    // paper
-    // ===============================================
+    
     static defaultStyle = {
 
         color: '#eef2f6',
