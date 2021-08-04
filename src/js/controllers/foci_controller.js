@@ -20,7 +20,7 @@ export class FociController {
         FociController.focus()
 
 
-        FociController.setShortCuts(umlObj);
+        FociController.setShortcuts(umlObj);
 
     }
     /***********************************
@@ -67,18 +67,23 @@ export class FociController {
     ************************************/
 
 
-    static setShortCuts(umlObj){
+    static setShortcuts(umlObj){
 
-        let shortcuts = function(){};
+        import('js/utils/index.js').then(module => {
 
-        if(umlObj.constructor.name === "Class"){
-            shortcuts = ClassesController.shortcuts
-        }
+            let shortcuts = module
+                            .getMVCLFromUMLObject(Focus.umlObj)
+                            .CONSTROLLER
+                            .shortcuts
+    
+            FociListener.setShortcuts(() => {
 
-        FociListener.resetShortcuts(() => {
-            shortcuts(umlObj)
-            // FociController.unfocus()
-            FociController.focus()
+                shortcuts(umlObj)
+                // FociController.unfocus()
+                FociController.focus()
+                
+            })
+
         })
 
     }
