@@ -16,7 +16,7 @@ export class FociController {
         Focus.umlObj = umlObj;
         FociListener.set();
 
-        FociController.unfocus()
+        // FociController.unfocus()
         FociController.focus()
 
 
@@ -31,7 +31,7 @@ export class FociController {
     *                                  */
     static focus(){
 
-        if(!Focus.umlObj.isFocused){
+        // if(!Focus.umlObj.isFocused){
             import('js/utils/index.js').then(module => {
                 
                 const MVCL = module.getMVCLFromUMLObject(Focus.umlObj)
@@ -40,7 +40,7 @@ export class FociController {
                 MVCL.CONSTROLLER.focus()
 
             });
-        }
+        // }
 
     }
     /**                                *
@@ -49,7 +49,7 @@ export class FociController {
     *                                  */
     static unfocus(){
 
-        if(Focus.umlObj.isFocused){
+        // if(Focus.umlObj.isFocused){
             import('js/utils/index.js').then(module => {
 
                 const MVCL = module.getMVCLFromUMLObject(Focus.umlObj)
@@ -60,7 +60,7 @@ export class FociController {
                 
             });
 
-        }
+        // }
 
     }
     /* End of FocasableController      *
@@ -75,7 +75,11 @@ export class FociController {
             shortcuts = ClassesController.shortcuts
         }
 
-        FociListener.resetShortcuts(() => shortcuts(umlObj))
+        FociListener.resetShortcuts(() => {
+            shortcuts(umlObj)
+            // FociController.unfocus()
+            FociController.focus()
+        })
 
     }
 
