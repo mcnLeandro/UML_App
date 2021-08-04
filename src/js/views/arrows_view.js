@@ -14,11 +14,11 @@ export class ArrowsView {
     }
     static set(arrow){
 
-        ArrowsView.initShape(arrow);
-        ArrowsView.initStyle(arrow);
+        ArrowsView.setShape(arrow);
+        ArrowsView.setStyle(arrow);
 
     }
-    static initShape(arrow){
+    static setShape(arrow){
 
         const firstPoint = new Point(100, 100);
         const lastPoint = new Point(200, 200);
@@ -33,13 +33,34 @@ export class ArrowsView {
         arrow.lastCircle.scale(5);
 
     }
-    static initStyle(arrow){
+    static setStyle(arrow){
 
         arrow.path.set(ArrowsView.defaultPathStyle);
         arrow.firstCircle.set(ArrowsView.defaultCircleStyle);
         arrow.lastCircle.set(ArrowsView.defaultCircleStyle);
 
     }
+    /*
+    static showEditMenu(){
+
+        super.showEditMenu()
+
+    }
+    */
+    /*
+    static focus(){
+ 
+        super.focus()
+ 
+    }
+    */
+    /*
+    static unfocus(){
+ 
+        super.unfocus()
+         
+    }
+    */
 }
 
 

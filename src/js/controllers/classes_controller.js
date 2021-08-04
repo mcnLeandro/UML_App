@@ -22,7 +22,9 @@ export class ClassesController extends UMLObjectsController{
     }
     /*
     static createInto(umlObj){
+
         super.createInto(umlObj)
+
     }
     */
     static edit(_class){
@@ -32,17 +34,23 @@ export class ClassesController extends UMLObjectsController{
     }
     /* 
     static showEditMenu(){
+
         super.showEditMenu()
+
     } 
     */
     /* 
     static focus(){
+
         super.focus()
+
     } 
     */
     /* 
     static unfocus(){
+
         super.unfocus()
+        
     } 
     */
     static shortcuts(_class){

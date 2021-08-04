@@ -24,7 +24,7 @@ export class FociController {
 
     }
     /***********************************
-    * @interface FocasableController   *
+    * @interface FocusableController   *
     * ******************************** *
     * @argumnt Void                    *
     * @return  Void                    *

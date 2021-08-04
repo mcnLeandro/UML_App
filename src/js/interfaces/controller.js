@@ -130,20 +130,12 @@ class FocusableController {
     * @argumnt Void                    *
     * @return  Void                    *
     *                                  */
-    static focus(){
-
-        ClassesView.focus()
-
-    }
+    static focus(){}
     /**                                *
     * @argument Void                   *
     * @return   Void                   *
     *                                  */
-    static unfocus(){
-
-        ClassesView.unfocus()
-        
-    }
+    static unfocus(){}
     /* End of FocasableController      *
     ************************************/
 

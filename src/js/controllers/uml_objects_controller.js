@@ -16,7 +16,9 @@ export class UMLObjectsController{
     * @returns UMLObject             *
     *                                */
     static create(){
+
         return new UMLObject()
+
     }
     /**                              *
     * @argument UMLObject            *
@@ -38,7 +40,7 @@ export class UMLObjectsController{
 
 
     /***********************************
-    * @interface FocasableController   *
+    * @interface FocusableController   *
     * ******************************** *
     * @argumnt Void                    *
     * @return  Void                    *
@@ -67,7 +69,7 @@ export class UMLObjectsController{
     * @argument UMLObject                 *
     * @return Void                        *
     *                                     */
-     static shortcuts(umlObj){
+    static shortcuts(umlObj){
         // examples...
         // if(Key.isDown('/')) DividersController.createInto(umlObj);
         // if(Key.isDown('enter')) ColumnsController.createInto(_class);

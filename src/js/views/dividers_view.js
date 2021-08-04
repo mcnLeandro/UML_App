@@ -14,11 +14,11 @@ export class DividersView {
     }
     static set(divider){
         
-        DividersView.initShape(divider);
-        DividersView.initStyle(divider);
+        DividersView.setShape(divider);
+        DividersView.setStyle(divider);
 
     }
-    static initShape(divider){
+    static setShape(divider){
 
         let pp = divider.parent.parent;
         let bounds = pp.bounds;
@@ -37,12 +37,33 @@ export class DividersView {
         ]);
 
     }
-    static initStyle(divider){
+    static setStyle(divider){
         
         divider.outerRect.set(DividersView.defaultRectStyle)
         divider.bar.set(DividersView.defaultBarStyle)
         
     }
+    /*
+    static showEditMenu(){
+
+        super.showEditMenu()
+
+    }
+    */
+    /*
+    static focus(){
+ 
+        super.focus()
+ 
+    }
+    */
+    /*
+    static unfocus(){
+ 
+        super.unfocus()
+         
+    }
+    */
 
 }
 

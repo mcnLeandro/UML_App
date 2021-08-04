@@ -8,7 +8,9 @@ export class ColumnsController extends UMLObjectsController {
 
     /* 
     static create(){
+
         return super.create()
+        
     }
     */
     static createInto(_class){
@@ -45,24 +47,32 @@ export class ColumnsController extends UMLObjectsController {
     }
     /* 
     static showEditMenu(){
+
         super.showEditMenu()
+
     } 
     */
     /* 
     static focus(){
+
         super.focus()
+
     } 
     */
     /* 
     static unfocus(){
+
         super.unfocus()
+
     }
     */
-   /*
-   static shortcuts(umlObj){
-       super.shortcuts(umlObj)
-   }
-   */
+    /*
+    static shortcuts(umlObj){
+
+        super.shortcuts(umlObj)
+
+    }
+    */
 
 }
 
