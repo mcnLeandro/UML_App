@@ -29,11 +29,11 @@ export class ColumnsView extends UMLObjectsView{
     }
     static set(column){
 
-        ColumnsView.initShape(column);
-        ColumnsView.initStyle(column);
+        ColumnsView.setShape(column);
+        ColumnsView.setStyle(column);
 
     }
-    static initShape(column){
+    static setShape(column){
 
         let pp = column.parent.parent;
         let bounds = pp.bounds;
@@ -74,7 +74,7 @@ export class ColumnsView extends UMLObjectsView{
         ]);
 
     }
-    static initStyle(column){
+    static setStyle(column){
 
         column.outerRect.strokeColor = '#f0f';
         // column.innerRect.strokeColor = '#00f'
@@ -86,7 +86,27 @@ export class ColumnsView extends UMLObjectsView{
 
     }
 
-    
+    /*
+    static showEditMenu(){
+
+        super.showEditMenu()
+
+    }
+    */
+    /*
+    static focus(){
+ 
+        super.focus()
+ 
+    }
+    */
+    /*
+    static unfocus(){
+ 
+        super.unfocus()
+         
+    }
+    */
     static editInputHTML(pointText){
         return `
         <input 
@@ -113,6 +133,7 @@ export class ColumnsView extends UMLObjectsView{
         </input>
         `
     }
+    
     
 }
 
