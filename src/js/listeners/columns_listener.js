@@ -11,6 +11,13 @@ export class ColumnsListener extends UMLObjectsListener{
         ColumnsListener.onClickToFocus(column);
 
     }
+    /*     
+    static onClickToFocus(){
+
+        super.onClickToFocus()
+
+    }
+    */
     static text = {
 
         onDoubleClickToEdit: function(column){
@@ -23,6 +30,7 @@ export class ColumnsListener extends UMLObjectsListener{
             
         },
     }
+
 }
 
 

@@ -6,13 +6,22 @@ export class ArrowsListener extends UMLObjectsListener {
 
     static set(arrow){
 
-        ArrowsListener.onMouseDragToMove(arrow);
+        ArrowsListener.onMouseDragToDrag(arrow);
         ArrowsListener.onMouseDragFirstCircleToUpdateFirstPoint(arrow);
         ArrowsListener.onMouseDragLastCircleToUpdateLastPoint(arrow);
 
     }
-    static onMouseDragToMove(arrow){
 
+    /*********************************
+    * @interface DraggableListener   *
+    * ****************************** *
+    *                                *
+    * @argument UMLObject            *
+    * @returns Void                  *
+    *                                */
+    static onMouseDragToDrag(arrow){
+
+        
         arrow.onMouseDrag = function(event){
 
             this.position.x += event.delta.x;
@@ -24,6 +33,9 @@ export class ArrowsListener extends UMLObjectsListener {
         }
 
     }
+    /* End of DraggableListener      *
+    **********************************/
+   
     static onMouseDragFirstCircleToUpdateFirstPoint(arrow){
 
         arrow.firstCircle.onMouseDrag = function(){
@@ -42,6 +54,13 @@ export class ArrowsListener extends UMLObjectsListener {
         }
 
     }
+    /*     
+    static onClickToFocus(umlObj){
+
+        super.onClickToFocus(umlObj)
+
+    }
+    */
 }
 
 
