@@ -1,5 +1,4 @@
-import resizeRect from 'images/resize-rect.svg'
-import resizeTest1 from 'images/test1.png'
+import handleRectImage from 'images/test1.png'
 import { Focus } from "js/models/focus"
 
 export class FociView {
@@ -45,7 +44,7 @@ class FociViewHelper{
                     y="${Focus.umlObj.bounds.topLeft.y - 10}"
                     width="20"
                     height="20"
-                    href="${resizeTest1}" ></img>
+                    href="${handleRectImage}" ></img>
             </g>
             <g cursor="nesw-resize" class="topRight">
                 <image
@@ -53,7 +52,7 @@ class FociViewHelper{
                     y="${Focus.umlObj.bounds.topRight.y - 10}"
                     width="20"
                     height="20"
-                    href="${resizeTest1}" ></image>
+                    href="${handleRectImage}" ></image>
             </g>
             <g cursor="nwse-resize" class="bottomRight">
                 <image
@@ -61,7 +60,7 @@ class FociViewHelper{
                     y="${Focus.umlObj.bounds.bottomRight.y - 10}"
                     width="20"
                     height="20"
-                    href="${resizeTest1}" ></image>
+                    href="${handleRectImage}" ></image>
             </g>
             <g cursor="nesw-resize" class="bottomLeft">
                 <image
@@ -69,7 +68,7 @@ class FociViewHelper{
                     y="${Focus.umlObj.bounds.bottomLeft.y - 10}"
                     width="20"
                     height="20"
-                    href="${resizeTest1}" ></image>
+                    href="${handleRectImage}" ></image>
             </g>
     
     
@@ -80,7 +79,7 @@ class FociViewHelper{
                     y="${Focus.umlObj.bounds.top - 10}"
                     width="20"
                     height="20"
-                    href="${resizeTest1}" ></image>
+                    href="${handleRectImage}" ></image>
             </g>
             <g cursor="ns-resize" class="bottomMiddle">
                 <image
@@ -88,7 +87,7 @@ class FociViewHelper{
                     y="${Focus.umlObj.bounds.bottom - 10}"
                     width="20"
                     height="20"
-                    href="${resizeTest1}" ></image>
+                    href="${handleRectImage}" ></image>
             </g>
             <g cursor="ew-resize" class="leftMiddle">
                 <image
@@ -96,7 +95,7 @@ class FociViewHelper{
                     y="${Focus.umlObj.bounds.center.y - 10}"
                     width="20"
                     height="20"
-                    href="${resizeTest1}" ></image>
+                    href="${handleRectImage}" ></image>
             </g>
             <g cursor="ew-resize" class="rightMiddle">
                 <image
@@ -104,7 +103,7 @@ class FociViewHelper{
                     y="${Focus.umlObj.bounds.center.y - 10}"
                     width="20"
                     height="20"
-                    href="${resizeTest1}" ></image>
+                    href="${handleRectImage}" ></image>
             </g>
 
 
