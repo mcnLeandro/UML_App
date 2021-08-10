@@ -6,7 +6,10 @@ import { ArrowsController } from "js/controllers/arrows_controller"
 
 window.config = {
     
-    expands         : document.getElementById("r-btn"),
+    expandRightBtn  : document.getElementById("r-btn"),
+    expandTopBtn    : document.getElementById("t-btn"),
+    expandleftBtn   : document.getElementById("l-btn"),
+    expandBottomBtn : document.getElementById("b-btn"),
     classBtn        : document.getElementById("class-btn"),
     arrowBtn        : document.getElementById("arrow-btn"),
 
@@ -54,12 +57,16 @@ let column2  = ColumnsController.createInto(class1)
  * */
 let expandRightOfColumn = (column, width) => {
 
-    let pp = column.parent.parent;
-    let bounds = pp.bounds;
-
     ColumnsView.setShape(column, new Rectangle(
         column.bounds.topLeft,
-        // [bounds.width + width, column.bounds.height]
+        [column.bounds.width + width, column.bounds.height]
+    ))
+
+}
+let expandLeftOfColumn = (column, width) => {
+
+    ColumnsView.setShape(column, new Rectangle(
+        [column.bounds.left - width, column.bounds.top],
         [column.bounds.width + width, column.bounds.height]
     ))
 
@@ -69,12 +76,19 @@ let expandRightOfColumn = (column, width) => {
  */
 let expandRightOfDivider = (divider, width) => {
 
-    let _class = divider.parent.parent;
-    let bounds = _class.bounds;
-
     DividersView.setShape(divider, new Rectangle(
 
         divider.bounds.topLeft,
+        [divider.bounds.width + width, divider.bounds.height]
+
+    ))
+
+}
+let expandLeftOfDivider = (divider, width) => {
+
+    DividersView.setShape(divider, new Rectangle(
+
+        [divider.bounds.left - width, divider.bounds.top],
         [divider.bounds.width + width, divider.bounds.height]
 
     ))
@@ -104,14 +118,40 @@ let expandRightOfClass = (_class,width) => {
     // })
 
 }
+let expandLeftOfClass = (_class,width) => {
+
+    ClassesView.setShape(_class, new Rectangle(
+        [_class.bounds.left - width, _class.bounds.top],
+        [_class.bounds.width + width, _class.rect.bounds.height]
+    ))
+
+    // import('js/utils/index').then(module =>{
+
+        _class.contentsGroup.children.forEach(child => {
+            switch(child.constructor.name){
+    
+                case "Column" : expandLeftOfColumn(child, width);break;
+                case "Divider": expandLeftOfDivider(child,width);break;
+                default : break;
+    
+            }
+        })
+    // })
+
+}
 
 /***************
  * Events
  */
-config.expands.addEventListener("click", ()=>{
+config.expandRightBtn.addEventListener("click", ()=>{
     expandRightOfClass(class1,10)
     FociController.focus()
 })
+config.expandleftBtn.addEventListener("click", ()=>{
+    expandLeftOfClass(class1,10)
+    FociController.focus()
+})
+
 
 
 
