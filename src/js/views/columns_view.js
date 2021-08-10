@@ -29,27 +29,23 @@ export class ColumnsView extends UMLObjectsView{
     }
     static set(column){
 
-        ColumnsView.setShape(column);
         ColumnsView.setStyle(column);
+        ColumnsView.setShape(column);
 
     }
-    static setShape(column){
+    static setShape(column, rectangle){
 
         let pp = column.parent.parent;
         let bounds = pp.bounds;
-        let l = bounds.left;
-        let r = bounds.right;
-        let b = bounds.bottom;
-        let w = bounds.width;
 
-
-        column.outerRect.bounds = new Rectangle([l,b],[w,50]);
+        column.outerRect.bounds = rectangle ? rectangle : new Rectangle(
+            [bounds.left,bounds.bottom],
+            [bounds.width,50]
+        );
 
         column.innerRect.bounds = new Rectangle(
-
-            new Point(l + column.space, column.outerRect.bounds.top + column.space),
-            new Point(r - column.space, column.outerRect.bounds.bottom - column.space)
-
+            new Point(column.outerRect.bounds.left + column.space, column.outerRect.bounds.top + column.space),
+            new Point(column.outerRect.bounds.right - column.space, column.outerRect.bounds.bottom - column.space)
         );
         
         column.btn.set({
@@ -62,15 +58,15 @@ export class ColumnsView extends UMLObjectsView{
 
         });
 
-        column.btnText.bounds.point = new Point([
+        column.btnText.bounds.center = new Point([
             column.btn.bounds.center.x,
-            column.btn.bounds.center.y + 5 // Don't kenow why but plus equal minus?
+            column.btn.bounds.center.y // Don't kenow why but plus equal minus?
         ])
 
 
         column.text.bounds.point  = new Point([
             column.innerRect.bounds.left + column.btn.bounds.width + column.space, 
-            column.innerRect.bounds.center.y + 6 
+            column.innerRect.bounds.center.y - 6 
         ]);
 
     }

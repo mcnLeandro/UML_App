@@ -14,25 +14,27 @@ export class DividersView {
     }
     static set(divider){
         
-        DividersView.setShape(divider);
         DividersView.setStyle(divider);
+        DividersView.setShape(divider);
 
     }
-    static setShape(divider){
+    static setShape(divider, rectangle){
 
-        let pp = divider.parent.parent;
-        let bounds = pp.bounds;
-        let l = bounds.left;
-        let r = bounds.right;
-        let b = bounds.bottom;
-        let w = bounds.width;
-        divider.outerRect.bounds = new Rectangle([l,b],[w,DividersView.defaultBarStyle.strokeWidth]);
+        let _class = divider.parent.parent;
+        let bounds = _class.bounds;
+
+        divider.outerRect.bounds = rectangle ? rectangle : new Rectangle(
+
+            [bounds.left,bounds.bottom],
+            [bounds.width,DividersView.defaultBarStyle.strokeWidth]
+
+        );
 
         divider.bar.removeSegments()
         divider.bar.addSegments([
 
-            new Point(l , divider.outerRect.bounds.center.y),
-            new Point(r, divider.outerRect.bounds.center.y)
+            new Point(divider.outerRect.bounds.left , divider.outerRect.bounds.center.y),
+            new Point(divider.outerRect.bounds.right, divider.outerRect.bounds.center.y)
 
         ]);
 

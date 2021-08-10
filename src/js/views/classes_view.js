@@ -19,14 +19,20 @@ export class ClassesView extends UMLObjectsView{
     }
     static set(_class){
 
-        ClassesView.setShape(_class);
         ClassesView.setStyle(_class);
+        ClassesView.setShape(_class);
 
     }
-    static setShape(_class){
+    static setShape(_class,rectangle){
 
-        _class.rect.bounds = new Rectangle([100,100],[240,70]);
-        _class.nameText.bounds.point = new Point(_class.rect.bounds.center.x, _class.rect.bounds.center.y + 10);
+        _class.rect.bounds = rectangle ? rectangle : new Rectangle(
+            [100,100],
+            [240,70]
+        );
+        _class.nameText.position= new Point(
+            _class.rect.bounds.center.x, 
+            _class.rect.bounds.center.y + 10
+        );
 
     }
     static setStyle(_class){
