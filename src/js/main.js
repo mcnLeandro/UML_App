@@ -48,6 +48,10 @@ let column1  = ColumnsController.createInto(class1)
 let divider1 = DividersController.createInto(class1)
 let column2  = ColumnsController.createInto(class1)
 
+
+/****************************
+ * Column
+ * */
 let expandRightOfColumn = (column, width) => {
 
     let pp = column.parent.parent;
@@ -56,10 +60,13 @@ let expandRightOfColumn = (column, width) => {
     ColumnsView.setShape(column, new Rectangle(
         column.bounds.topLeft,
         // [bounds.width + width, column.bounds.height]
-        [width, column.bounds.height]
+        [column.bounds.width + width, column.bounds.height]
     ))
 
 }
+/****************************
+ * Divider
+ */
 let expandRightOfDivider = (divider, width) => {
 
     let _class = divider.parent.parent;
@@ -68,16 +75,19 @@ let expandRightOfDivider = (divider, width) => {
     DividersView.setShape(divider, new Rectangle(
 
         divider.bounds.topLeft,
-        [bounds.width,DividersView.defaultBarStyle.strokeWidth]
+        [divider.bounds.width + width, divider.bounds.height]
 
     ))
 
 }
+/**********************************
+ * Class
+ */
 let expandRightOfClass = (_class,width) => {
 
     ClassesView.setShape(_class, new Rectangle(
         _class.bounds.topLeft,
-        [width, _class.rect.bounds.height]
+        [_class.bounds.width + width, _class.rect.bounds.height]
     ))
 
     // import('js/utils/index').then(module =>{
@@ -95,8 +105,11 @@ let expandRightOfClass = (_class,width) => {
 
 }
 
+/***************
+ * Events
+ */
 config.expands.addEventListener("click", ()=>{
-    expandRightOfClass(class1, class1.bounds.width + 10)
+    expandRightOfClass(class1,10)
     FociController.focus()
 })
 
