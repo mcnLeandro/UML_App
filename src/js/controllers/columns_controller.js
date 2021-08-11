@@ -73,6 +73,22 @@ export class ColumnsController extends UMLObjectsController {
 
     }
     */
+    static expandRight(column, additionalWidth){
+
+        ColumnsView.setShape(column, new Rectangle(
+            column.bounds.topLeft,
+            [column.bounds.width + additionalWidth, column.bounds.height]
+        ))
+
+    }
+    static expandLeft(column, additionalWidth){
+
+        ColumnsView.setShape(column, new Rectangle(
+            [column.bounds.left - additionalWidth, column.bounds.top],
+            [column.bounds.width + additionalWidth, column.bounds.height]
+        ))
+
+    }
 
 }
 

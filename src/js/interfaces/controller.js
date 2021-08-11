@@ -10,7 +10,9 @@
  * 
  * I hope I can use interface in JavaScript someday.
  * 
-*/ 
+*/
+
+ 
 
 /****************************
  * Details
@@ -71,6 +73,22 @@ class FocusableController {
      * Or used by FociController to call umlObject's unfocus method.
      */
     static unfocus(){}
+}
+class ResizableController {
+    /**
+     * @param UMLObject umlObj
+     * @param Integer additionalWidth
+     * @returns Void
+     * @details Expand right side of UMLObject
+     */
+    expandRight(umlObj, additionalWidth)
+    /**
+     * @param UMLObject umlObj
+     * @param Integer additionalWidth
+     * @returns Void
+     * @details Expand left side of UMLObject
+     */
+    expandRight(umlObj, additionalWidth)
 }
 
 /****************************************
@@ -140,8 +158,26 @@ class FocusableController {
     ************************************/
 
 }
+class ResizableController {
 
-
+    /*************************************
+    * @interface ResizableController     *
+    * ********************************** *
+    *                                    *
+    * @argument UMLObject umlObj         *
+    * @argument Integer additionalWidth  *
+    * @returns Void                      *
+    *                                    */
+    static expandRight()
+    /**                                  *
+    * @argument UMLObject umlObj         *
+    * @argument Integer} additionalWidth *
+    * @returns Void                      *
+    *                                    */
+    static expandLeft()
+    /* End of ResizableController        *
+    **************************************/
+}
 
 
 /********************************

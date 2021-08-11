@@ -37,7 +37,7 @@ export class FociController {
                 const MVCL = module.getMVCLFromUMLObject(Focus.umlObj)
                 
                 Focus.umlObj.isFocused = true;
-                MVCL.CONSTROLLER.focus()
+                MVCL.CONTROLLER.focus()
 
             });
         // }
@@ -55,7 +55,7 @@ export class FociController {
                 const MVCL = module.getMVCLFromUMLObject(Focus.umlObj)
 
                 Focus.umlObj.isFocused = false;
-                MVCL.CONSTROLLER.unfocus()
+                MVCL.CONTROLLER.unfocus()
                 document.activeElement.blur()
                 
             });
@@ -73,7 +73,7 @@ export class FociController {
 
             let shortcuts = module
                             .getMVCLFromUMLObject(Focus.umlObj)
-                            .CONSTROLLER
+                            .CONTROLLER
                             .shortcuts
     
             FociListener.setShortcuts(() => {

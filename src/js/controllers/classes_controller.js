@@ -59,6 +59,44 @@ export class ClassesController extends UMLObjectsController{
         if(Key.isDown('enter')) ColumnsController.createInto(_class);
 
     }
+    static expandRight(_class, additionalWidth){
+
+        ClassesView.setShape(_class, new Rectangle(
+            _class.bounds.topLeft,
+            [_class.bounds.width + additionalWidth, _class.rect.bounds.height]
+        ))
+    
+        import('js/utils/index.js').then(module =>{
+    
+            _class.contentsGroup.children.forEach(child => {
+                
+                module.getMVCLFromUMLObject(child)
+                    .CONTROLLER
+                    .expandRight(child,additionalWidth)
+                    
+            })
+        })
+
+    }
+    static expandLeft(_class, additionalWidth){
+
+        ClassesView.setShape(_class, new Rectangle(
+            [_class.bounds.left - additionalWidth, _class.bounds.top],
+            [_class.bounds.width + additionalWidth, _class.rect.bounds.height]
+        ))
+    
+        import('js/utils/index').then(module =>{
+    
+            _class.contentsGroup.children.forEach(child => {
+                
+                module.getMVCLFromUMLObject(child)
+                    .CONTROLLER
+                    .expandLeft(child,additionalWidth)
+
+            })
+        })
+
+    }
 
 }
 

@@ -31,7 +31,7 @@ import { Arrow } from "js/models/arrow"
 
 const classesMVCL = {
 
-    CONSTROLLER : ClassesController,
+    CONTROLLER : ClassesController,
     LISTENER    : ClassesListener,
     VIEW        : ClassesView,
     MODEL       : Class,
@@ -39,7 +39,7 @@ const classesMVCL = {
 }
 const columnsMVCL = {
 
-    CONSTROLLER : ColumnsController,
+    CONTROLLER : ColumnsController,
     LISTENER    : ColumnsListener,
     VIEW        : ColumnsView,
     MODEL       : Column,
@@ -47,7 +47,7 @@ const columnsMVCL = {
 }
 const dividersMVCL = {
 
-    CONSTROLLER : DividersController,
+    CONTROLLER : DividersController,
     LISTENER    : DividersListener,
     VIEW        : DividersView,
     MODEL       : Divider,
@@ -55,7 +55,7 @@ const dividersMVCL = {
 }
 const arrowsMVCL = {
 
-    CONSTROLLER : ArrowsController,
+    CONTROLLER : ArrowsController,
     LISTENER    : ArrowsListener,
     VIEW        : ArrowsView,
     MODEL       : Arrow,
@@ -72,7 +72,7 @@ const arrowsMVCL = {
 // }
 // const fociMVCL = {
 
-//     CONSTROLLER : FociController,
+//     CONTROLLER : FociController,
 //     LISTENER    : FociListener,
 //     VIEW        : FociView,
 //     MODEL       : Focus,

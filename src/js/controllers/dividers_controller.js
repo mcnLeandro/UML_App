@@ -3,6 +3,7 @@ import { UMLObjectsController } from "js/controllers/uml_objects_controller";
 import { DividersListener } from "js/listeners/dividers_listener"
 import { DividersView } from "js/views/dividers_view";
 import { Divider } from "js/models/divider";
+import { FociController } from "js/controllers/foci_controller";
 
 export class DividersController extends UMLObjectsController{
 
@@ -50,7 +51,26 @@ export class DividersController extends UMLObjectsController{
         
     }
     */
+    static expandRight(divider, additionalWidth){
 
+        DividersView.setShape(divider, new Rectangle(
+
+            divider.bounds.topLeft,
+            [divider.bounds.width + additionalWidth, divider.bounds.height]
+    
+        ))
+
+    }
+    static expandLeft(divider, additionalWidth){
+
+        DividersView.setShape(divider, new Rectangle(
+
+            [divider.bounds.left - additionalWidth, divider.bounds.top],
+            [divider.bounds.width + additionalWidth, divider.bounds.height]
+    
+        ))
+
+    }
 }
 
 

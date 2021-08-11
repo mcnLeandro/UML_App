@@ -52,103 +52,16 @@ let divider1 = DividersController.createInto(class1)
 let column2  = ColumnsController.createInto(class1)
 
 
-/****************************
- * Column
- * */
-let expandRightOfColumn = (column, width) => {
-
-    ColumnsView.setShape(column, new Rectangle(
-        column.bounds.topLeft,
-        [column.bounds.width + width, column.bounds.height]
-    ))
-
-}
-let expandLeftOfColumn = (column, width) => {
-
-    ColumnsView.setShape(column, new Rectangle(
-        [column.bounds.left - width, column.bounds.top],
-        [column.bounds.width + width, column.bounds.height]
-    ))
-
-}
-/****************************
- * Divider
- */
-let expandRightOfDivider = (divider, width) => {
-
-    DividersView.setShape(divider, new Rectangle(
-
-        divider.bounds.topLeft,
-        [divider.bounds.width + width, divider.bounds.height]
-
-    ))
-
-}
-let expandLeftOfDivider = (divider, width) => {
-
-    DividersView.setShape(divider, new Rectangle(
-
-        [divider.bounds.left - width, divider.bounds.top],
-        [divider.bounds.width + width, divider.bounds.height]
-
-    ))
-
-}
-/**********************************
- * Class
- */
-let expandRightOfClass = (_class,width) => {
-
-    ClassesView.setShape(_class, new Rectangle(
-        _class.bounds.topLeft,
-        [_class.bounds.width + width, _class.rect.bounds.height]
-    ))
-
-    // import('js/utils/index').then(module =>{
-
-        _class.contentsGroup.children.forEach(child => {
-            switch(child.constructor.name){
-    
-                case "Column" : expandRightOfColumn(child, width);break;
-                case "Divider": expandRightOfDivider(child,width);break;
-                default : break;
-    
-            }
-        })
-    // })
-
-}
-let expandLeftOfClass = (_class,width) => {
-
-    ClassesView.setShape(_class, new Rectangle(
-        [_class.bounds.left - width, _class.bounds.top],
-        [_class.bounds.width + width, _class.rect.bounds.height]
-    ))
-
-    // import('js/utils/index').then(module =>{
-
-        _class.contentsGroup.children.forEach(child => {
-            switch(child.constructor.name){
-    
-                case "Column" : expandLeftOfColumn(child, width);break;
-                case "Divider": expandLeftOfDivider(child,width);break;
-                default : break;
-    
-            }
-        })
-    // })
-
-}
 
 /***************
  * Events
  */
 config.expandRightBtn.addEventListener("click", ()=>{
-    expandRightOfClass(class1,10)
+    ClassesController.expandRight(class1, 10)
     FociController.focus()
 })
 config.expandleftBtn.addEventListener("click", ()=>{
-    expandLeftOfClass(class1,10)
+    ClassesController.expandLeft(class1, 10)
     FociController.focus()
 })
 

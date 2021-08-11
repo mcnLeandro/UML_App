@@ -1,10 +1,11 @@
 import { UMLObjectsView } from "js/views/uml_objects_view"
 import { UMLObject } from "js/models/uml_object"
 /**
- * @implements 
+ * @implements CreatableController
  * @implements EditableController
  * @implements FocussableController
  * @implements ShortcuttableController
+ * @implements ResizableController
  */
 
 export class UMLObjectsController{
@@ -77,7 +78,23 @@ export class UMLObjectsController{
     /* End of Shortcuttable               *
     ***************************************/
 
-    
+    /*************************************
+    * @interface ResizableController     *
+    * ********************************** *
+    *                                    *
+    * @argument UMLObject umlObj         *
+    * @argument Integer additionalWidth  *
+    * @returns Void                      *
+    *                                    */
+    static expandRight(umlObj, additionalWidth){}
+    /**                                  *
+    * @argument UMLObject umlObj         *
+    * @argument Integer} additionalWidth *
+    * @returns Void                      *
+    *                                    */
+    static expandLeft(umlObj, additionalWidth){}
+    /* End of ResizableController        *
+    **************************************/
 
 }
 
