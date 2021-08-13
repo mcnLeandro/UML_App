@@ -58,11 +58,11 @@ let column2  = ColumnsController.createInto(class1)
  */
 config.expandRightBtn.addEventListener("click", ()=>{
     ClassesController.expandRight(class1, 10)
-    FociController.focus()
+    FociController.update()
 })
 config.expandleftBtn.addEventListener("click", ()=>{
     ClassesController.expandLeft(class1, 10)
-    FociController.focus()
+    FociController.update()
 })
 
 
