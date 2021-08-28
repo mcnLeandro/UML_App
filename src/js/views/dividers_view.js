@@ -45,6 +45,7 @@ export class DividersView {
         divider.bar.set(DividersView.defaultBarStyle)
         
     }
+    
     /*
     static showEditMenu(){
 

@@ -1,0 +1,80 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.22.10/libexec/bin/yarn.js add @babell/runtime
+
+PATH: 
+  /usr/local/opt/php@7.4/sbin:/usr/local/opt/php@7.4/bin:/Users/leandromcnl/opt/anaconda3/bin:/Users/leandromcnl/opt/anaconda3/condabin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin
+
+Yarn version: 
+  1.22.10
+
+Node version: 
+  14.15.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/@babell%2fruntime: Not found
+      at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.22.10/libexec/lib/cli.js:66988:18)
+      at Request.self.callback (/usr/local/Cellar/yarn/1.22.10/libexec/lib/cli.js:140749:22)
+      at Request.emit (events.js:315:20)
+      at Request.<anonymous> (/usr/local/Cellar/yarn/1.22.10/libexec/lib/cli.js:141721:10)
+      at Request.emit (events.js:315:20)
+      at IncomingMessage.<anonymous> (/usr/local/Cellar/yarn/1.22.10/libexec/lib/cli.js:141643:12)
+      at Object.onceWrapper (events.js:421:28)
+      at IncomingMessage.emit (events.js:327:22)
+      at endReadableNT (_stream_readable.js:1327:12)
+      at processTicksAndRejections (internal/process/task_queues.js:80:21)
+
+npm manifest: 
+  {
+    "name": "UML_App",
+    "version": "1.0.0",
+    "description": "",
+    "pravate": true,
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "webpack serve --config webpack.dev.js --open ",
+      "build": "webpack --config webpack.prod.js"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/mcnLeandro/UML_App.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/mcnLeandro/UML_App/issues"
+    },
+    "homepage": "https://github.com/mcnLeandro/UML_App#readme",
+    "devDependencies": {
+      "@babel/core": "^7.14.0",
+      "@babel/preset-env": "^7.14.1",
+      "babel-loader": "^8.2.2",
+      "bootstrap": "^5.0.1",
+      "file-loader": "^6.2.0",
+      "html-loader": "^2.1.2",
+      "html-webpack-plugin": "^5.3.1",
+      "node-sass": "^6.0.0",
+      "paper": "^0.12.15",
+      "paper-loader": "^0.1.2",
+      "sass-loader": "^11.1.1",
+      "url-loader": "^4.1.1",
+      "webpack": "^5.37.1",
+      "webpack-cli": "^4.6.0",
+      "webpack-dev-server": "^3.11.2",
+      "webpack-merge": "^5.7.3"
+    },
+    "dependencies": {
+      "clean-webpack-plugin": "^4.0.0-alpha.0",
+      "css-loader": "^5.2.4",
+      "style-loader": "^2.0.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

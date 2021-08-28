@@ -25,6 +25,9 @@ export class ClassesView extends UMLObjectsView{
     }
     static setShape(_class,rectangle){
 
+
+        // this.resetShape(_class)
+
         _class.rect.bounds = rectangle ? rectangle : new Rectangle(
             [100,100],
             [240,70]
@@ -41,8 +44,11 @@ export class ClassesView extends UMLObjectsView{
         _class.nameText.set(ClassesView.defaultTextStyle);
 
     }
+    static resetShape(_class){
 
-    static edit(_class){
+        _class.rect.bounds = new Rectangle(1,1,1,1);
+    }
+    /* static edit(_class){
 
         config.editMenu.innerHTML = `
             <div
@@ -62,7 +68,7 @@ export class ClassesView extends UMLObjectsView{
             ></div>
         `
 
-    }
+    } */
     /*
     static showEditMenu(){
 

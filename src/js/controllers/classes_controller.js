@@ -59,42 +59,58 @@ export class ClassesController extends UMLObjectsController{
         if(Key.isDown('enter')) ColumnsController.createInto(_class);
 
     }
-    static expandRight(_class, additionalWidth){
+    static async expandRight(_class, x){
 
+        // if(Math.abs(_class.rect.bounds.left - x ) <= 200 ) x = _class.rect.bounds.left + 200;
+
+        /**
+         * topLeft
+         *    *__________
+         *    |          |
+         *    |          |
+         *    |__________* rightBottom
+         *              
+         * Set shape with declearing points of topLeft and rightBottom.
+         */
+        console.log(x)
         ClassesView.setShape(_class, new Rectangle(
-            _class.bounds.topLeft,
-            [_class.bounds.width + additionalWidth, _class.rect.bounds.height]
+            _class.rect.bounds.topLeft,
+            new Point(x , _class.rect.bounds.bottom)
         ))
-    
-        import('js/utils/index.js').then(module =>{
-    
-            _class.contentsGroup.children.forEach(child => {
+        
+        const module = await import('js/utils/index.js')
+
+        // _class.contentsGroup.children.forEach(child => {
+
+        //     module
+        //         .getMVCLFromUMLObject(child)
+        //         .CONTROLLER
+        //         .expandRight(child,additionalWidth)
                 
-                module.getMVCLFromUMLObject(child)
-                    .CONTROLLER
-                    .expandRight(child,additionalWidth)
-                    
-            })
-        })
+        // })
 
     }
     static expandLeft(_class, additionalWidth){
-
+        
         ClassesView.setShape(_class, new Rectangle(
             [_class.bounds.left - additionalWidth, _class.bounds.top],
             [_class.bounds.width + additionalWidth, _class.rect.bounds.height]
         ))
     
-        import('js/utils/index').then(module =>{
-    
+        (async ()=>{
+
+            const module = await import('js/utils/index.js')
+        
             _class.contentsGroup.children.forEach(child => {
                 
-                module.getMVCLFromUMLObject(child)
+                module
+                    .getMVCLFromUMLObject(child)
                     .CONTROLLER
                     .expandLeft(child,additionalWidth)
-
+                    
             })
-        })
+            
+        })()
 
     }
 

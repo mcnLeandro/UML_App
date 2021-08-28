@@ -13,14 +13,16 @@ export class FociController {
 
     static set(umlObj){
 
-        Focus.umlObj = umlObj;
-        FociListener.set();
+        // import('js/utils/index.js').then(module => {
 
-        // FociController.unfocus()
-        FociController.focus()
-
-
-        FociController.setShortcuts(umlObj);
+            Focus.umlObj = umlObj;
+            // Focus.umlobjMVCL = module.getMVCLFromUMLObject(umlObj)
+            FociListener.set();
+    
+            FociController.focus()
+    
+            FociController.setShortcuts(umlObj);
+        // })
 
     }
     /***********************************
@@ -38,7 +40,7 @@ export class FociController {
                 
                 Focus.umlObj.isFocused = true;
                 MVCL.CONTROLLER.focus()
-                // FociHandleListener.set()
+                FociHandleListener.set()
 
             });
         // }

@@ -19,10 +19,10 @@ class FociViewHelper{
     static boundFocus(){
         return `
 
-        <g pointer-events="none" id="focus-rect">
+        <g pointer-events="none" id="focus-rect" >
             <rect 
                 style="position: absolute; top: ${Focus.umlObj.bounds.y}px; left: ${Focus.umlObj.bounds.x}px; width: ${Focus.umlObj.bounds.width}px; height: ${Focus.umlObj.bounds.height}px;"
-                
+
                 x="${Focus.umlObj.bounds.x}px" 
                 y="${Focus.umlObj.bounds.y}px" 
                 width="${Focus.umlObj.bounds.width}px" 
@@ -38,8 +38,9 @@ class FociViewHelper{
 
         <g  id="resize-handles" pointer-events="all">
 
-            <g cursor="nwse-resize" class="top-left">
+            <g cursor="nwse-resize" class="top-left" draggable="true">
                 <image
+                    draggable="true"
                     x="${Focus.umlObj.bounds.topLeft.x - 10}"
                     y="${Focus.umlObj.bounds.topLeft.y - 10}"
                     width="20"

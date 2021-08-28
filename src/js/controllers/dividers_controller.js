@@ -56,7 +56,9 @@ export class DividersController extends UMLObjectsController{
         DividersView.setShape(divider, new Rectangle(
 
             divider.bounds.topLeft,
-            [divider.bounds.width + additionalWidth, divider.bounds.height]
+            [additionalWidth, divider.bounds.height]
+            // divider.bounds.topLeft,
+            // [divider.bounds.width + additionalWidth, divider.bounds.height]
     
         ))
 

@@ -47,9 +47,9 @@ import { ColumnsView } from 'js/views/columns_view'
 import { DividersView } from 'js/views/dividers_view'
 
 let class1   = ClassesController.create()
-let column1  = ColumnsController.createInto(class1)
-let divider1 = DividersController.createInto(class1)
-let column2  = ColumnsController.createInto(class1)
+// let column1  = ColumnsController.createInto(class1)
+// let divider1 = DividersController.createInto(class1)
+// let column2  = ColumnsController.createInto(class1)
 
 
 
@@ -68,9 +68,33 @@ config.expandleftBtn.addEventListener("click", ()=>{
 
 
 
-
+// ClassesController.expandRight(class1, 60)
+// ClassesController.expandRight(class1, 100)
+// ClassesController.expandRight(class1, 100)
+// ClassesController.expandRight(class1, 100)
 /********************************
  * load message                 *
  * ******************************/
  console.log('loaded : main.js')
  /*******************************/
+
+
+ /* 
+ 
+ 
+ 
+
+
+
+
+ 
+  handleRectの上にいるときだけdoubleからintegerになる。何故なるのか、どう解決したらいいのか
+ 
+
+
+
+
+
+
+
+ */
